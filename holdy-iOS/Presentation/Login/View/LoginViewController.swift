@@ -16,7 +16,11 @@ final class LoginViewController: UIViewController {
         $0.textAlignment = .center
     }
     
-    private let codeTextFieldShadow = ShadowFilterView(corner: 8)
+    private let codeTextFieldShadow = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.applyShadow(direction: .bottom, color: .systemGray5, opacity: 0.95, radius: 4)
+        $0.layer.cornerRadius = 8
+    }
     private let codeTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: "10자리 코드를 입력해주세요",
@@ -36,7 +40,11 @@ final class LoginViewController: UIViewController {
         $0.returnKeyType = .done
     }
     
-    private let loginButtonShadow = ShadowFilterView(corner: 8)
+    private let loginButtonShadow = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.applyShadow(direction: .bottom, color: .systemGray5, opacity: 0.95, radius: 4)
+        $0.layer.cornerRadius = 8
+    }
     private let loginButton = UIButton().then {
         $0.backgroundColor = UIColor.customBlue
         $0.layer.cornerRadius = 8
