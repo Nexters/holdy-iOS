@@ -12,6 +12,30 @@
 		DE16E7502895271B00C75C23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E74F2895271B00C75C23 /* ViewController.swift */; };
 		DE16E7552895271D00C75C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7542895271D00C75C23 /* Assets.xcassets */; };
 		DE16E7582895271D00C75C23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7562895271D00C75C23 /* LaunchScreen.storyboard */; };
+		DE16E76728954F5C00C75C23 /* CoordinatorDescribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E76628954F5C00C75C23 /* CoordinatorDescribing.swift */; };
+		DE16E76D28954F7000C75C23 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E76928954F7000C75C23 /* CALayer+.swift */; };
+		DE16E76E28954F7000C75C23 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E76A28954F7000C75C23 /* UIFont+.swift */; };
+		DE16E76F28954F7000C75C23 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E76B28954F7000C75C23 /* UITextField+.swift */; };
+		DE16E77028954F7000C75C23 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E76C28954F7000C75C23 /* UIColor+.swift */; };
+		DE16E77C28954F7F00C75C23 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E77328954F7F00C75C23 /* Pretendard-Regular.otf */; };
+		DE16E77D28954F7F00C75C23 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E77428954F7F00C75C23 /* Pretendard-Black.otf */; };
+		DE16E77E28954F7F00C75C23 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E77528954F7F00C75C23 /* Pretendard-Medium.otf */; };
+		DE16E77F28954F7F00C75C23 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E77628954F7F00C75C23 /* Pretendard-Light.otf */; };
+		DE16E78028954F7F00C75C23 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E77728954F7F00C75C23 /* Pretendard-ExtraBold.otf */; };
+		DE16E78128954F7F00C75C23 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E77828954F7F00C75C23 /* Pretendard-Bold.otf */; };
+		DE16E78228954F7F00C75C23 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E77928954F7F00C75C23 /* Pretendard-Thin.otf */; };
+		DE16E78328954F7F00C75C23 /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E77A28954F7F00C75C23 /* Pretendard-ExtraLight.otf */; };
+		DE16E78428954F7F00C75C23 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E77B28954F7F00C75C23 /* Pretendard-SemiBold.otf */; };
+		DE16E78A2895514400C75C23 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7892895514400C75C23 /* .swiftlint.yml */; };
+		DE16E78C289551ED00C75C23 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E78B289551ED00C75C23 /* AppCoordinator.swift */; };
+		DE16E7902895521300C75C23 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E78F2895521300C75C23 /* HomeCoordinator.swift */; };
+		DE16E7932895529700C75C23 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DE16E7922895529700C75C23 /* SnapKit */; };
+		DE16E799289552BF00C75C23 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DE16E798289552BF00C75C23 /* RxCocoa */; };
+		DE16E79B289552BF00C75C23 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = DE16E79A289552BF00C75C23 /* RxRelay */; };
+		DE16E79D289552BF00C75C23 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE16E79C289552BF00C75C23 /* RxSwift */; };
+		DE16E7A0289552CE00C75C23 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = DE16E79F289552CE00C75C23 /* Then */; };
+		DE16E7A3289552F600C75C23 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE16E7A2289552F600C75C23 /* Alamofire */; };
+		DE16E7A62895530F00C75C23 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = DE16E7A52895530F00C75C23 /* RxDataSources */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +46,23 @@
 		DE16E7542895271D00C75C23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE16E7572895271D00C75C23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE16E7592895271D00C75C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE16E76628954F5C00C75C23 /* CoordinatorDescribing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorDescribing.swift; sourceTree = "<group>"; };
+		DE16E76928954F7000C75C23 /* CALayer+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		DE16E76A28954F7000C75C23 /* UIFont+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		DE16E76B28954F7000C75C23 /* UITextField+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		DE16E76C28954F7000C75C23 /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		DE16E77328954F7F00C75C23 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		DE16E77428954F7F00C75C23 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
+		DE16E77528954F7F00C75C23 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		DE16E77628954F7F00C75C23 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		DE16E77728954F7F00C75C23 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		DE16E77828954F7F00C75C23 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		DE16E77928954F7F00C75C23 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		DE16E77A28954F7F00C75C23 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
+		DE16E77B28954F7F00C75C23 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		DE16E7892895514400C75C23 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		DE16E78B289551ED00C75C23 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		DE16E78F2895521300C75C23 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +70,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE16E7A0289552CE00C75C23 /* Then in Frameworks */,
+				DE16E799289552BF00C75C23 /* RxCocoa in Frameworks */,
+				DE16E7932895529700C75C23 /* SnapKit in Frameworks */,
+				DE16E7A3289552F600C75C23 /* Alamofire in Frameworks */,
+				DE16E7A62895530F00C75C23 /* RxDataSources in Frameworks */,
+				DE16E79D289552BF00C75C23 /* RxSwift in Frameworks */,
+				DE16E79B289552BF00C75C23 /* RxRelay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +86,7 @@
 		DE16E73F2895271B00C75C23 = {
 			isa = PBXGroup;
 			children = (
+				DE16E7892895514400C75C23 /* .swiftlint.yml */,
 				DE16E74A2895271B00C75C23 /* holdy-iOS */,
 				DE16E7492895271B00C75C23 /* Products */,
 			);
@@ -56,6 +105,9 @@
 			children = (
 				DE16E75F2895284200C75C23 /* App */,
 				DE16E7602895285100C75C23 /* Presentation */,
+				DE16E76528954F5C00C75C23 /* Protocol */,
+				DE16E77128954F7F00C75C23 /* DesignSystem */,
+				DE16E76828954F7000C75C23 /* Extension */,
 				DE16E7612895287200C75C23 /* SupportFile */,
 			);
 			path = "holdy-iOS";
@@ -73,7 +125,8 @@
 		DE16E7602895285100C75C23 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				DE16E74F2895271B00C75C23 /* ViewController.swift */,
+				DE16E78B289551ED00C75C23 /* AppCoordinator.swift */,
+				DE16E76428954F2F00C75C23 /* Home */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -104,6 +157,74 @@
 			path = Configure;
 			sourceTree = "<group>";
 		};
+		DE16E76428954F2F00C75C23 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DE16E78F2895521300C75C23 /* HomeCoordinator.swift */,
+				DE16E78E2895520300C75C23 /* View */,
+				DE16E78D289551FB00C75C23 /* ViewModel */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		DE16E76528954F5C00C75C23 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				DE16E76628954F5C00C75C23 /* CoordinatorDescribing.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		DE16E76828954F7000C75C23 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DE16E76928954F7000C75C23 /* CALayer+.swift */,
+				DE16E76A28954F7000C75C23 /* UIFont+.swift */,
+				DE16E76B28954F7000C75C23 /* UITextField+.swift */,
+				DE16E76C28954F7000C75C23 /* UIColor+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DE16E77128954F7F00C75C23 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				DE16E77228954F7F00C75C23 /* Font */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		DE16E77228954F7F00C75C23 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				DE16E77328954F7F00C75C23 /* Pretendard-Regular.otf */,
+				DE16E77428954F7F00C75C23 /* Pretendard-Black.otf */,
+				DE16E77528954F7F00C75C23 /* Pretendard-Medium.otf */,
+				DE16E77628954F7F00C75C23 /* Pretendard-Light.otf */,
+				DE16E77728954F7F00C75C23 /* Pretendard-ExtraBold.otf */,
+				DE16E77828954F7F00C75C23 /* Pretendard-Bold.otf */,
+				DE16E77928954F7F00C75C23 /* Pretendard-Thin.otf */,
+				DE16E77A28954F7F00C75C23 /* Pretendard-ExtraLight.otf */,
+				DE16E77B28954F7F00C75C23 /* Pretendard-SemiBold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		DE16E78D289551FB00C75C23 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DE16E78E2895520300C75C23 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE16E74F2895271B00C75C23 /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -111,6 +232,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE16E75C2895271D00C75C23 /* Build configuration list for PBXNativeTarget "holdy-iOS" */;
 			buildPhases = (
+				DE16E78528954FBD00C75C23 /* SwiftLint Script */,
 				DE16E7442895271B00C75C23 /* Sources */,
 				DE16E7452895271B00C75C23 /* Frameworks */,
 				DE16E7462895271B00C75C23 /* Resources */,
@@ -120,6 +242,15 @@
 			dependencies = (
 			);
 			name = "holdy-iOS";
+			packageProductDependencies = (
+				DE16E7922895529700C75C23 /* SnapKit */,
+				DE16E798289552BF00C75C23 /* RxCocoa */,
+				DE16E79A289552BF00C75C23 /* RxRelay */,
+				DE16E79C289552BF00C75C23 /* RxSwift */,
+				DE16E79F289552CE00C75C23 /* Then */,
+				DE16E7A2289552F600C75C23 /* Alamofire */,
+				DE16E7A52895530F00C75C23 /* RxDataSources */,
+			);
 			productName = "holdy-iOS";
 			productReference = DE16E7482895271B00C75C23 /* holdy-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -148,6 +279,13 @@
 				Base,
 			);
 			mainGroup = DE16E73F2895271B00C75C23;
+			packageReferences = (
+				DE16E7912895529700C75C23 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				DE16E797289552BF00C75C23 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				DE16E79E289552CE00C75C23 /* XCRemoteSwiftPackageReference "Then" */,
+				DE16E7A1289552F600C75C23 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DE16E7A42895530F00C75C23 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+			);
 			productRefGroup = DE16E7492895271B00C75C23 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -162,20 +300,58 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE16E78A2895514400C75C23 /* .swiftlint.yml in Resources */,
+				DE16E78428954F7F00C75C23 /* Pretendard-SemiBold.otf in Resources */,
 				DE16E7582895271D00C75C23 /* LaunchScreen.storyboard in Resources */,
+				DE16E78128954F7F00C75C23 /* Pretendard-Bold.otf in Resources */,
+				DE16E78328954F7F00C75C23 /* Pretendard-ExtraLight.otf in Resources */,
+				DE16E77E28954F7F00C75C23 /* Pretendard-Medium.otf in Resources */,
+				DE16E78228954F7F00C75C23 /* Pretendard-Thin.otf in Resources */,
+				DE16E78028954F7F00C75C23 /* Pretendard-ExtraBold.otf in Resources */,
+				DE16E77C28954F7F00C75C23 /* Pretendard-Regular.otf in Resources */,
+				DE16E77D28954F7F00C75C23 /* Pretendard-Black.otf in Resources */,
 				DE16E7552895271D00C75C23 /* Assets.xcassets in Resources */,
+				DE16E77F28954F7F00C75C23 /* Pretendard-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DE16E78528954FBD00C75C23 /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DE16E7442895271B00C75C23 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE16E76728954F5C00C75C23 /* CoordinatorDescribing.swift in Sources */,
+				DE16E77028954F7000C75C23 /* UIColor+.swift in Sources */,
 				DE16E7502895271B00C75C23 /* ViewController.swift in Sources */,
+				DE16E76F28954F7000C75C23 /* UITextField+.swift in Sources */,
 				DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */,
+				DE16E76D28954F7000C75C23 /* CALayer+.swift in Sources */,
+				DE16E78C289551ED00C75C23 /* AppCoordinator.swift in Sources */,
+				DE16E7902895521300C75C23 /* HomeCoordinator.swift in Sources */,
+				DE16E76E28954F7000C75C23 /* UIFont+.swift in Sources */,
 				DE16E74E2895271B00C75C23 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +560,87 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DE16E7912895529700C75C23 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		DE16E797289552BF00C75C23 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		DE16E79E289552CE00C75C23 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		DE16E7A1289552F600C75C23 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		DE16E7A42895530F00C75C23 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DE16E7922895529700C75C23 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE16E7912895529700C75C23 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		DE16E798289552BF00C75C23 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE16E797289552BF00C75C23 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		DE16E79A289552BF00C75C23 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE16E797289552BF00C75C23 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		DE16E79C289552BF00C75C23 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE16E797289552BF00C75C23 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		DE16E79F289552CE00C75C23 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE16E79E289552CE00C75C23 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		DE16E7A2289552F600C75C23 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE16E7A1289552F600C75C23 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		DE16E7A52895530F00C75C23 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE16E7A42895530F00C75C23 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DE16E7402895271B00C75C23 /* Project object */;
 }
