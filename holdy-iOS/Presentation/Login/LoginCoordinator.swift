@@ -4,7 +4,7 @@
 
 import UIKit
 
-final class HomeCoordinator: CoordinatorDescribing {
+final class LoginCoordinator: CoordinatorDescribing {
     // MARK: - Properties
     weak var navigationController: UINavigationController?
     var childCoordinators = [CoordinatorDescribing]()
@@ -14,7 +14,10 @@ final class HomeCoordinator: CoordinatorDescribing {
         self.navigationController = navigationController
     }
     
-    // MARK: - Methods
     func start() {
+        guard let navigationController = navigationController else { return }
+        
+        let loginViewController = LoginViewController()
+        navigationController.pushViewController(loginViewController, animated: true)
     }
 }
