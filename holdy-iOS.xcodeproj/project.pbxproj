@@ -34,7 +34,6 @@
 		DE16E7B828955E3700C75C23 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E7B728955E3700C75C23 /* LoginRequest.swift */; };
 		DE16E7BC28955EC500C75C23 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E7BB28955EC500C75C23 /* LoginResponse.swift */; };
 		DE16E7BE2895692600C75C23 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E7BD2895692600C75C23 /* LoginViewController.swift */; };
-		DE16E7C128956CA900C75C23 /* ShadowFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E7C028956CA900C75C23 /* ShadowFilterView.swift */; };
 		DE16E7C3289570EC00C75C23 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E7C2289570EC00C75C23 /* UIView+.swift */; };
 		DE16E7CD28957C7000C75C23 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7C92895799000C75C23 /* Pretendard-Thin.otf */; };
 		DE16E7CE28957C7200C75C23 /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7CB2895799000C75C23 /* Pretendard-ExtraLight.otf */; };
@@ -70,7 +69,6 @@
 		DE16E7B728955E3700C75C23 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		DE16E7BB28955EC500C75C23 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		DE16E7BD2895692600C75C23 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		DE16E7C028956CA900C75C23 /* ShadowFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowFilterView.swift; sourceTree = "<group>"; };
 		DE16E7C2289570EC00C75C23 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		DE16E7C42895799000C75C23 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DE16E7C52895799000C75C23 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				DE16E78B289551ED00C75C23 /* AppCoordinator.swift */,
-				DE16E7BF28956C9C00C75C23 /* Common */,
 				DE16E7A72895555300C75C23 /* Login */,
 				DE16E76428954F2F00C75C23 /* Home */,
 			);
@@ -324,14 +321,6 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
-		DE16E7BF28956C9C00C75C23 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				DE16E7C028956CA900C75C23 /* ShadowFilterView.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -456,7 +445,6 @@
 				DE16E7B22895577000C75C23 /* APIProtocol.swift in Sources */,
 				DE16E76F28954F7000C75C23 /* UITextField+.swift in Sources */,
 				DE16E7AB2895557100C75C23 /* LoginCoordinator.swift in Sources */,
-				DE16E7C128956CA900C75C23 /* ShadowFilterView.swift in Sources */,
 				DE16E7BC28955EC500C75C23 /* LoginResponse.swift in Sources */,
 				DE16E7B828955E3700C75C23 /* LoginRequest.swift in Sources */,
 				DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */,
