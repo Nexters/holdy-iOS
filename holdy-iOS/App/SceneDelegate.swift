@@ -1,7 +1,4 @@
 //
-//  SceneDelegate.swift
-//  holdy-iOS
-//
 //  Created by 양호준 on 2022/07/30.
 //
 
@@ -20,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .white
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
         appCoordinator = AppCoordinator(navigationController: navigationController)

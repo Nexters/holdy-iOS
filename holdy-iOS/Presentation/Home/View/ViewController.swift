@@ -1,7 +1,4 @@
 //
-//  ViewController.swift
-//  holdy-iOS
-//
 //  Created by 양호준 on 2022/07/30.
 //
 
@@ -13,4 +10,3 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
 }
-

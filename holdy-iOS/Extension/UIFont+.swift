@@ -1,3 +1,7 @@
+//
+//  Created by 양호준 on 2022/07/30.
+//
+
 import UIKit
 
 extension UIFont {
@@ -56,6 +60,9 @@ extension UIFont {
     }
     
     static func pretendardWithDefaultSize(family: Family = .medium) -> UIFont {
-        return UIFont(name: "Pretendard-\(family.kind)", size: family.defaultSize) ?? UIFont.systemFont(ofSize: family.defaultSize)
+        return UIFont(
+            name: "Pretendard-\(family.kind)",
+            size: family.defaultSize
+        ) ?? UIFont.systemFont(ofSize: family.defaultSize)
     }
 }
