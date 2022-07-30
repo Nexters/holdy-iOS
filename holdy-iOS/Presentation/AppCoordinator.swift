@@ -1,7 +1,4 @@
 //
-//  HomeCoordinator.swift
-//  holdy-iOS
-//
 //  Created by 양호준 on 2022/07/30.
 //
 
@@ -23,6 +20,22 @@ final class AppCoordinator: CoordinatorDescribing {
     }
     
     private func showHomeTabBarViewController() {
+        // TODO: Login 관련 분기 처리 필요
+        startLoginCoordinator()
+    }
+}
+
+extension AppCoordinator {
+    private func startLoginCoordinator() {
+        guard let navigationController = navigationController else { return }
+        navigationController.navigationBar.isHidden = true
+        
+        let loginCoordinator = LoginCoordinator(navigationController: navigationController)
+        childCoordinators.append(loginCoordinator)
+        loginCoordinator.start()
+    }
+    
+    private func startHomeCoordinator() {
         guard let navigationController = navigationController else { return }
         navigationController.navigationBar.isHidden = true
         
