@@ -44,7 +44,20 @@
 		DE16E7D328957C7F00C75C23 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7C42895799000C75C23 /* Pretendard-Bold.otf */; };
 		DE16E7D428957C8100C75C23 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7CA2895799000C75C23 /* Pretendard-ExtraBold.otf */; };
 		DE16E7D528957C8400C75C23 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7C62895799000C75C23 /* Pretendard-Black.otf */; };
+		DE16E7D9289589E400C75C23 /* Poppins-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7D8289588F000C75C23 /* Poppins-SemiBold.otf */; };
+		DE86D4A328964541007BC448 /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4A228964541007BC448 /* URLRequest+.swift */; };
+		DE86D4AB28980062007BC448 /* LoginAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4AA28980062007BC448 /* LoginAPITests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DE86D4AC28980062007BC448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE16E7402895271B00C75C23 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE16E7472895271B00C75C23;
+			remoteInfo = "holdy-iOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DE16E7482895271B00C75C23 /* holdy-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "holdy-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +92,10 @@
 		DE16E7CA2895799000C75C23 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
 		DE16E7CB2895799000C75C23 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
 		DE16E7CC2895799000C75C23 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		DE16E7D8289588F000C75C23 /* Poppins-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.otf"; sourceTree = "<group>"; };
+		DE86D4A228964541007BC448 /* URLRequest+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+.swift"; sourceTree = "<group>"; };
+		DE86D4A828980062007BC448 /* holdy-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "holdy-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE86D4AA28980062007BC448 /* LoginAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +113,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DE86D4A528980062007BC448 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -104,6 +128,7 @@
 			children = (
 				DE16E7892895514400C75C23 /* .swiftlint.yml */,
 				DE16E74A2895271B00C75C23 /* holdy-iOS */,
+				DE86D4A928980062007BC448 /* holdy-iOSTests */,
 				DE16E7492895271B00C75C23 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				DE16E7482895271B00C75C23 /* holdy-iOS.app */,
+				DE86D4A828980062007BC448 /* holdy-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,6 +223,7 @@
 		DE16E76828954F7000C75C23 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				DE86D4A228964541007BC448 /* URLRequest+.swift */,
 				DE16E76928954F7000C75C23 /* CALayer+.swift */,
 				DE16E76A28954F7000C75C23 /* UIFont+.swift */,
 				DE16E76B28954F7000C75C23 /* UITextField+.swift */,
@@ -217,6 +244,7 @@
 		DE16E77228954F7F00C75C23 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				DE16E7D8289588F000C75C23 /* Poppins-SemiBold.otf */,
 				DE16E7C92895799000C75C23 /* Pretendard-Thin.otf */,
 				DE16E7CB2895799000C75C23 /* Pretendard-ExtraLight.otf */,
 				DE16E7C52895799000C75C23 /* Pretendard-Light.otf */,
@@ -321,6 +349,22 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		DE86D4A928980062007BC448 /* holdy-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				DE86D4B12898006F007BC448 /* Network */,
+			);
+			path = "holdy-iOSTests";
+			sourceTree = "<group>";
+		};
+		DE86D4B12898006F007BC448 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DE86D4AA28980062007BC448 /* LoginAPITests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -351,6 +395,24 @@
 			productReference = DE16E7482895271B00C75C23 /* holdy-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DE86D4A728980062007BC448 /* holdy-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE86D4AE28980062007BC448 /* Build configuration list for PBXNativeTarget "holdy-iOSTests" */;
+			buildPhases = (
+				DE86D4A428980062007BC448 /* Sources */,
+				DE86D4A528980062007BC448 /* Frameworks */,
+				DE86D4A628980062007BC448 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DE86D4AD28980062007BC448 /* PBXTargetDependency */,
+			);
+			name = "holdy-iOSTests";
+			productName = "holdy-iOSTests";
+			productReference = DE86D4A828980062007BC448 /* holdy-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -363,6 +425,10 @@
 				TargetAttributes = {
 					DE16E7472895271B00C75C23 = {
 						CreatedOnToolsVersion = 13.4;
+					};
+					DE86D4A728980062007BC448 = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = DE16E7472895271B00C75C23;
 					};
 				};
 			};
@@ -387,6 +453,7 @@
 			projectRoot = "";
 			targets = (
 				DE16E7472895271B00C75C23 /* holdy-iOS */,
+				DE86D4A728980062007BC448 /* holdy-iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -405,9 +472,17 @@
 				DE16E7D428957C8100C75C23 /* Pretendard-ExtraBold.otf in Resources */,
 				DE16E7D028957C7700C75C23 /* Pretendard-Regular.otf in Resources */,
 				DE16E7D228957C7D00C75C23 /* Pretendard-SemiBold.otf in Resources */,
+				DE16E7D9289589E400C75C23 /* Poppins-SemiBold.otf in Resources */,
 				DE16E7CD28957C7000C75C23 /* Pretendard-Thin.otf in Resources */,
 				DE16E7D528957C8400C75C23 /* Pretendard-Black.otf in Resources */,
 				DE16E7CF28957C7500C75C23 /* Pretendard-Light.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE86D4A628980062007BC448 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +514,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE86D4A328964541007BC448 /* URLRequest+.swift in Sources */,
 				DE16E76728954F5C00C75C23 /* CoordinatorDescribing.swift in Sources */,
 				DE16E77028954F7000C75C23 /* UIColor+.swift in Sources */,
 				DE16E7502895271B00C75C23 /* ViewController.swift in Sources */,
@@ -460,7 +536,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DE86D4A428980062007BC448 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE86D4AB28980062007BC448 /* LoginAPITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DE86D4AD28980062007BC448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE16E7472895271B00C75C23 /* holdy-iOS */;
+			targetProxy = DE86D4AC28980062007BC448 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DE16E7562895271D00C75C23 /* LaunchScreen.storyboard */ = {
@@ -642,6 +734,44 @@
 			};
 			name = Release;
 		};
+		DE86D4AF28980062007BC448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FA464JRW3F;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hojoon.holdy-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/holdy-iOS.app/holdy-iOS";
+			};
+			name = Debug;
+		};
+		DE86D4B028980062007BC448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FA464JRW3F;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hojoon.holdy-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/holdy-iOS.app/holdy-iOS";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -659,6 +789,15 @@
 			buildConfigurations = (
 				DE16E75D2895271D00C75C23 /* Debug */,
 				DE16E75E2895271D00C75C23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE86D4AE28980062007BC448 /* Build configuration list for PBXNativeTarget "holdy-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE86D4AF28980062007BC448 /* Debug */,
+				DE86D4B028980062007BC448 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

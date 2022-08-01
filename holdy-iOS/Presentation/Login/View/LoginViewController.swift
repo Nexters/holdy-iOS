@@ -11,8 +11,8 @@ import Then
 
 final class LoginViewController: UIViewController {
     private let titleLabel = UILabel().then {
-        $0.text = "Holdy"
-        $0.font = .pretendard(family: .semiBold, size: 24)
+        $0.text = "holdy"
+        $0.font = .poppins(family: .semiBold, size: 24)
         $0.textAlignment = .center
     }
     
