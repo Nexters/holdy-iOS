@@ -58,6 +58,8 @@ struct BaseRouter {
                 .responseDecodable(of: T.self) { response in
                     switch response.result {
                     case .success(let data):
+                        UserDefaults.standard.set(response.response?.headers["Set-Cookie"], forKey: "loginSession")
+                        UserDefaults.standard.set(Date(), forKey: "loginTime")
                         emitter(.success(data))
                     case .failure(let error):
                         emitter(.failure(error))
