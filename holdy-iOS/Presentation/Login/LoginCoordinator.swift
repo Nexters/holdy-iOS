@@ -17,7 +17,8 @@ final class LoginCoordinator: CoordinatorDescribing {
     func start() {
         guard let navigationController = navigationController else { return }
         
-        let loginViewController = LoginViewController()
+        let loginViewModel = LoginViewModel()
+        let loginViewController = LoginViewController(viewModel: loginViewModel)
         navigationController.pushViewController(loginViewController, animated: true)
     }
 }
