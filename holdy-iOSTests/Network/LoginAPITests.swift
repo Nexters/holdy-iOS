@@ -5,7 +5,6 @@
 import XCTest
 @testable import holdy_iOS
 
-import Alamofire
 import RxSwift
 
 class LoginAPITests: XCTestCase {

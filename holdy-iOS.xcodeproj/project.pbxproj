@@ -47,6 +47,7 @@
 		DE16E7D9289589E400C75C23 /* Poppins-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7D8289588F000C75C23 /* Poppins-SemiBold.otf */; };
 		DE86D4A328964541007BC448 /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4A228964541007BC448 /* URLRequest+.swift */; };
 		DE86D4AB28980062007BC448 /* LoginAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4AA28980062007BC448 /* LoginAPITests.swift */; };
+		DE86D4B428980CA4007BC448 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4B328980CA4007BC448 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		DE86D4A228964541007BC448 /* URLRequest+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+.swift"; sourceTree = "<group>"; };
 		DE86D4A828980062007BC448 /* holdy-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "holdy-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE86D4AA28980062007BC448 /* LoginAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPITests.swift; sourceTree = "<group>"; };
+		DE86D4B328980CA4007BC448 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +288,7 @@
 		DE16E7A82895555E00C75C23 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DE86D4B328980CA4007BC448 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				DE16E76F28954F7000C75C23 /* UITextField+.swift in Sources */,
 				DE16E7AB2895557100C75C23 /* LoginCoordinator.swift in Sources */,
 				DE16E7BC28955EC500C75C23 /* LoginResponse.swift in Sources */,
+				DE86D4B428980CA4007BC448 /* LoginViewModel.swift in Sources */,
 				DE16E7B828955E3700C75C23 /* LoginRequest.swift in Sources */,
 				DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */,
 				DE16E76D28954F7000C75C23 /* CALayer+.swift in Sources */,

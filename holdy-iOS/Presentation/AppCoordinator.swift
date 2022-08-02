@@ -20,8 +20,16 @@ final class AppCoordinator: CoordinatorDescribing {
     }
     
     private func showHomeTabBarViewController() {
-        // TODO: Login 관련 분기 처리 필요
-        startLoginCoordinator()
+        guard let loginTime = UserDefaults.standard.value(forKey: "loginTime") as? Date else {
+            startLoginCoordinator()
+            return
+        }
+//        let loginTimeElapsedOneHour = loginTime + 3600
+        let loginTimeElapsedOneHour = loginTime + 60
+        
+        if loginTimeElapsedOneHour < Date() {
+            startLoginCoordinator()
+        }
     }
 }
 

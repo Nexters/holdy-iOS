@@ -23,7 +23,7 @@ extension CALayer {
         case .right:
             applyShadow(offset: CGSize(width: 1, height: 0), color: color, opacity: opacity, radius: radius)
         case .bottom:
-            applyShadow(offset: CGSize(width: 0, height: 1), color: color, opacity: opacity, radius: radius)
+            applyShadow(offset: CGSize(width: 0, height: 2), color: color, opacity: opacity, radius: radius)
         }
     }
 
