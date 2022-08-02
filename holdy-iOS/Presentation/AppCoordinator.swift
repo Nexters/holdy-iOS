@@ -24,8 +24,7 @@ final class AppCoordinator: CoordinatorDescribing {
             startLoginCoordinator()
             return
         }
-//        let loginTimeElapsedOneHour = loginTime + 3600
-        let loginTimeElapsedOneHour = loginTime + 60
+        let loginTimeElapsedOneHour = loginTime + 3600
         
         if loginTimeElapsedOneHour < Date() {
             startLoginCoordinator()
