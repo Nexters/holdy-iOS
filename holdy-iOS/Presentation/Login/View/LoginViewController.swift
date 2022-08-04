@@ -12,7 +12,8 @@ import Then
 final class LoginViewController: UIViewController {
     private let titleLabel = UILabel().then {
         $0.text = "holdy"
-        $0.font = .poppins(family: .semiBold, size: 24)
+        $0.textColor = .strongBlue
+        $0.font = .poppins(family: .semiBold, size: 40)
         $0.textAlignment = .center
     }
     
@@ -65,13 +66,16 @@ final class LoginViewController: UIViewController {
     
     private let textFieldText = PublishSubject<String>()
     private let disposeBag = DisposeBag()
+    
     private var viewModel: LoginViewModel!
+    private var coordinator: LoginCoordinator!
     
     // MARK: - Initializers
-    convenience init(viewModel: LoginViewModel) {
+    convenience init(viewModel: LoginViewModel, coordinator: LoginCoordinator) {
         self.init(nibName: nil, bundle: nil)
         
         self.viewModel = viewModel
+        self.coordinator = coordinator
     }
     
     // MARK: - Lifecycle Methods
@@ -174,6 +178,7 @@ final class LoginViewController: UIViewController {
                     return
                 }
                 // TODO: 리스트 뷰로 이동하도록 구현
+                self.coordinator.startGeneratingGroupCoordinator()
             })
             .disposed(by: disposeBag)
     }
