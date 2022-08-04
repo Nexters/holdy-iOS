@@ -1,0 +1,501 @@
+//
+//  Created by 양호준 on 2022/08/04.
+//
+
+import UIKit
+
+import RxSwift
+import SnapKit
+import Then
+
+final class GeneratingGroupViewController: UIViewController {
+    // MARK: - PickerType
+    enum Picker: Int {
+        case date
+        case startTime
+        case endTime
+        
+        var componentCount: Int {
+            switch self {
+            case .date:
+                return 3
+            case .startTime:
+                return 3
+            case .endTime:
+                return 3
+            }
+        }
+    }
+    
+    // MARK: - Properties
+    private let closeButton = UIButton().then {
+        $0.setImage(UIImage(named: "icon_close"), for: .normal)
+    }
+    
+    private let contentContainer = UIStackView().then {
+        $0.axis = .vertical
+        $0.alignment = .fill
+        $0.distribution = .equalSpacing
+        $0.spacing = 30
+    }
+    
+    private let dateContainer = UIStackView().then {
+        $0.axis = .vertical
+        $0.alignment = .fill
+        $0.distribution = .fillEqually
+        $0.spacing = -1
+    }
+    private let dateTitleLabel = UILabel().then {
+        $0.text = "날짜 *"
+        $0.font = UIFont.pretendardWithDefaultSize(family: .semiBold)
+        
+        let titleText = $0.text as? NSString
+        let range = titleText?.range(of: "*")
+        let attributes = NSMutableAttributedString(string: $0.text ?? "")
+        attributes.addAttributes(
+            [
+                NSAttributedString.Key.font: UIFont.pretendard(family: .regular, size: 12),
+                NSAttributedString.Key.foregroundColor: UIColor.strongBlue
+            ],
+            range: range ?? NSRange()
+        )
+        $0.attributedText = attributes
+    }
+    private let dateTextField = UITextField().then {
+        $0.attributedPlaceholder = NSAttributedString(
+            string: "모임날짜",
+            attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.gray5,
+                NSAttributedString.Key.font: UIFont.pretendardWithDefaultSize(family: .regular)
+            ]
+        )
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.gray5.cgColor
+        $0.layer.cornerRadius = 5
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        $0.addLeftPadding()
+        $0.clearButtonMode = .always
+    }
+    private let datePicker = UIDatePicker()
+    private let timePickerContainer = UIStackView().then {
+        $0.axis = .horizontal
+        $0.alignment = .fill
+        $0.distribution = .fillEqually
+        $0.spacing = -1
+    }
+    
+    private let startTimePicker = UIPickerView().then {
+        $0.tag = PickerTag.startTime
+    }
+    private let endTimePicker = UIPickerView().then {
+        $0.tag = PickerTag.endTime
+    }
+    private let startTimeTextField = UITextField().then {
+        $0.attributedPlaceholder = NSAttributedString(
+            string: "모임 시작 시간",
+            attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.gray5,
+                NSAttributedString.Key.font: UIFont.pretendardWithDefaultSize(family: .regular)
+            ]
+        )
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.gray5.cgColor
+        $0.layer.cornerRadius = 5
+        $0.layer.maskedCorners = [.layerMinXMaxYCorner]
+        $0.addLeftPadding()
+        $0.clearButtonMode = .always
+        $0.font = UIFont.pretendardWithDefaultSize(family: .regular)
+    }
+    private let endTimeTextField = UITextField().then {
+        $0.attributedPlaceholder = NSAttributedString(
+            string: "모임 종료 시간",
+            attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.gray5,
+                NSAttributedString.Key.font: UIFont.pretendardWithDefaultSize(family: .regular)
+            ]
+        )
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.gray5.cgColor
+        $0.layer.cornerRadius = 5
+        $0.layer.maskedCorners = [.layerMaxXMaxYCorner]
+        $0.addLeftPadding()
+        $0.clearButtonMode = .always
+        $0.font = UIFont.pretendardWithDefaultSize(family: .regular)
+    }
+    
+    private let locationContainer = UIStackView().then {
+        $0.axis = .vertical
+        $0.alignment = .fill
+        $0.distribution = .fillEqually
+        $0.spacing = -1
+    }
+    private let locationTitleLabel = UILabel().then {
+        $0.text = "장소 *"
+        $0.font = UIFont.pretendardWithDefaultSize(family: .semiBold)
+        
+        let titleText = $0.text as? NSString
+        let range = titleText?.range(of: "*")
+        let attributes = NSMutableAttributedString(string: $0.text ?? "")
+        attributes.addAttributes(
+            [
+                NSAttributedString.Key.font: UIFont.pretendard(family: .regular, size: 12),
+                NSAttributedString.Key.foregroundColor: UIColor.strongBlue
+            ],
+            range: range ?? NSRange()
+        )
+        $0.attributedText = attributes
+    }
+    private let locationNameTextField = UITextField().then {
+        $0.attributedPlaceholder = NSAttributedString(
+            string: "장소 이름",
+            attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.gray5,
+                NSAttributedString.Key.font: UIFont.pretendardWithDefaultSize(family: .regular)
+            ]
+        )
+        $0.font = UIFont.pretendardWithDefaultSize(family: .regular)
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.gray5.cgColor
+        $0.layer.cornerRadius = 5
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        $0.addLeftPadding()
+        $0.clearButtonMode = .always
+        $0.returnKeyType = .done
+    }
+    private let locationDetailTextFiled = UITextField().then {
+        $0.attributedPlaceholder = NSAttributedString(
+            string: "상세주소",
+            attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.gray5,
+                NSAttributedString.Key.font: UIFont.pretendardWithDefaultSize(family: .regular)
+            ]
+        )
+        $0.font = UIFont.pretendardWithDefaultSize(family: .regular)
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.gray5.cgColor
+        $0.layer.cornerRadius = 5
+        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        $0.addLeftPadding()
+        $0.clearButtonMode = .always
+        $0.returnKeyType = .done
+    }
+    
+    private let locationLinkContainer = UIStackView().then {
+        $0.axis = .vertical
+        $0.alignment = .fill
+        $0.distribution = .fillEqually
+    }
+    private let locationLinkTitleLabel = UILabel().then {
+        $0.text = "장소 링크"
+        $0.font = UIFont.pretendardWithDefaultSize(family: .semiBold)
+    }
+    private let locationLinkTextField = UITextField().then {
+        $0.attributedPlaceholder = NSAttributedString(
+            string: "네이버 지도, 카카오 지도 링크를 입력하세요",
+            attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.gray5,
+                NSAttributedString.Key.font: UIFont.pretendardWithDefaultSize(family: .regular)
+            ]
+        )
+        $0.font = UIFont.pretendardWithDefaultSize(family: .regular)
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.gray5.cgColor
+        $0.layer.cornerRadius = 5
+        $0.addLeftPadding()
+        $0.clearButtonMode = .always
+        $0.returnKeyType = .done
+        $0.clipsToBounds = true
+    }
+    
+    private let generatingGroupButton = UIButton().then {
+        $0.backgroundColor = .strongBlue
+        $0.layer.cornerRadius = 5
+        $0.clipsToBounds = true
+        $0.setTitle("모임 만들기", for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.titleLabel?.font = UIFont.pretendardWithDefaultSize(family: .medium)
+    }
+    
+    private let disposeBag = DisposeBag()
+    
+    private let ampmList: [String] = ["오전", "오후"]
+    private let hourList: [String] = [
+        "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
+    ]
+    private let minuteList: [String] = ["00", "15", "30", "45"]
+    
+    private var selectedAMPM = "오전"
+    private var selectedHour = "00"
+    private var selectedMinute = "00"
+    
+    // MARK: - Initializers
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
+        
+        setAttributes()
+        configureDatePicker()
+        configureTimePicker()
+        configureTextField()
+    }
+    
+    // MARK: - Lifecycle Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        render()
+        bind()
+    }
+    
+    // MARK: - Methods
+    private func setAttributes() {
+        view.backgroundColor = .white
+    }
+    
+    private func configureDatePicker() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let flexibleSpace = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace, target: nil, action: nil
+        )
+        let cancelButton = UIBarButtonItem(
+            barButtonSystemItem: .cancel, target: nil, action: #selector(cancelButtonTapped)
+        )
+        let doneButton = UIBarButtonItem(
+            barButtonSystemItem: .done, target: nil, action: #selector(doneButtonTappedAtDatePicker)
+        )
+        
+        toolbar.setItems([flexibleSpace, cancelButton, doneButton], animated: true)
+        
+        datePicker.tag = PickerTag.date
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        datePicker.minimumDate = Date()
+        dateTextField.inputAccessoryView = toolbar
+        dateTextField.inputView = datePicker
+    }
+    
+    private func configureTimePicker() {
+        let startToolbar = UIToolbar()
+        let endToolbar = UIToolbar()
+        startToolbar.sizeToFit()
+        endToolbar.sizeToFit()
+        
+        let flexibleSpace = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace, target: nil, action: nil
+        )
+        let cancelButton = UIBarButtonItem(
+            barButtonSystemItem: .cancel, target: nil, action: #selector(cancelButtonTapped)
+        )
+        let startDoneButton = UIBarButtonItem(
+            barButtonSystemItem: .done, target: nil, action: #selector(doneButtonTappedAtStartTimePicker)
+        )
+        let endDoneButton = UIBarButtonItem(
+            barButtonSystemItem: .done, target: nil, action: #selector(doneButtonTappedAtEndTimePicker)
+        )
+        
+        startToolbar.setItems([flexibleSpace, cancelButton, startDoneButton], animated: true)
+        endToolbar.setItems([flexibleSpace, cancelButton, endDoneButton], animated: true)
+        
+        startTimePicker.delegate = self
+        startTimePicker.dataSource = self
+        
+        endTimePicker.delegate = self
+        endTimePicker.dataSource = self
+        
+        startTimeTextField.tintColor = .clear
+        startTimeTextField.inputView = startTimePicker
+        startTimeTextField.inputAccessoryView = startToolbar
+        
+        endTimeTextField.tintColor = .clear
+        endTimeTextField.inputView = endTimePicker
+        endTimeTextField.inputAccessoryView = endToolbar
+    }
+    
+    private func configureTextField() {
+        locationNameTextField.delegate = self
+        locationDetailTextFiled.delegate = self
+        locationLinkTextField.delegate = self
+    }
+    
+    @objc
+    private func doneButtonTappedAtDatePicker() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        
+        dateTextField.attributedText = NSAttributedString(
+            string: dateFormatter.string(from: datePicker.date),
+            attributes: [
+                NSAttributedString.Key.font: UIFont.pretendardWithDefaultSize(family: .regular)
+            ]
+        )
+        view.endEditing(true)
+    }
+    
+    @objc
+    private func doneButtonTappedAtStartTimePicker() {
+        startTimeTextField.text = "\(selectedAMPM) \(selectedHour) :\(selectedMinute)"
+        
+        view.endEditing(true)
+    }
+    
+    @objc
+    private func doneButtonTappedAtEndTimePicker() {
+        endTimeTextField.text = "\(selectedAMPM) \(selectedHour) :\(selectedMinute)"
+        
+        view.endEditing(true)
+    }
+    
+    @objc
+    private func cancelButtonTapped() {
+        view.endEditing(true)
+    }
+    
+    private func render() {
+        view.addSubview(closeButton)
+        view.addSubview(contentContainer)
+        view.addSubview(generatingGroupButton)
+        
+        contentContainer.addArrangedSubview(dateContainer)
+        contentContainer.addArrangedSubview(locationContainer)
+        contentContainer.addArrangedSubview(locationLinkContainer)
+        
+        dateContainer.addArrangedSubview(dateTitleLabel)
+        dateContainer.addArrangedSubview(dateTextField)
+        dateContainer.addArrangedSubview(timePickerContainer)
+        
+        timePickerContainer.addArrangedSubview(startTimeTextField)
+        timePickerContainer.addArrangedSubview(endTimeTextField)
+        
+        locationContainer.addArrangedSubview(locationTitleLabel)
+        locationContainer.addArrangedSubview(locationNameTextField)
+        locationContainer.addArrangedSubview(locationDetailTextFiled)
+        
+        locationLinkContainer.addArrangedSubview(locationLinkTitleLabel)
+        locationLinkContainer.addArrangedSubview(locationLinkTextField)
+        
+        closeButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
+        contentContainer.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(60)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
+        dateTextField.snp.makeConstraints {
+            $0.height.equalTo(48)
+        }
+        startTimeTextField.snp.makeConstraints {
+            $0.height.equalTo(48)
+        }
+
+        locationNameTextField.snp.makeConstraints {
+            $0.height.equalTo(48)
+        }
+        locationDetailTextFiled.snp.makeConstraints {
+            $0.height.equalTo(48)
+        }
+        locationLinkTextField.snp.makeConstraints {
+            $0.height.equalTo(48)
+        }
+        
+        generatingGroupButton.snp.makeConstraints {
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(40)
+            $0.height.equalTo(48)
+        }
+    }
+    
+    private func bind() {
+        configureCloseButton()
+    }
+    
+    private func configureCloseButton() {
+        closeButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { _ in
+                self.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+extension GeneratingGroupViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        guard let componentCount = Picker(rawValue: pickerView.tag)?.componentCount else {
+            return 0
+        }
+        
+        return componentCount
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch component {
+        case 0:
+            return ampmList.count
+        case 1:
+            return hourList.count
+        case 2:
+            return minuteList.count
+        default:
+            return 0
+        }
+    }
+    
+    func pickerView(
+        _ pickerView: UIPickerView,
+        titleForRow row: Int,
+        forComponent component: Int
+    ) -> String? {
+        switch component {
+        case 0:
+            return "\(ampmList[row])"
+        case 1:
+            return "\(hourList[row]) : "
+        case 2:
+            return "\(minuteList[row])"
+        default:
+            return ""
+        }
+    }
+    
+    func pickerView(
+        _ pickerView: UIPickerView,
+        didSelectRow row: Int,
+        inComponent component: Int
+    ) {
+        switch component {
+        case 0:
+            selectedAMPM = ampmList[row]
+        case 1:
+            selectedHour = hourList[row]
+        case 2:
+            selectedMinute = minuteList[row]
+        default:
+            break
+        }
+    }
+}
+
+extension GeneratingGroupViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        textField.attributedText = NSAttributedString(
+            string: textField.text ?? "",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.pretendardWithDefaultSize(family: .regular)
+            ]
+        )
+        return true
+    }
+}
+
+extension GeneratingGroupViewController {
+    enum PickerTag {
+        static let date = 0
+        static let startTime = 1
+        static let endTime = 2
+    }
+}
