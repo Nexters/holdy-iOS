@@ -66,7 +66,7 @@ extension UIFont {
         ) ?? UIFont.systemFont(ofSize: family.defaultSize)
     }
     
-    static func poppins(family: Family = .medium, size: CGFloat = 32) -> UIFont {
+    static func poppins(family: Family = .medium, size: CGFloat = 40) -> UIFont {
         return UIFont(name: "Poppins-\(family.kind)", size: size) ?? UIFont.systemFont(ofSize: size)
     }
 }
