@@ -43,8 +43,9 @@ final class GeneratingGroupViewController: UIViewController {
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fillEqually
-        $0.spacing = -1
+//        $0.spacing = -1
     }
+    
     private let dateTitleLabel = UILabel().then {
         $0.text = "날짜 *"
         $0.font = UIFont.pretendardWithDefaultSize(family: .semiBold)
@@ -61,6 +62,7 @@ final class GeneratingGroupViewController: UIViewController {
         )
         $0.attributedText = attributes
     }
+    
     private let dateTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: "모임날짜",
@@ -70,26 +72,30 @@ final class GeneratingGroupViewController: UIViewController {
             ]
         )
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.gray5.cgColor
+        $0.layer.borderColor = UIColor.gray3.cgColor
         $0.layer.cornerRadius = 5
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         $0.addLeftPadding()
         $0.clearButtonMode = .always
     }
+    
     private let datePicker = UIDatePicker()
+    
     private let timePickerContainer = UIStackView().then {
         $0.axis = .horizontal
         $0.alignment = .fill
         $0.distribution = .fillEqually
-        $0.spacing = -1
+//        $0.spacing = -1
     }
     
     private let startTimePicker = UIPickerView().then {
         $0.tag = PickerTag.startTime
     }
+    
     private let endTimePicker = UIPickerView().then {
         $0.tag = PickerTag.endTime
     }
+    
     private let startTimeTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: "모임 시작 시간",
@@ -99,13 +105,14 @@ final class GeneratingGroupViewController: UIViewController {
             ]
         )
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.gray5.cgColor
+        $0.layer.borderColor = UIColor.gray3.cgColor
         $0.layer.cornerRadius = 5
         $0.layer.maskedCorners = [.layerMinXMaxYCorner]
         $0.addLeftPadding()
         $0.clearButtonMode = .always
         $0.font = UIFont.pretendardWithDefaultSize(family: .regular)
     }
+    
     private let endTimeTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: "모임 종료 시간",
@@ -115,7 +122,7 @@ final class GeneratingGroupViewController: UIViewController {
             ]
         )
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.gray5.cgColor
+        $0.layer.borderColor = UIColor.gray3.cgColor
         $0.layer.cornerRadius = 5
         $0.layer.maskedCorners = [.layerMaxXMaxYCorner]
         $0.addLeftPadding()
@@ -127,8 +134,9 @@ final class GeneratingGroupViewController: UIViewController {
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fillEqually
-        $0.spacing = -1
+//        $0.spacing = -1
     }
+    
     private let locationTitleLabel = UILabel().then {
         $0.text = "장소 *"
         $0.font = UIFont.pretendardWithDefaultSize(family: .semiBold)
@@ -145,6 +153,7 @@ final class GeneratingGroupViewController: UIViewController {
         )
         $0.attributedText = attributes
     }
+    
     private let locationNameTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: "장소 이름",
@@ -155,14 +164,15 @@ final class GeneratingGroupViewController: UIViewController {
         )
         $0.font = UIFont.pretendardWithDefaultSize(family: .regular)
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.gray5.cgColor
+        $0.layer.borderColor = UIColor.gray3.cgColor
         $0.layer.cornerRadius = 5
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         $0.addLeftPadding()
         $0.clearButtonMode = .always
         $0.returnKeyType = .done
     }
-    private let locationDetailTextFiled = UITextField().then {
+    
+    private let locationDetailTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: "상세주소",
             attributes: [
@@ -172,7 +182,7 @@ final class GeneratingGroupViewController: UIViewController {
         )
         $0.font = UIFont.pretendardWithDefaultSize(family: .regular)
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.gray5.cgColor
+        $0.layer.borderColor = UIColor.gray3.cgColor
         $0.layer.cornerRadius = 5
         $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         $0.addLeftPadding()
@@ -185,10 +195,12 @@ final class GeneratingGroupViewController: UIViewController {
         $0.alignment = .fill
         $0.distribution = .fillEqually
     }
+    
     private let locationLinkTitleLabel = UILabel().then {
         $0.text = "장소 링크"
         $0.font = UIFont.pretendardWithDefaultSize(family: .semiBold)
     }
+    
     private let locationLinkTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: "네이버 지도, 카카오 지도 링크를 입력하세요",
@@ -199,7 +211,7 @@ final class GeneratingGroupViewController: UIViewController {
         )
         $0.font = UIFont.pretendardWithDefaultSize(family: .regular)
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.gray5.cgColor
+        $0.layer.borderColor = UIColor.gray3.cgColor
         $0.layer.cornerRadius = 5
         $0.addLeftPadding()
         $0.clearButtonMode = .always
@@ -207,13 +219,21 @@ final class GeneratingGroupViewController: UIViewController {
         $0.clipsToBounds = true
     }
     
+    private let linkWarningLabel = UILabel().then {
+        $0.text = "링크가 잘못되지 않았는지 확인해주세요"
+        $0.textColor = .customRed
+        $0.font = .pretendard(family: .regular, size: 12)
+        $0.isHidden = true
+    }
+    
     private let generatingGroupButton = UIButton().then {
-        $0.backgroundColor = .strongBlue
+        $0.backgroundColor = .weakBlue
         $0.layer.cornerRadius = 5
         $0.clipsToBounds = true
         $0.setTitle("모임 만들기", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.font = UIFont.pretendardWithDefaultSize(family: .medium)
+        $0.isUserInteractionEnabled = false
     }
     
     private let disposeBag = DisposeBag()
@@ -314,7 +334,7 @@ final class GeneratingGroupViewController: UIViewController {
     
     private func configureTextField() {
         locationNameTextField.delegate = self
-        locationDetailTextFiled.delegate = self
+        locationDetailTextField.delegate = self
         locationLinkTextField.delegate = self
     }
     
@@ -355,6 +375,7 @@ final class GeneratingGroupViewController: UIViewController {
         view.addSubview(closeButton)
         view.addSubview(contentContainer)
         view.addSubview(generatingGroupButton)
+        view.addSubview(linkWarningLabel)
         
         contentContainer.addArrangedSubview(dateContainer)
         contentContainer.addArrangedSubview(locationContainer)
@@ -369,7 +390,7 @@ final class GeneratingGroupViewController: UIViewController {
         
         locationContainer.addArrangedSubview(locationTitleLabel)
         locationContainer.addArrangedSubview(locationNameTextField)
-        locationContainer.addArrangedSubview(locationDetailTextFiled)
+        locationContainer.addArrangedSubview(locationDetailTextField)
         
         locationLinkContainer.addArrangedSubview(locationLinkTitleLabel)
         locationLinkContainer.addArrangedSubview(locationLinkTextField)
@@ -394,11 +415,17 @@ final class GeneratingGroupViewController: UIViewController {
         locationNameTextField.snp.makeConstraints {
             $0.height.equalTo(48)
         }
-        locationDetailTextFiled.snp.makeConstraints {
+        locationDetailTextField.snp.makeConstraints {
             $0.height.equalTo(48)
         }
         locationLinkTextField.snp.makeConstraints {
             $0.height.equalTo(48)
+        }
+        
+        linkWarningLabel.snp.makeConstraints {
+            $0.top.equalTo(locationLinkTextField.snp.bottom).offset(12)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(24)
+            $0.height.equalTo(17)
         }
         
         generatingGroupButton.snp.makeConstraints {
@@ -410,15 +437,146 @@ final class GeneratingGroupViewController: UIViewController {
     
     private func bind() {
         configureCloseButton()
+        configureEditingTextField()
+        configureEndEditingTextField()
     }
     
     private func configureCloseButton() {
         closeButton.rx.tap
             .withUnretained(self)
-            .subscribe(onNext: { _ in
-                self.dismiss(animated: true)
+            .subscribe(onNext: { viewController, _ in
+                viewController.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func configureEditingTextField() {
+        dateTextField.rx.controlEvent([.editingDidBegin, .editingChanged]).asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.dateTextField.layer.borderColor = UIColor.strongBlue.cgColor
+            })
+            .disposed(by: disposeBag)
+        
+        startTimeTextField.rx.controlEvent([.editingDidBegin, .editingChanged]).asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.startTimeTextField.layer.borderColor = UIColor.strongBlue.cgColor
+            })
+            .disposed(by: disposeBag)
+        
+        endTimeTextField.rx.controlEvent([.editingDidBegin, .editingChanged]).asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.endTimeTextField.layer.borderColor = UIColor.strongBlue.cgColor
+            })
+            .disposed(by: disposeBag)
+        
+        locationNameTextField.rx.controlEvent([.editingDidBegin, .editingChanged]).asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.locationNameTextField.layer.borderColor = UIColor.strongBlue.cgColor
+            })
+            .disposed(by: disposeBag)
+        
+        locationDetailTextField.rx.controlEvent([.editingDidBegin, .editingChanged]).asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.locationDetailTextField.layer.borderColor = UIColor.strongBlue.cgColor
+            })
+            .disposed(by: disposeBag)
+        
+        locationLinkTextField.rx.controlEvent([.editingDidBegin, .editingChanged]).asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                guard let input = viewController.locationLinkTextField.text else {
+                    viewController.locationLinkTextField.layer.borderColor = UIColor.strongBlue.cgColor
+                    
+                    return
+                }
+                let isNaverMap = input.contains("naver.me") || input.contains("map.naver.com")
+                let isKakapmap = input.contains("kko.to") || input.contains("map.kakao.com")
+                
+                guard isKakapmap || isNaverMap else {
+                    viewController.linkWarningLabel.isHidden = false
+                    viewController.locationLinkTextField.layer.borderColor = UIColor.strongBlue.cgColor
+                    
+                    return
+                }
+                
+                viewController.linkWarningLabel.isHidden = true
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureEndEditingTextField() {
+        dateTextField.rx.controlEvent(.editingDidEnd).asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.dateTextField.layer.borderColor = UIColor.gray5.cgColor
+                viewController.judgeEssentialTextField()
+            })
+            .disposed(by: disposeBag)
+        
+        startTimeTextField.rx.controlEvent(.editingDidEnd).asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.startTimeTextField.layer.borderColor = UIColor.gray5.cgColor
+                viewController.judgeEssentialTextField()
+            })
+            .disposed(by: disposeBag)
+        
+        endTimeTextField.rx.controlEvent(.editingDidEnd).asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.endTimeTextField.layer.borderColor = UIColor.gray5.cgColor
+                viewController.judgeEssentialTextField()
+            })
+            .disposed(by: disposeBag)
+        
+        locationNameTextField.rx.controlEvent(.editingDidEnd).asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.locationNameTextField.layer.borderColor = UIColor.gray5.cgColor
+                viewController.judgeEssentialTextField()
+            })
+            .disposed(by: disposeBag)
+        
+        locationDetailTextField.rx.controlEvent(.editingDidEnd).asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.locationDetailTextField.layer.borderColor = UIColor.gray5.cgColor
+                viewController.judgeEssentialTextField()
+            })
+            .disposed(by: disposeBag)
+        
+        locationLinkTextField.rx.controlEvent(.editingDidEnd).asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.locationLinkTextField.layer.borderColor = UIColor.gray5.cgColor
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func judgeEssentialTextField() {
+        guard
+            let dateText = dateTextField.text,
+            let startTimeText = startTimeTextField.text,
+            let endTimeText = endTimeTextField.text,
+            let locationNameText = locationNameTextField.text,
+            let locationDetailText = locationDetailTextField.text
+        else {
+            return
+        }
+        
+        if dateText.count > 0 &&
+            startTimeText.count > 0 &&
+            endTimeText.count > 0 &&
+            locationNameText.count > 0 &&
+            locationDetailText.count > 0 {
+            generatingGroupButton.backgroundColor = .strongBlue
+            generatingGroupButton.isUserInteractionEnabled = true
+        }
     }
 }
 
