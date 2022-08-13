@@ -233,8 +233,9 @@ final class GeneratingGroupViewController: UIViewController {
         $0.clipsToBounds = true
         $0.setTitle("모임 만들기", for: .normal)
         $0.setTitleColor(.white, for: .normal)
+        $0.setTitleColor(.gray3, for: .highlighted)
         $0.titleLabel?.font = UIFont.pretendardWithDefaultSize(family: .medium)
-        $0.isUserInteractionEnabled = false
+        $0.isUserInteractionEnabled = true
     }
     
     private let disposeBag = DisposeBag()
@@ -483,7 +484,10 @@ final class GeneratingGroupViewController: UIViewController {
     private func showGeneratingGroupFailAlert() {
         let alert = UIAlertController(
             title: "그룹 생성을 샐패했습니다.",
-            message: "모든 정보를 입력해주세요(날짜의 경우 마감일이 시작일 이후여야 합니다",
+            message: """
+            모든 정보를 입력해주세요
+            (마감일이 시작일 이후여야 합니다)
+            """,
             preferredStyle: .alert
         )
         let okAction = UIAlertAction(title: "확인", style: .default)
