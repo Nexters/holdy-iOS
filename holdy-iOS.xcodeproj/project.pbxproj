@@ -45,6 +45,8 @@
 		DE16E7D428957C8100C75C23 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7CA2895799000C75C23 /* Pretendard-ExtraBold.otf */; };
 		DE16E7D528957C8400C75C23 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7C62895799000C75C23 /* Pretendard-Black.otf */; };
 		DE16E7D9289589E400C75C23 /* Poppins-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7D8289588F000C75C23 /* Poppins-SemiBold.otf */; };
+		DE2024E028A2A7E9004B4F59 /* GeneratingGroupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024DF28A2A7E9004B4F59 /* GeneratingGroupRouter.swift */; };
+		DE2024E228A756E3004B4F59 /* GeneratingGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024E128A756E3004B4F59 /* GeneratingGroupResponse.swift */; };
 		DE545F65289BE905002E6B83 /* GeneratingGroupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE545F64289BE905002E6B83 /* GeneratingGroupCoordinator.swift */; };
 		DE545F67289BE9F4002E6B83 /* GeneratingGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE545F66289BE9F4002E6B83 /* GeneratingGroupViewController.swift */; };
 		DE6452F7289C0CB200CD19D1 /* GeneratingGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6452F6289C0CB200CD19D1 /* GeneratingGroupViewModel.swift */; };
@@ -97,6 +99,8 @@
 		DE16E7CB2895799000C75C23 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
 		DE16E7CC2895799000C75C23 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		DE16E7D8289588F000C75C23 /* Poppins-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.otf"; sourceTree = "<group>"; };
+		DE2024DF28A2A7E9004B4F59 /* GeneratingGroupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupRouter.swift; sourceTree = "<group>"; };
+		DE2024E128A756E3004B4F59 /* GeneratingGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupResponse.swift; sourceTree = "<group>"; };
 		DE545F64289BE905002E6B83 /* GeneratingGroupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupCoordinator.swift; sourceTree = "<group>"; };
 		DE545F66289BE9F4002E6B83 /* GeneratingGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratingGroupViewController.swift; sourceTree = "<group>"; };
 		DE6452F6289C0CB200CD19D1 /* GeneratingGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupViewModel.swift; sourceTree = "<group>"; };
@@ -355,14 +359,24 @@
 			isa = PBXGroup;
 			children = (
 				DE16E7BB28955EC500C75C23 /* LoginResponse.swift */,
+				DE2024E128A756E3004B4F59 /* GeneratingGroupResponse.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		DE2024DE28A2A7CA004B4F59 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				DE2024DF28A2A7E9004B4F59 /* GeneratingGroupRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		DE545F61289BE8C8002E6B83 /* GeneratingGroup */ = {
 			isa = PBXGroup;
 			children = (
 				DE545F64289BE905002E6B83 /* GeneratingGroupCoordinator.swift */,
+				DE2024DE28A2A7CA004B4F59 /* Router */,
 				DE545F63289BE8EF002E6B83 /* View */,
 				DE545F62289BE8E7002E6B83 /* ViewModel */,
 			);
@@ -566,7 +580,9 @@
 				DE6452F7289C0CB200CD19D1 /* GeneratingGroupViewModel.swift in Sources */,
 				DE16E7B0289556BE00C75C23 /* BaseRouter.swift in Sources */,
 				DE16E7B4289558A000C75C23 /* HoldyAPI.swift in Sources */,
+				DE2024E028A2A7E9004B4F59 /* GeneratingGroupRouter.swift in Sources */,
 				DE16E78C289551ED00C75C23 /* AppCoordinator.swift in Sources */,
+				DE2024E228A756E3004B4F59 /* GeneratingGroupResponse.swift in Sources */,
 				DE16E7BE2895692600C75C23 /* LoginViewController.swift in Sources */,
 				DE545F65289BE905002E6B83 /* GeneratingGroupCoordinator.swift in Sources */,
 				DE16E7C3289570EC00C75C23 /* UIView+.swift in Sources */,
