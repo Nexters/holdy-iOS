@@ -16,25 +16,38 @@ final class AppCoordinator: CoordinatorDescribing {
     
     // MARK: - Methods
     func start() {
-        showHomeTabBarViewController()
+        showHomeViewController()
     }
     
-    private func showHomeTabBarViewController() {
-        guard let loginTime = UserDefaults.standard.value(forKey: "loginTime") as? Date else {
-            startLoginCoordinator()
-            return
+    private func showHomeViewController() {
+        if FirstLaunchChecker.isFirstLaunched() {
+            startOnboardingCoordinator()
+        } else {
+            guard let loginTime = UserDefaults.standard.value(forKey: "loginTime") as? Date else {
+                startLoginCoordinator()
+                return
+            }
+            let loginTimeElapsedOneHour = loginTime + 3600
+            
+            if loginTimeElapsedOneHour < Date() {
+                startLoginCoordinator()
+            }
+            
+            startGeneratingGroupCoordinator()
         }
-        let loginTimeElapsedOneHour = loginTime + 3600
-        
-        if loginTimeElapsedOneHour < Date() {
-            startLoginCoordinator()
-        }
-        
-        startGeneratingGroupCoordinator()
     }
 }
 
 extension AppCoordinator {
+    private func startOnboardingCoordinator() {
+        guard let navigationController = navigationController else { return }
+        navigationController.navigationBar.isHidden = true
+        
+        let onboardingCoordinator = OnboardingCoordinator(navigationController: navigationController)
+        childCoordinators.append(onboardingCoordinator)
+        onboardingCoordinator.start()
+    }
+    
     private func startLoginCoordinator() {
         guard let navigationController = navigationController else { return }
         navigationController.navigationBar.isHidden = true
