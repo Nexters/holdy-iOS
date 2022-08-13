@@ -1,12 +1,10 @@
 //
-//  OnboardingPageViewController.swift
-//  holdy-iOS
-//
 //  Created by 양호준 on 2022/08/13.
 //
 
 import UIKit
 
+import RxSwift
 import SnapKit
 import Then
 
@@ -34,13 +32,16 @@ final class OnboardingPageViewController: UIPageViewController {
     }
     
     // MARK: - Properties
+    private let disposeBag = DisposeBag()
+    private var coordinator: OnboardingCoordinator!
     private var onboardingPages = [OnboardingContentViewController]()
     
     // MARK: - Initializers
-    convenience init(pages: [OnboardingContentViewController]) {
+    convenience init(pages: [OnboardingContentViewController], coordinator: OnboardingCoordinator) {
         self.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
         
         self.onboardingPages = pages
+        self.coordinator = coordinator
     }
     
     override func viewDidLoad() {
@@ -48,6 +49,7 @@ final class OnboardingPageViewController: UIPageViewController {
         
         configurePages()
         render()
+        bind()
     }
     
     // MARK: - Methods
@@ -76,6 +78,17 @@ final class OnboardingPageViewController: UIPageViewController {
             $0.width.equalTo(335)
             $0.height.equalTo(48)
         }
+    }
+    
+    // MARK: - Binding Methods
+    private func bind() {
+        startButton.rx.tap.asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { view, _ in
+                UserDefaults.standard.set(false, forKey: "isFirstLaunched")
+                view.coordinator.startLoginCoordinator()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
