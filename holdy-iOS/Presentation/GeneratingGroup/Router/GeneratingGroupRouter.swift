@@ -14,11 +14,14 @@ struct GeneratingGroupRouter {
         endDate: String,
         summary: String,
         address: String,
-        mapLink: String
+        mapLink: String,
+        decodingType: T.Type
     ) -> Single<T> {
         return Single.create { emitter in
+            let loginSessionValue = String(describing: UserDefaults.standard.string(forKey: "loginSession"))
             let headers: HTTPHeaders = [
-                "Accept": api.contentType ?? ""
+                "Accept": api.contentType ?? "",
+                "Cookie": "SESSION=\(loginSessionValue)"
             ]
             let httpMethod = HTTPMethod(rawValue: api.method.description)
             let bodyParams: Parameters = [
@@ -36,6 +39,7 @@ struct GeneratingGroupRouter {
                     api.url ?? URL(fileURLWithPath: ""),
                     method: httpMethod,
                     parameters: bodyParams,
+                    encoding: JSONEncoding.default,
                     headers: headers
                 )
                 .validate(statusCode: 200..<300)
