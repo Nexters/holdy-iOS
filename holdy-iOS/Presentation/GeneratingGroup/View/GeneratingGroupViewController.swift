@@ -4,6 +4,7 @@
 
 import UIKit
 
+import RxCocoa
 import RxSwift
 import SnapKit
 import Then
@@ -20,9 +21,9 @@ final class GeneratingGroupViewController: UIViewController {
             case .date:
                 return 3
             case .startTime:
-                return 3
+                return 2
             case .endTime:
-                return 3
+                return 2
             }
         }
     }
@@ -237,20 +238,22 @@ final class GeneratingGroupViewController: UIViewController {
     }
     
     private let disposeBag = DisposeBag()
+    private var viewModel: GeneratingGroupViewModel!
     
-    private let ampmList: [String] = ["오전", "오후"]
     private let hourList: [String] = [
-        "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
+        "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
+        "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"
     ]
     private let minuteList: [String] = ["00", "15", "30", "45"]
     
-    private var selectedAMPM = "오전"
     private var selectedHour = "00"
     private var selectedMinute = "00"
     
     // MARK: - Initializers
-    convenience init() {
+    convenience init(viewModel: GeneratingGroupViewModel) {
         self.init(nibName: nil, bundle: nil)
+        
+        self.viewModel = viewModel
         
         setAttributes()
         configureDatePicker()
@@ -341,7 +344,7 @@ final class GeneratingGroupViewController: UIViewController {
     @objc
     private func doneButtonTappedAtDatePicker() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        dateFormatter.dateFormat = "yyyy-MM-dd (E)"
         
         dateTextField.attributedText = NSAttributedString(
             string: dateFormatter.string(from: datePicker.date),
@@ -354,14 +357,14 @@ final class GeneratingGroupViewController: UIViewController {
     
     @objc
     private func doneButtonTappedAtStartTimePicker() {
-        startTimeTextField.text = "\(selectedAMPM) \(selectedHour) :\(selectedMinute)"
+        startTimeTextField.text = "\(selectedHour):\(selectedMinute)"
         
         view.endEditing(true)
     }
     
     @objc
     private func doneButtonTappedAtEndTimePicker() {
-        endTimeTextField.text = "\(selectedAMPM) \(selectedHour) :\(selectedMinute)"
+        endTimeTextField.text = "\(selectedHour):\(selectedMinute)"
         
         view.endEditing(true)
     }
@@ -436,9 +439,57 @@ final class GeneratingGroupViewController: UIViewController {
     }
     
     private func bind() {
+        let textInputObservable = generatingGroupButton.rx.tap.asObservable()
+            .withUnretained(self)
+            .map { view, _ -> (startDate: String, endDate: String, summary: String, address: String, mapLink: String) in
+                guard
+                    let date = view.dateTextField.text,
+                    let startTime = view.startTimeTextField.text,
+                    let endTime = view.endTimeTextField.text,
+                    let summary = view.locationDetailTextField.text,
+                    let address = view.locationNameTextField.text,
+                    let mapLink = view.locationLinkTextField.text
+                else {
+                    return ("", "", "", "", "")
+                }
+                
+                let formattedDate = date.prefix(10)
+                let startDate = "\(formattedDate)T\(startTime):00"
+                let endDate = "\(formattedDate)T\(endTime):00"
+                
+                return (startDate, endDate, summary, address, mapLink)
+            }
+        let input = GeneratingGroupViewModel.Input(generatingGroupButtonDidTap: textInputObservable)
+        let output = viewModel.transform(input)
+        
+        configureGeneratingGroupButton(output: output.generatesGroup)
         configureCloseButton()
         configureEditingTextField()
         configureEndEditingTextField()
+    }
+    
+    private func configureGeneratingGroupButton(output: Driver<GeneratingGroupResponse>) {
+        output
+            .drive(onNext: { [weak self] response in
+                guard let self = self else { return }
+                
+                if response.data == nil {
+                    self.showGeneratingGroupFailAlert()
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func showGeneratingGroupFailAlert() {
+        let alert = UIAlertController(
+            title: "그룹 생성을 샐패했습니다.",
+            message: "모든 정보를 입력해주세요(날짜의 경우 마감일이 시작일 이후여야 합니다",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(okAction)
+        
+        present(alert, animated: true)
     }
     
     private func configureCloseButton() {
@@ -592,10 +643,8 @@ extension GeneratingGroupViewController: UIPickerViewDelegate, UIPickerViewDataS
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
         case 0:
-            return ampmList.count
-        case 1:
             return hourList.count
-        case 2:
+        case 1:
             return minuteList.count
         default:
             return 0
@@ -609,10 +658,8 @@ extension GeneratingGroupViewController: UIPickerViewDelegate, UIPickerViewDataS
     ) -> String? {
         switch component {
         case 0:
-            return "\(ampmList[row])"
-        case 1:
             return "\(hourList[row]) : "
-        case 2:
+        case 1:
             return "\(minuteList[row])"
         default:
             return ""
@@ -626,10 +673,8 @@ extension GeneratingGroupViewController: UIPickerViewDelegate, UIPickerViewDataS
     ) {
         switch component {
         case 0:
-            selectedAMPM = ampmList[row]
-        case 1:
             selectedHour = hourList[row]
-        case 2:
+        case 1:
             selectedMinute = minuteList[row]
         default:
             break
