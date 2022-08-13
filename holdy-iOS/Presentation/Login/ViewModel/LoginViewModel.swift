@@ -46,18 +46,18 @@ final class LoginViewModel {
     private func requestLogin(with input: Observable<Void>) -> Driver<LoginResponse> {
         input
             .withUnretained(self)
-            .flatMap { _ in
-                self.baseRouter.requestLogin(
+            .flatMap { (viewModel, _) in
+                viewModel.baseRouter.requestLogin(
                     api: HoldyAPI.RequestLogin(),
-                    authKey: self.inputText,
+                    authKey: viewModel.inputText,
                     decodingType: LoginResponse.self
                 )
             }
             .asDriver(
                 onErrorJustReturn: LoginResponse(
-                    result: "HTTP Status Code Error",
-                    loginUser: nil
-                )
+                    statusCode: 200,
+                    message: "존재하지 않는 인증키 입니다.",
+                    data: nil)
             )
     }
 }

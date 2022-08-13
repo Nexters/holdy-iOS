@@ -62,7 +62,17 @@ struct BaseRouter {
                 .responseDecodable(of: T.self) { response in
                     switch response.result {
                     case .success(let data):
-                        UserDefaults.standard.set(response.response?.headers["Set-Cookie"], forKey: "loginSession")
+                        guard
+                            let session = response.response?.headers["Set-Cookie"],
+                            let firstEqualIndex = session.firstIndex(of: "="),
+                            let lastRangeIndex = response.response?.headers["Set-Cookie"]?.firstIndex(of: ";")
+                        else {
+                            return
+                        }
+                        
+                        let firstRangeIndex = session.index(after: firstEqualIndex)
+                        let sessionKey = String(session[firstRangeIndex..<lastRangeIndex]) ?? ""
+                        UserDefaults.standard.set(sessionKey, forKey: "loginSession")
                         UserDefaults.standard.set(Date(), forKey: "loginTime")
                         emitter(.success(data))
                     case .failure(let error):

@@ -11,6 +11,7 @@ struct LoginResponse: Decodable {
         let group: String
     }
     
-    let result: String
-    let loginUser: UserInfo?
+    let statusCode: Int
+    let message: String?
+    let data: UserInfo?
 }

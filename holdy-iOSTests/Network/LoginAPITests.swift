@@ -32,8 +32,8 @@ class LoginAPITests: XCTestCase {
         )
         response.asObservable()
             .subscribe(onNext: { response in
-                XCTAssertEqual("SUCCESS", response.result)
-                XCTAssertEqual("양호준", response.loginUser?.nickname)
+                XCTAssertEqual(nil, response.message)
+                XCTAssertEqual("양호준", response.data?.nickname)
                 expectation.fulfill()
             })
             .disposed(by: disposeBag)
@@ -50,11 +50,11 @@ class LoginAPITests: XCTestCase {
         )
         response.asObservable()
             .subscribe(onNext: { response in
-                XCTAssertEqual("존재하지 않는 인증키 입니다. (authKey: aaaaaaaa)", response.result)
+                XCTAssertEqual("존재하지 않는 인증키 입니다.", response.message)
                 expectation.fulfill()
             })
             .disposed(by: disposeBag)
         
-        wait(for: [expectation], timeout: 5)
+        wait(for: [expectation], timeout: 10)
     }
 }

@@ -168,7 +168,7 @@ final class LoginViewController: UIViewController {
             .drive(onNext: { [weak self] loginResponse in
                 guard let self = self else { return }
                 
-                guard loginResponse.result == "SUCCESS" else {
+                guard loginResponse.message == nil else {
                     self.codeTextField.text = nil
                     self.showWrongCodeAlert()
                     
