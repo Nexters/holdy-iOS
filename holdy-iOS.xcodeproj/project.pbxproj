@@ -48,6 +48,11 @@
 		DE2024E028A2A7E9004B4F59 /* GeneratingGroupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024DF28A2A7E9004B4F59 /* GeneratingGroupRouter.swift */; };
 		DE2024E228A756E3004B4F59 /* GeneratingGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024E128A756E3004B4F59 /* GeneratingGroupResponse.swift */; };
 		DE2024E428A76F20004B4F59 /* GeneratingGroupAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024E328A76F20004B4F59 /* GeneratingGroupAPITests.swift */; };
+		DE2024EA28A7AFD4004B4F59 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024E928A7AFD4004B4F59 /* OnboardingCoordinator.swift */; };
+		DE2024ED28A7B60A004B4F59 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024EC28A7B60A004B4F59 /* OnboardingPageViewController.swift */; };
+		DE2024EF28A7B624004B4F59 /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024EE28A7B624004B4F59 /* OnboardingContentViewController.swift */; };
+		DE2024F128A7E91B004B4F59 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024F028A7E91B004B4F59 /* Array+.swift */; };
+		DE2024F328A7EAFC004B4F59 /* FirstLaunchChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024F228A7EAFC004B4F59 /* FirstLaunchChecker.swift */; };
 		DE545F65289BE905002E6B83 /* GeneratingGroupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE545F64289BE905002E6B83 /* GeneratingGroupCoordinator.swift */; };
 		DE545F67289BE9F4002E6B83 /* GeneratingGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE545F66289BE9F4002E6B83 /* GeneratingGroupViewController.swift */; };
 		DE6452F7289C0CB200CD19D1 /* GeneratingGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6452F6289C0CB200CD19D1 /* GeneratingGroupViewModel.swift */; };
@@ -103,6 +108,11 @@
 		DE2024DF28A2A7E9004B4F59 /* GeneratingGroupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupRouter.swift; sourceTree = "<group>"; };
 		DE2024E128A756E3004B4F59 /* GeneratingGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupResponse.swift; sourceTree = "<group>"; };
 		DE2024E328A76F20004B4F59 /* GeneratingGroupAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupAPITests.swift; sourceTree = "<group>"; };
+		DE2024E928A7AFD4004B4F59 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		DE2024EC28A7B60A004B4F59 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
+		DE2024EE28A7B624004B4F59 /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
+		DE2024F028A7E91B004B4F59 /* Array+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
+		DE2024F228A7EAFC004B4F59 /* FirstLaunchChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchChecker.swift; sourceTree = "<group>"; };
 		DE545F64289BE905002E6B83 /* GeneratingGroupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupCoordinator.swift; sourceTree = "<group>"; };
 		DE545F66289BE9F4002E6B83 /* GeneratingGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratingGroupViewController.swift; sourceTree = "<group>"; };
 		DE6452F6289C0CB200CD19D1 /* GeneratingGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupViewModel.swift; sourceTree = "<group>"; };
@@ -184,6 +194,7 @@
 			children = (
 				DE16E78B289551ED00C75C23 /* AppCoordinator.swift */,
 				DE16E7A72895555300C75C23 /* Login */,
+				DE2024E528A7AF86004B4F59 /* Onboarding */,
 				DE16E76428954F2F00C75C23 /* Home */,
 				DE545F61289BE8C8002E6B83 /* GeneratingGroup */,
 			);
@@ -244,6 +255,7 @@
 				DE16E76B28954F7000C75C23 /* UITextField+.swift */,
 				DE16E76C28954F7000C75C23 /* UIColor+.swift */,
 				DE16E7C2289570EC00C75C23 /* UIView+.swift */,
+				DE2024F028A7E91B004B4F59 /* Array+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -326,6 +338,7 @@
 		DE16E7AD2895567E00C75C23 /* LocalDB */ = {
 			isa = PBXGroup;
 			children = (
+				DE2024F228A7EAFC004B4F59 /* FirstLaunchChecker.swift */,
 			);
 			path = LocalDB;
 			sourceTree = "<group>";
@@ -372,6 +385,32 @@
 				DE2024DF28A2A7E9004B4F59 /* GeneratingGroupRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		DE2024E528A7AF86004B4F59 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				DE2024E928A7AFD4004B4F59 /* OnboardingCoordinator.swift */,
+				DE2024E828A7AFC0004B4F59 /* View */,
+				DE2024E728A7AFB8004B4F59 /* ViewModel */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		DE2024E728A7AFB8004B4F59 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DE2024E828A7AFC0004B4F59 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE2024EC28A7B60A004B4F59 /* OnboardingPageViewController.swift */,
+				DE2024EE28A7B624004B4F59 /* OnboardingContentViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		DE545F61289BE8C8002E6B83 /* GeneratingGroup */ = {
@@ -570,15 +609,19 @@
 				DE86D4A328964541007BC448 /* URLRequest+.swift in Sources */,
 				DE16E76728954F5C00C75C23 /* CoordinatorDescribing.swift in Sources */,
 				DE16E77028954F7000C75C23 /* UIColor+.swift in Sources */,
+				DE2024EA28A7AFD4004B4F59 /* OnboardingCoordinator.swift in Sources */,
 				DE16E7502895271B00C75C23 /* ViewController.swift in Sources */,
 				DE545F67289BE9F4002E6B83 /* GeneratingGroupViewController.swift in Sources */,
 				DE16E7B22895577000C75C23 /* APIProtocol.swift in Sources */,
 				DE16E76F28954F7000C75C23 /* UITextField+.swift in Sources */,
+				DE2024F128A7E91B004B4F59 /* Array+.swift in Sources */,
 				DE16E7AB2895557100C75C23 /* LoginCoordinator.swift in Sources */,
+				DE2024EF28A7B624004B4F59 /* OnboardingContentViewController.swift in Sources */,
 				DE16E7BC28955EC500C75C23 /* LoginResponse.swift in Sources */,
 				DE86D4B428980CA4007BC448 /* LoginViewModel.swift in Sources */,
 				DE16E7B828955E3700C75C23 /* LoginRequest.swift in Sources */,
 				DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */,
+				DE2024F328A7EAFC004B4F59 /* FirstLaunchChecker.swift in Sources */,
 				DE16E76D28954F7000C75C23 /* CALayer+.swift in Sources */,
 				DE6452F7289C0CB200CD19D1 /* GeneratingGroupViewModel.swift in Sources */,
 				DE16E7B0289556BE00C75C23 /* BaseRouter.swift in Sources */,
@@ -591,6 +634,7 @@
 				DE16E7C3289570EC00C75C23 /* UIView+.swift in Sources */,
 				DE16E7902895521300C75C23 /* HomeCoordinator.swift in Sources */,
 				DE16E76E28954F7000C75C23 /* UIFont+.swift in Sources */,
+				DE2024ED28A7B60A004B4F59 /* OnboardingPageViewController.swift in Sources */,
 				DE16E74E2895271B00C75C23 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

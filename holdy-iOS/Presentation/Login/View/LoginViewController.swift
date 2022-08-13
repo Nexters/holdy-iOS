@@ -30,6 +30,7 @@ final class LoginViewController: UIViewController {
                 NSAttributedString.Key.font: UIFont.pretendardWithDefaultSize(family: .regular)
             ]
         )
+        $0.textColor = .black
         
         $0.font = .pretendardWithDefaultSize(family: .regular)
         
