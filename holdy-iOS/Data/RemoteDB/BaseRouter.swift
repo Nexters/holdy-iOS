@@ -36,7 +36,11 @@ struct BaseRouter {
         }
     }
     
-    func requestLogin<T: Decodable>(api: Requestable, authKey: String, decodingType: T.Type) -> Single<T> {
+    func requestLogin<T: Decodable>(
+        api: Requestable,
+        authKey: String,
+        decodingType: T.Type
+    ) -> Single<T> {
         return Single.create { emitter in
             let headers: HTTPHeaders = [
                 "Accept": api.contentType ?? ""
