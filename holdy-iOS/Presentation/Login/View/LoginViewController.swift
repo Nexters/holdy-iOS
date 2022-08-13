@@ -93,6 +93,8 @@ final class LoginViewController: UIViewController {
     }
     
     private func render() {
+        view.backgroundColor = .white
+        
         view.adds([
             titleLabel, codeTextFieldShadow, loginButtonShadow, noCodeButton
         ])
