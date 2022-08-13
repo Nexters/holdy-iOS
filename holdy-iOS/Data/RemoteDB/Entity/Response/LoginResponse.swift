@@ -6,7 +6,9 @@ import Foundation
 
 struct LoginResponse: Decodable {
     struct UserInfo: Decodable {
+        let id: Int
         let nickname: String
+        let group: String
     }
     
     let result: String
