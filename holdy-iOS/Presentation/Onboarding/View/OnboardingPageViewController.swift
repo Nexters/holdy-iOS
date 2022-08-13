@@ -29,31 +29,58 @@ final class OnboardingPageViewController: UIPageViewController {
         $0.layer.cornerRadius = 8
         $0.layer.applyShadow(direction: .bottom)
         $0.clipsToBounds = true
+        
+        $0.isHidden = true
     }
     
+    // MARK: - Properties
     private var onboardingPages = [OnboardingContentViewController]()
     
     // MARK: - Initializers
     convenience init(pages: [OnboardingContentViewController]) {
-        self.init(nibName: nil, bundle: nil)
+        self.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
         
         self.onboardingPages = pages
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configurePages()
+        render()
     }
     
     // MARK: - Methods
     private func configurePages() {
+        delegate = self
+        dataSource = self
+        
         guard let firstPage = onboardingPages.first else { return }
         setViewControllers([firstPage], direction: .forward, animated: true)
         pageControl.numberOfPages = onboardingPages.count
     }
-
+    
+    private func render() {
+        view.backgroundColor = .strongBlue
+        
+        view.adds([pageControl, startButton])
+        
+        pageControl.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(56)
+        }
+        
+        startButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(40)
+            $0.width.equalTo(335)
+            $0.height.equalTo(48)
+        }
+    }
 }
 
 extension OnboardingPageViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    // MARK: - DataSource
     func pageViewController(
         _ pageViewController: UIPageViewController,
         viewControllerBefore viewController: UIViewController
@@ -80,5 +107,47 @@ extension OnboardingPageViewController: UIPageViewControllerDelegate, UIPageView
         }
         
         return onboardingPages[safe: currentIndex + 1]
+    }
+    
+    // MARK: - Delegate
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        didFinishAnimating finished: Bool,
+        previousViewControllers: [UIViewController],
+        transitionCompleted completed: Bool
+    ) {
+        let onboardingPages = onboardingPages as [UIViewController]
+        
+        guard
+            let visibleViewController = pageViewController.viewControllers?.first,
+            let currentIndex = onboardingPages.firstIndex(of: visibleViewController)
+        else { return }
+        
+        setButtonByIndex(currentIndex)
+        pageControl.currentPage = currentIndex
+    }
+    
+    private func setButtonByIndex(_ currentIndex: Int) {
+        if currentIndex != onboardingPages.count - 1 {
+            startButton.isHidden = true
+            pageControl.isHidden = false
+        } else {
+            startButton.isHidden = false
+            pageControl.isHidden = true
+        }
+    }
+    
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        willTransitionTo pendingViewControllers: [UIViewController]
+    ) {
+        let onboardingPages = onboardingPages as [UIViewController]
+        
+        guard
+            let visibleViewController = pageViewController.viewControllers?.first,
+            let currentIndex = onboardingPages.firstIndex(of: visibleViewController)
+        else { return }
+        
+        setButtonByIndex(currentIndex)
     }
 }

@@ -50,6 +50,8 @@ final class OnboardingContentViewController: UIViewController {
         descriptionLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(characterImageView.snp.bottom).offset(35)
+            $0.width.equalTo(300)
+            $0.height.equalTo(68)
         }
     }
 }
