@@ -41,10 +41,21 @@ final class OnboardingCoordinator: CoordinatorDescribing {
         let onboardingPageViewController = OnboardingPageViewController(
             pages: [
                 firstPage, secondPage, thirdPage, fourthPage
-            ]
+            ],
+            coordinator: self
         )
         
         navigationController.pushViewController(onboardingPageViewController, animated: true)
+    }
+    
+    
+    func startLoginCoordinator() {
+        guard let navigationController = navigationController else { return }
+        navigationController.navigationBar.isHidden = true
+        
+        let loginCoordinator = LoginCoordinator(navigationController: navigationController)
+        childCoordinators.append(loginCoordinator)
+        loginCoordinator.start()
     }
 }
 

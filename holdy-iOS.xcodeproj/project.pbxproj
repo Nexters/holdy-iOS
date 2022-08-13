@@ -392,16 +392,8 @@
 			children = (
 				DE2024E928A7AFD4004B4F59 /* OnboardingCoordinator.swift */,
 				DE2024E828A7AFC0004B4F59 /* View */,
-				DE2024E728A7AFB8004B4F59 /* ViewModel */,
 			);
 			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		DE2024E728A7AFB8004B4F59 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		DE2024E828A7AFC0004B4F59 /* View */ = {
