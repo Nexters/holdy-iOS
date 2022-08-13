@@ -18,7 +18,7 @@ struct GeneratingGroupRouter {
         decodingType: T.Type
     ) -> Single<T> {
         return Single.create { emitter in
-            let loginSessionValue = String(describing: UserDefaults.standard.string(forKey: "loginSession"))
+            let loginSessionValue = String(describing: UserDefaults.standard.string(forKey: "loginSession") ?? "")
             let headers: HTTPHeaders = [
                 "Accept": api.contentType ?? "",
                 "Cookie": "SESSION=\(loginSessionValue)"

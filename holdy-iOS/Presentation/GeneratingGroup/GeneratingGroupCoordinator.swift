@@ -22,7 +22,8 @@ final class GeneratingGroupCoordinator: CoordinatorDescribing {
     private func presentGeneratingGroupViewController() {
         guard let navigationController = navigationController else { return }
         
-        let generatingGroupViewController = GeneratingGroupViewController()
+        let generatingGroupViewModel = GeneratingGroupViewModel()
+        let generatingGroupViewController = GeneratingGroupViewController(viewModel: generatingGroupViewModel)
         generatingGroupViewController.modalPresentationStyle = .fullScreen
         navigationController.present(generatingGroupViewController, animated: true)
     }
