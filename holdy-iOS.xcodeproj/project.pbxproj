@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B29173128A9443200CFFDEA /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173028A9443200CFFDEA /* GroupListViewModel.swift */; };
 		DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E74B2895271B00C75C23 /* AppDelegate.swift */; };
 		DE16E74E2895271B00C75C23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E74D2895271B00C75C23 /* SceneDelegate.swift */; };
 		DE16E7502895271B00C75C23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E74F2895271B00C75C23 /* ViewController.swift */; };
@@ -76,6 +77,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B29173028A9443200CFFDEA /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
 		DE16E7482895271B00C75C23 /* holdy-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "holdy-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE16E74B2895271B00C75C23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE16E74D2895271B00C75C23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +157,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B29172F28A9425400CFFDEA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9B29173028A9443200CFFDEA /* GroupListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		DE16E73F2895271B00C75C23 = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +252,7 @@
 			children = (
 				DE16E78F2895521300C75C23 /* HomeCoordinator.swift */,
 				DE16E78E2895520300C75C23 /* View */,
-				DE16E78D289551FB00C75C23 /* ViewModel */,
+				9B29172F28A9425400CFFDEA /* ViewModel */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -294,13 +304,6 @@
 				DE16E7C62895799000C75C23 /* Pretendard-Black.otf */,
 			);
 			path = Font;
-			sourceTree = "<group>";
-		};
-		DE16E78D289551FB00C75C23 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		DE16E78E2895520300C75C23 /* View */ = {
@@ -642,6 +645,7 @@
 				DE16E7502895271B00C75C23 /* ViewController.swift in Sources */,
 				DE545F67289BE9F4002E6B83 /* GeneratingGroupViewController.swift in Sources */,
 				DE16E7B22895577000C75C23 /* APIProtocol.swift in Sources */,
+				9B29173128A9443200CFFDEA /* GroupListViewModel.swift in Sources */,
 				DE16E76F28954F7000C75C23 /* UITextField+.swift in Sources */,
 				DE2024F128A7E91B004B4F59 /* Array+.swift in Sources */,
 				DE16E7AB2895557100C75C23 /* LoginCoordinator.swift in Sources */,
@@ -823,7 +827,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FA464JRW3F;
+				DEVELOPMENT_TEAM = RUFP7D8BXB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "holdy-iOS/SupportFile/Configure/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -850,7 +854,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FA464JRW3F;
+				DEVELOPMENT_TEAM = RUFP7D8BXB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "holdy-iOS/SupportFile/Configure/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
