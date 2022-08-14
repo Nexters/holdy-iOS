@@ -59,7 +59,7 @@ final class GroupListCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             titleLocationLabel.heightAnchor.constraint(equalToConstant: 22.4),
             titleLocationLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            titleLocationLabel.leadingAnchor.constraint(equalTo: statusIcon.trailingAnchor, constant: 20),
+            titleLocationLabel.leadingAnchor.constraint(equalTo: statusIcon.trailingAnchor, constant: 20)
         ])
         
         addSubview(locationIcon)
@@ -104,7 +104,6 @@ final class GroupListCell: UICollectionViewCell {
             dateLabel.trailingAnchor.constraint(equalTo: locationLabel.trailingAnchor)
         ])
     }
-    
     
     private func generateDate(_ text: String) -> Date {
         let formatter = DateFormatter()
