@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9B29173128A9443200CFFDEA /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173028A9443200CFFDEA /* GroupListViewModel.swift */; };
 		9B29173328A9450700CFFDEA /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173228A9450700CFFDEA /* GroupListViewController.swift */; };
+		9B29173528A9457900CFFDEA /* GroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173428A9457900CFFDEA /* GroupListCell.swift */; };
 		DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E74B2895271B00C75C23 /* AppDelegate.swift */; };
 		DE16E74E2895271B00C75C23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E74D2895271B00C75C23 /* SceneDelegate.swift */; };
 		DE16E7552895271D00C75C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7542895271D00C75C23 /* Assets.xcassets */; };
@@ -79,6 +80,7 @@
 /* Begin PBXFileReference section */
 		9B29173028A9443200CFFDEA /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
 		9B29173228A9450700CFFDEA /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
+		9B29173428A9457900CFFDEA /* GroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListCell.swift; sourceTree = "<group>"; };
 		DE16E7482895271B00C75C23 /* holdy-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "holdy-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE16E74B2895271B00C75C23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE16E74D2895271B00C75C23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				9B29173228A9450700CFFDEA /* GroupListViewController.swift */,
+				9B29173428A9457900CFFDEA /* GroupListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				DE20250028A8DDC9004B4F59 /* NetworkEssentialDescribing.swift in Sources */,
 				DE545F67289BE9F4002E6B83 /* GeneratingGroupViewController.swift in Sources */,
 				DE16E7B22895577000C75C23 /* APIProtocol.swift in Sources */,
+				9B29173528A9457900CFFDEA /* GroupListCell.swift in Sources */,
 				9B29173128A9443200CFFDEA /* GroupListViewModel.swift in Sources */,
 				DE16E76F28954F7000C75C23 /* UITextField+.swift in Sources */,
 				DE2024F128A7E91B004B4F59 /* Array+.swift in Sources */,
