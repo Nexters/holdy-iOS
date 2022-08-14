@@ -53,6 +53,10 @@
 		DE2024EF28A7B624004B4F59 /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024EE28A7B624004B4F59 /* OnboardingContentViewController.swift */; };
 		DE2024F128A7E91B004B4F59 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024F028A7E91B004B4F59 /* Array+.swift */; };
 		DE2024F328A7EAFC004B4F59 /* FirstLaunchChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024F228A7EAFC004B4F59 /* FirstLaunchChecker.swift */; };
+		DE2024F828A7FC08004B4F59 /* NetworkConnectErrorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024F728A7FC08004B4F59 /* NetworkConnectErrorCoordinator.swift */; };
+		DE2024FB28A86748004B4F59 /* NetworkConnectErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024FA28A86748004B4F59 /* NetworkConnectErrorViewController.swift */; };
+		DE2024FE28A8DD10004B4F59 /* NetworkConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024FD28A8DD10004B4F59 /* NetworkConnectionManager.swift */; };
+		DE20250028A8DDC9004B4F59 /* NetworkEssentialDescribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024FF28A8DDC9004B4F59 /* NetworkEssentialDescribing.swift */; };
 		DE545F65289BE905002E6B83 /* GeneratingGroupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE545F64289BE905002E6B83 /* GeneratingGroupCoordinator.swift */; };
 		DE545F67289BE9F4002E6B83 /* GeneratingGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE545F66289BE9F4002E6B83 /* GeneratingGroupViewController.swift */; };
 		DE6452F7289C0CB200CD19D1 /* GeneratingGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6452F6289C0CB200CD19D1 /* GeneratingGroupViewModel.swift */; };
@@ -113,6 +117,10 @@
 		DE2024EE28A7B624004B4F59 /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
 		DE2024F028A7E91B004B4F59 /* Array+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		DE2024F228A7EAFC004B4F59 /* FirstLaunchChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchChecker.swift; sourceTree = "<group>"; };
+		DE2024F728A7FC08004B4F59 /* NetworkConnectErrorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectErrorCoordinator.swift; sourceTree = "<group>"; };
+		DE2024FA28A86748004B4F59 /* NetworkConnectErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectErrorViewController.swift; sourceTree = "<group>"; };
+		DE2024FD28A8DD10004B4F59 /* NetworkConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionManager.swift; sourceTree = "<group>"; };
+		DE2024FF28A8DDC9004B4F59 /* NetworkEssentialDescribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEssentialDescribing.swift; sourceTree = "<group>"; };
 		DE545F64289BE905002E6B83 /* GeneratingGroupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupCoordinator.swift; sourceTree = "<group>"; };
 		DE545F66289BE9F4002E6B83 /* GeneratingGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratingGroupViewController.swift; sourceTree = "<group>"; };
 		DE6452F6289C0CB200CD19D1 /* GeneratingGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupViewModel.swift; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 				DE16E77128954F7F00C75C23 /* DesignSystem */,
 				DE16E76828954F7000C75C23 /* Extension */,
 				DE16E7612895287200C75C23 /* SupportFile */,
+				DE2024FC28A8DCFA004B4F59 /* Utility */,
 			);
 			path = "holdy-iOS";
 			sourceTree = "<group>";
@@ -197,6 +206,7 @@
 				DE2024E528A7AF86004B4F59 /* Onboarding */,
 				DE16E76428954F2F00C75C23 /* Home */,
 				DE545F61289BE8C8002E6B83 /* GeneratingGroup */,
+				DE2024F628A7FBB1004B4F59 /* NetworkConnectError */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -242,6 +252,7 @@
 			children = (
 				DE16E76628954F5C00C75C23 /* CoordinatorDescribing.swift */,
 				DE16E7B12895577000C75C23 /* APIProtocol.swift */,
+				DE2024FF28A8DDC9004B4F59 /* NetworkEssentialDescribing.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -403,6 +414,31 @@
 				DE2024EE28A7B624004B4F59 /* OnboardingContentViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DE2024F628A7FBB1004B4F59 /* NetworkConnectError */ = {
+			isa = PBXGroup;
+			children = (
+				DE2024F728A7FC08004B4F59 /* NetworkConnectErrorCoordinator.swift */,
+				DE2024F928A8672E004B4F59 /* View */,
+			);
+			path = NetworkConnectError;
+			sourceTree = "<group>";
+		};
+		DE2024F928A8672E004B4F59 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE2024FA28A86748004B4F59 /* NetworkConnectErrorViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE2024FC28A8DCFA004B4F59 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				DE2024FD28A8DD10004B4F59 /* NetworkConnectionManager.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		DE545F61289BE8C8002E6B83 /* GeneratingGroup */ = {
@@ -602,6 +638,7 @@
 				DE16E76728954F5C00C75C23 /* CoordinatorDescribing.swift in Sources */,
 				DE16E77028954F7000C75C23 /* UIColor+.swift in Sources */,
 				DE2024EA28A7AFD4004B4F59 /* OnboardingCoordinator.swift in Sources */,
+				DE20250028A8DDC9004B4F59 /* NetworkEssentialDescribing.swift in Sources */,
 				DE16E7502895271B00C75C23 /* ViewController.swift in Sources */,
 				DE545F67289BE9F4002E6B83 /* GeneratingGroupViewController.swift in Sources */,
 				DE16E7B22895577000C75C23 /* APIProtocol.swift in Sources */,
@@ -616,18 +653,21 @@
 				DE2024F328A7EAFC004B4F59 /* FirstLaunchChecker.swift in Sources */,
 				DE16E76D28954F7000C75C23 /* CALayer+.swift in Sources */,
 				DE6452F7289C0CB200CD19D1 /* GeneratingGroupViewModel.swift in Sources */,
+				DE2024FE28A8DD10004B4F59 /* NetworkConnectionManager.swift in Sources */,
 				DE16E7B0289556BE00C75C23 /* BaseRouter.swift in Sources */,
 				DE16E7B4289558A000C75C23 /* HoldyAPI.swift in Sources */,
 				DE2024E028A2A7E9004B4F59 /* GeneratingGroupRouter.swift in Sources */,
 				DE16E78C289551ED00C75C23 /* AppCoordinator.swift in Sources */,
 				DE2024E228A756E3004B4F59 /* GeneratingGroupResponse.swift in Sources */,
 				DE16E7BE2895692600C75C23 /* LoginViewController.swift in Sources */,
+				DE2024F828A7FC08004B4F59 /* NetworkConnectErrorCoordinator.swift in Sources */,
 				DE545F65289BE905002E6B83 /* GeneratingGroupCoordinator.swift in Sources */,
 				DE16E7C3289570EC00C75C23 /* UIView+.swift in Sources */,
 				DE16E7902895521300C75C23 /* HomeCoordinator.swift in Sources */,
 				DE16E76E28954F7000C75C23 /* UIFont+.swift in Sources */,
 				DE2024ED28A7B60A004B4F59 /* OnboardingPageViewController.swift in Sources */,
 				DE16E74E2895271B00C75C23 /* SceneDelegate.swift in Sources */,
+				DE2024FB28A86748004B4F59 /* NetworkConnectErrorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

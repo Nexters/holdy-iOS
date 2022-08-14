@@ -4,7 +4,7 @@
 
 import UIKit
 
-final class LoginCoordinator: CoordinatorDescribing {
+final class LoginCoordinator: CoordinatorDescribing, NetworkEssentialDescribing {
     // MARK: - Properties
     weak var navigationController: UINavigationController?
     var childCoordinators = [CoordinatorDescribing]()
@@ -15,7 +15,10 @@ final class LoginCoordinator: CoordinatorDescribing {
     }
     
     func start() {
-        pushLoginViewController()
+        showPageAccordingToNetworkConnection(
+            connectionAction: pushLoginViewController,
+            navigationController: navigationController
+        )
     }
     
     private func pushLoginViewController() {

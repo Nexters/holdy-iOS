@@ -4,7 +4,7 @@
 
 import UIKit
 
-final class GeneratingGroupCoordinator: CoordinatorDescribing {
+final class GeneratingGroupCoordinator: CoordinatorDescribing, NetworkEssentialDescribing {
     // MARK: - Properties
     weak var navigationController: UINavigationController?
     var childCoordinators = [CoordinatorDescribing]()
@@ -16,7 +16,10 @@ final class GeneratingGroupCoordinator: CoordinatorDescribing {
     
     // MARK: - Methods
     func start() {
-        presentGeneratingGroupViewController()
+        showPageAccordingToNetworkConnection(
+            connectionAction: presentGeneratingGroupViewController,
+            navigationController: navigationController
+        )
     }
     
     private func presentGeneratingGroupViewController() {
