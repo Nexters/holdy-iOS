@@ -10,6 +10,7 @@
 		9B29173128A9443200CFFDEA /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173028A9443200CFFDEA /* GroupListViewModel.swift */; };
 		9B29173328A9450700CFFDEA /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173228A9450700CFFDEA /* GroupListViewController.swift */; };
 		9B29173528A9457900CFFDEA /* GroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173428A9457900CFFDEA /* GroupListCell.swift */; };
+		9B29173728A9464F00CFFDEA /* GroupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173628A9464F00CFFDEA /* GroupInfo.swift */; };
 		DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E74B2895271B00C75C23 /* AppDelegate.swift */; };
 		DE16E74E2895271B00C75C23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E74D2895271B00C75C23 /* SceneDelegate.swift */; };
 		DE16E7552895271D00C75C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7542895271D00C75C23 /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		9B29173028A9443200CFFDEA /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
 		9B29173228A9450700CFFDEA /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
 		9B29173428A9457900CFFDEA /* GroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListCell.swift; sourceTree = "<group>"; };
+		9B29173628A9464F00CFFDEA /* GroupInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfo.swift; sourceTree = "<group>"; };
 		DE16E7482895271B00C75C23 /* holdy-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "holdy-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE16E74B2895271B00C75C23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE16E74D2895271B00C75C23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				DE16E7B728955E3700C75C23 /* LoginRequest.swift */,
+				9B29173628A9464F00CFFDEA /* GroupInfo.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				DE2024EF28A7B624004B4F59 /* OnboardingContentViewController.swift in Sources */,
 				DE16E7BC28955EC500C75C23 /* LoginResponse.swift in Sources */,
 				DE86D4B428980CA4007BC448 /* LoginViewModel.swift in Sources */,
+				9B29173728A9464F00CFFDEA /* GroupInfo.swift in Sources */,
 				DE16E7B828955E3700C75C23 /* LoginRequest.swift in Sources */,
 				DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */,
 				DE2024F328A7EAFC004B4F59 /* FirstLaunchChecker.swift in Sources */,
