@@ -19,7 +19,9 @@ class GroupInfo: Codable {
 }
 
 class HostInfo: Codable {
+    let id: Int
     let nickname: String
+    let group: String
 }
 
 class LoginUser: Codable {
