@@ -13,7 +13,7 @@ import Then
 final class OnboardingContentViewController: UIViewController {
     // MARK: - UI Components
     private let characterImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
     }
     
     private let descriptionLabel = UILabel().then {
