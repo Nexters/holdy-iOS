@@ -16,5 +16,11 @@ final class HomeCoordinator: CoordinatorDescribing {
     
     // MARK: - Methods
     func start() {
+        guard let navigationController = navigationController else {
+            return
+        }
+        
+        let homeViewController = GroupListViewController()
+        navigationController.pushViewController(homeViewController, animated: true)
     }
 }
