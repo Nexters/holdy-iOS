@@ -10,6 +10,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        // MARK: - Network Connection Check
+        let networkConnectionManager = NetworkConnectionManager.shared
+        networkConnectionManager.startMonitoring()
+        
         return true
     }
 
