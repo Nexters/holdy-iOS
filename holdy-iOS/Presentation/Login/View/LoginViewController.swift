@@ -180,8 +180,7 @@ final class LoginViewController: UIViewController {
                     
                     return
                 }
-                // TODO: 리스트 뷰로 이동하도록 구현
-                self.coordinator.startGeneratingGroupCoordinator()
+                self.coordinator.startHomeCoordinator()
             })
             .disposed(by: disposeBag)
     }

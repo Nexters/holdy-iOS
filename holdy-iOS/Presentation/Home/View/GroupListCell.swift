@@ -1,108 +1,131 @@
 //
-//  GroupListCell.swift
-//  holdy-iOS
-//
 //  Created by Ellen on 2022/08/15.
+//  Modified by 양호준 on 2022/08/16.
 //
 
 import UIKit
-import RxCocoa
-import RxSwift
+
 import SnapKit
 import Then
 
 final class GroupListCell: UICollectionViewCell {
-    static let id = "\(GroupListCell.self)"
+    enum Status {
+        case attendance
+        case host
+        case complete
+        case absent
+        
+        var icon: UIImage? {
+            switch self {
+            case .attendance:
+                return UIImage(named: "icon_check")
+            case .host:
+                return UIImage(named: "icon_host")
+            case .complete:
+                return UIImage(named: "icon_participantCheck")
+            case .absent:
+                return UIImage(named: "icon_absent")
+            }
+        }
+    }
     
+    // MARK: - UI Components
     private let statusIcon = UIImageView().then {
-        $0.image = UIImage(named: "icon_check")
+        $0.contentMode = .scaleAspectFit
     }
     
     private let titleLocationLabel = UILabel().then {
-        $0.textColor = .black
+        $0.textColor = .gray9
         $0.font = .pretendard(family: .semiBold, size: 16)
     }
     
     private let locationIcon = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
         $0.image = UIImage(named: "icon_location")
     }
     
     private let locationLabel = UILabel().then {
-        $0.textColor = .black
+        $0.textColor = .gray7
         $0.font = .pretendard(family: .regular, size: 14)
     }
     
-    private let calendarIcon = UIImageView().then {
+    private let dateIcon = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
         $0.image = UIImage(named: "icon_calendar")
     }
     
     private let dateLabel = UILabel().then {
-        $0.textColor = .black
+        $0.textColor = .gray7
         $0.font = .pretendard(family: .regular, size: 14)
     }
     
-    private func setUp() {
-        
-        addSubview(statusIcon)
-        statusIcon.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            statusIcon.widthAnchor.constraint(equalToConstant: 20),
-            statusIcon.heightAnchor.constraint(equalToConstant: 20),
-            statusIcon.centerYAnchor.constraint(equalTo: centerYAnchor),
-            statusIcon.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20)
+    // MARK: - Initializers
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        render()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Lifecycle Methods
+    override func prepareForReuse() {
+        statusIcon.image = nil
+        titleLocationLabel.text = nil
+        locationLabel.text = nil
+    }
+    
+    // MARK: - Methods
+    private func render() {
+        adds([
+            statusIcon,
+            titleLocationLabel,
+            locationIcon,
+            locationLabel,
+            dateIcon,
+            dateLabel
         ])
         
-        addSubview(titleLocationLabel)
-        titleLocationLabel.translatesAutoresizingMaskIntoConstraints = false
+        statusIcon.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(20)
+            $0.width.height.equalTo(20)
+        }
         
-        NSLayoutConstraint.activate([
-            titleLocationLabel.heightAnchor.constraint(equalToConstant: 22.4),
-            titleLocationLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            titleLocationLabel.leadingAnchor.constraint(equalTo: statusIcon.trailingAnchor, constant: 20)
-        ])
+        titleLocationLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalTo(statusIcon.snp.trailing).offset(20)
+            $0.width.equalTo(180)
+            $0.height.equalTo(22)
+        }
         
-        addSubview(locationIcon)
-        locationIcon.translatesAutoresizingMaskIntoConstraints = false
+        locationIcon.snp.makeConstraints {
+            $0.top.equalTo(titleLocationLabel.snp.bottom).offset(20)
+            $0.leading.equalTo(titleLocationLabel.snp.leading)
+            $0.width.height.equalTo(16)
+        }
         
-        NSLayoutConstraint.activate([
-            locationIcon.widthAnchor.constraint(equalToConstant: 20),
-            locationIcon.heightAnchor.constraint(equalToConstant: 20),
-            locationIcon.leadingAnchor.constraint(equalTo: statusIcon.trailingAnchor, constant: 20),
-            locationIcon.topAnchor.constraint(equalTo: titleLocationLabel.bottomAnchor, constant: 20)
-        ])
+        locationLabel.snp.makeConstraints {
+            $0.centerY.equalTo(locationLabel.snp.centerY)
+            $0.leading.equalTo(locationLabel.snp.trailing)
+            $0.width.equalTo(253)
+            $0.height.equalTo(20)
+        }
+
+        dateIcon.snp.makeConstraints {
+            $0.top.equalTo(locationIcon.snp.bottom).offset(10)
+            $0.leading.equalTo(locationIcon.snp.leading)
+            $0.width.height.equalTo(16)
+        }
         
-        addSubview(locationLabel)
-        locationLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            locationLabel.heightAnchor.constraint(equalToConstant: 20),
-            locationLabel.leadingAnchor.constraint(equalTo: locationIcon.trailingAnchor),
-            locationLabel.centerYAnchor.constraint(equalTo: locationIcon.centerYAnchor),
-            locationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-        ])
-        
-        addSubview(calendarIcon)
-        calendarIcon.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            calendarIcon.widthAnchor.constraint(equalToConstant: 20),
-            calendarIcon.heightAnchor.constraint(equalToConstant: 20),
-            calendarIcon.topAnchor.constraint(equalTo: locationIcon.bottomAnchor, constant: 8),
-            calendarIcon.leadingAnchor.constraint(equalTo: locationIcon.leadingAnchor),
-            calendarIcon.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
-            
-        ])
-        
-        addSubview(dateLabel)
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            dateLabel.heightAnchor.constraint(equalToConstant: 20),
-            dateLabel.centerYAnchor.constraint(equalTo: calendarIcon.centerYAnchor),
-            dateLabel.leadingAnchor.constraint(equalTo: locationLabel.leadingAnchor),
-            dateLabel.trailingAnchor.constraint(equalTo: locationLabel.trailingAnchor)
-        ])
+        dateLabel.snp.makeConstraints {
+            $0.centerY.equalTo(dateIcon.snp.centerY)
+            $0.leading.equalTo(dateIcon.snp.trailing)
+            $0.width.equalTo(253)
+            $0.height.equalTo(20)
+        }
     }
     
     private func generateDate(_ text: String) -> Date {
@@ -120,16 +143,17 @@ final class GroupListCell: UICollectionViewCell {
     }
     
     private func generateStatusIcon(_ model: GroupInfo) {
+        // TODO: 분기 처리 다시 만들기 4가지 경우의 수가 다 안들어감.
         if model.loginUser.isHost {
-            statusIcon.image = UIImage(named: "icon_host")
+            statusIcon.image = Status.host.icon
         } else if !model.loginUser.wantToAttend {
-            statusIcon.image = UIImage(named: "icon_check")
+            statusIcon.image = Status.attendance.icon
         } else {
-            statusIcon.image = UIImage(named: "icon_check_selected")
+            statusIcon.image = Status.complete.icon
         }
     }
     
-    func setUpLabel(_ model: GroupInfo) {
+    func configureContent(by model: GroupInfo) {
         generateStatusIcon(model)
         titleLocationLabel.text = model.place.summary
         locationLabel.text = model.place.address

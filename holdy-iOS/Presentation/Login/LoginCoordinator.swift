@@ -15,10 +15,14 @@ final class LoginCoordinator: CoordinatorDescribing, NetworkEssentialDescribing 
     }
     
     func start() {
-        showPageAccordingToNetworkConnection(
-            connectionAction: pushLoginViewController,
-            navigationController: navigationController
-        )
+        if NetworkConnectionManager.shared.isCurrentlyConnected {
+            pushLoginViewController()
+        } else {
+            showPageAccordingToNetworkConnection(
+                connectionAction: pushLoginViewController,
+                navigationController: navigationController
+            )
+        }
     }
     
     private func pushLoginViewController() {
@@ -31,15 +35,14 @@ final class LoginCoordinator: CoordinatorDescribing, NetworkEssentialDescribing 
 }
 
 extension LoginCoordinator {
-    // TODO: HomeCoordinator로 옮기고 HomeCoordinator를 띄우는 함수로 대체 예정
-    func startGeneratingGroupCoordinator() {
+    func startHomeCoordinator() {
         guard let navigationController = navigationController else { return }
         navigationController.navigationBar.isHidden = true
         
-        let generatingGroupCoordinator = GeneratingGroupCoordinator(
+        let homeCoordinator = HomeCoordinator(
             navigationController: navigationController
         )
-        childCoordinators.append(generatingGroupCoordinator)
-        generatingGroupCoordinator.start()
+        childCoordinators.append(homeCoordinator)
+        homeCoordinator.start()
     }
 }
