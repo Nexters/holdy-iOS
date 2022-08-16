@@ -4,7 +4,7 @@
 
 import UIKit
 
-final class HomeCoordinator: CoordinatorDescribing {
+final class HomeCoordinator: CoordinatorDescribing, NetworkEssentialDescribing {
     // MARK: - Properties
     weak var navigationController: UINavigationController?
     var childCoordinators = [CoordinatorDescribing]()
@@ -16,11 +16,23 @@ final class HomeCoordinator: CoordinatorDescribing {
     
     // MARK: - Methods
     func start() {
+        if NetworkConnectionManager.shared.isCurrentlyConnected {
+            pushHomeViewController()
+        } else {
+            showPageAccordingToNetworkConnection(
+                connectionAction: pushHomeViewController,
+                navigationController: navigationController
+            )
+        }
+    }
+    
+    private func pushHomeViewController() {
         guard let navigationController = navigationController else {
             return
         }
         
-        let homeViewController = GroupListViewController()
+        let homeViewModel = GroupListViewModel()
+        let homeViewController = GroupListViewController(viewModel: homeViewModel)
         navigationController.pushViewController(homeViewController, animated: true)
     }
 }

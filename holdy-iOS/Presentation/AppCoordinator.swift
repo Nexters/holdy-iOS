@@ -33,7 +33,7 @@ final class AppCoordinator: CoordinatorDescribing {
                 startLoginCoordinator()
             }
             
-            startGeneratingGroupCoordinator()
+            startHomeCoordinator()
         }
     }
 }
@@ -64,17 +64,5 @@ extension AppCoordinator {
         let homeCoordinator = HomeCoordinator(navigationController: navigationController)
         childCoordinators.append(homeCoordinator)
         homeCoordinator.start()
-    }
-    
-    // TODO: Home화면 구현 완료되면 삭제
-    func startGeneratingGroupCoordinator() {
-        guard let navigationController = navigationController else { return }
-        navigationController.navigationBar.isHidden = true
-        
-        let generatingGroupCoordinator = GeneratingGroupCoordinator(
-            navigationController: navigationController
-        )
-        childCoordinators.append(generatingGroupCoordinator)
-        generatingGroupCoordinator.start()
     }
 }
