@@ -1,13 +1,17 @@
 //
-//  GroupInfo.swift
-//  holdy-iOS
-//
 //  Created by Ellen on 2022/08/15.
+//  Modified by 양호준 on 2022/08/16.
 //
 
 import Foundation
 
-class GroupInfo: Codable {
+struct GroupInfoResponse: Decodable {
+    let statusCode: Int
+    let message: String?
+    let data: [GroupInfo]?
+}
+
+struct GroupInfo: Decodable {
     let id: Int
     let startDate: String
     let endDate: String
@@ -18,24 +22,24 @@ class GroupInfo: Codable {
     let participants: [UserInfo]
 }
 
-class HostInfo: Codable {
+struct HostInfo: Decodable {
     let id: Int
     let nickname: String
     let group: String
 }
 
-class LoginUser: Codable {
+struct LoginUser: Decodable {
     let isHost: Bool
     let wantToAttend: Bool
 }
 
-class PlaceInfo: Codable {
+struct PlaceInfo: Decodable {
     let summary: String
     let address: String
     let mapLink: String
 }
 
-class UserInfo: Codable {
+struct UserInfo: Decodable {
     let id: Int
     let nickname: String
     let group: String
