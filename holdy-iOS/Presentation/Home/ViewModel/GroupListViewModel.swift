@@ -21,7 +21,9 @@ final class GroupListViewModel {
     
     func transform(_ input: Input) -> Output {
         let groupInfos = configureGroupInfos(with: input.viewDidLoad)
-        let output = Output(groupInfos: groupInfos)
+        let output = Output(
+            groupInfos: groupInfos
+        )
         
         return output
     }
