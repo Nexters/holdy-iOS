@@ -14,7 +14,7 @@ final class GroupListViewModel {
     }
     
     struct Output {
-        let groupInfos: Observable<[GroupInfo]?>
+        let groupInfos: Observable<[GroupInfo]>
     }
     
     private let router = GroupListRouter()
@@ -26,7 +26,7 @@ final class GroupListViewModel {
         return output
     }
     
-    private func configureGroupInfos(with inputObserver: Observable<Void>) -> Observable<[GroupInfo]?> {
+    private func configureGroupInfos(with inputObserver: Observable<Void>) -> Observable<[GroupInfo]> {
         inputObserver
             .withUnretained(self)
             .flatMap { (viewModel, _) -> Single<GroupInfoResponse> in

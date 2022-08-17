@@ -8,7 +8,7 @@ import Foundation
 struct GroupInfoResponse: Decodable {
     let statusCode: Int
     let message: String?
-    let data: [GroupInfo]?
+    let data: [GroupInfo]
 }
 
 struct GroupInfo: Decodable {

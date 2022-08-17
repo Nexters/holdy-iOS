@@ -140,17 +140,16 @@ final class GroupListViewController: UIViewController {
         configureGenratingGroupButton()
     }
     
-    private func configureCollectionViewContent(_ output: Observable<[GroupInfo]?>) {
+    private func configureCollectionViewContent(_ output: Observable<[GroupInfo]>) {
         output
             .map { [weak self] groupInfos -> [GroupInfo] in
                 guard let self = self else { return [] }
-                guard let groupInfos = groupInfos else {
+                
+                if groupInfos.isEmpty {
                     self.emptyImageView.isHidden = false
                     self.emptyLabel.isHidden = false
                     self.hideCompeltedGroupButton.isHidden = true
                     self.listCollectionview.isHidden = true
-                    
-                    return []
                 }
                 
                 return groupInfos
