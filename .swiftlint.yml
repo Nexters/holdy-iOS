@@ -5,5 +5,5 @@ disabled_rules:
 
 # change_rules
 function_body_length: 50
-type_body_length: 400
+type_body_length: 500
 function_parameter_count: 10

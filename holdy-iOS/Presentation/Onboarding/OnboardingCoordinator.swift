@@ -48,7 +48,6 @@ final class OnboardingCoordinator: CoordinatorDescribing {
         navigationController.pushViewController(onboardingPageViewController, animated: true)
     }
     
-    
     func startLoginCoordinator() {
         guard let navigationController = navigationController else { return }
         navigationController.navigationBar.isHidden = true
