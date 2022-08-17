@@ -30,6 +30,11 @@ final class GroupListCell: UICollectionViewCell {
     }
     
     // MARK: - UI Components
+    private let dottedLine = UIImageView().then {
+        $0.image = UIImage(named: "dotted_line")
+        $0.contentMode = .scaleAspectFill
+    }
+    
     private let statusIcon = UIImageView().then {
         $0.contentMode = .scaleAspectFit
     }
@@ -80,6 +85,7 @@ final class GroupListCell: UICollectionViewCell {
     // MARK: - Methods
     private func render() {
         adds([
+            dottedLine,
             statusIcon,
             titleLocationLabel,
             locationIcon,
@@ -88,8 +94,14 @@ final class GroupListCell: UICollectionViewCell {
             dateLabel
         ])
         
+        dottedLine.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().inset(30)
+            $0.width.equalTo(1)
+        }
+        
         statusIcon.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+            $0.top.equalToSuperview().inset(42)
             $0.leading.equalToSuperview().inset(20)
             $0.width.height.equalTo(20)
         }
@@ -108,8 +120,8 @@ final class GroupListCell: UICollectionViewCell {
         }
         
         locationLabel.snp.makeConstraints {
-            $0.centerY.equalTo(locationLabel.snp.centerY)
-            $0.leading.equalTo(locationLabel.snp.trailing)
+            $0.centerY.equalTo(locationIcon.snp.centerY)
+            $0.leading.equalTo(locationIcon.snp.trailing)
             $0.width.equalTo(253)
             $0.height.equalTo(20)
         }

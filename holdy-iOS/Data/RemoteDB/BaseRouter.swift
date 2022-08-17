@@ -71,9 +71,8 @@ struct BaseRouter {
                         }
                         
                         let firstRangeIndex = session.index(after: firstEqualIndex)
-                        let sessionKey = String(session[firstRangeIndex..<lastRangeIndex]) ?? ""
+                        let sessionKey = String(session[firstRangeIndex..<lastRangeIndex]) 
                         UserDefaults.standard.set(sessionKey, forKey: "loginSession")
-                        UserDefaults.standard.set(Date(), forKey: "loginTime")
                         emitter(.success(data))
                     case .failure(let error):
                         emitter(.failure(error))
