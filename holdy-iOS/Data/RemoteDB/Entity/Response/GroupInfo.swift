@@ -22,6 +22,12 @@ struct GroupInfo: Decodable {
     let participants: [UserInfo]
 }
 
+struct PlaceInfo: Decodable {
+    let summary: String
+    let address: String
+    let mapLink: String
+}
+
 struct HostInfo: Decodable {
     let id: Int
     let nickname: String
@@ -32,12 +38,6 @@ struct HostInfo: Decodable {
 struct LoginUser: Decodable {
     let isHost: Bool
     let wantToAttend: Bool
-}
-
-struct PlaceInfo: Decodable {
-    let summary: String
-    let address: String
-    let mapLink: String
 }
 
 struct UserInfo: Decodable {

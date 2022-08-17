@@ -1,10 +1,10 @@
 //
-//  Created by 양호준 on 2022/08/04.
+//  Created by 양호준 on 2022/08/17.
 //
 
 import UIKit
 
-final class GeneratingGroupCoordinator: CoordinatorDescribing, NetworkEssentialDescribing {
+final class GroupDetailCoordinator: CoordinatorDescribing, NetworkEssentialDescribing {
     // MARK: - Properties
     weak var navigationController: UINavigationController?
     weak var parentCoordinator: CoordinatorDescribing?
@@ -18,18 +18,19 @@ final class GeneratingGroupCoordinator: CoordinatorDescribing, NetworkEssentialD
     // MARK: - Methods
     func start() {
         if NetworkConnectionManager.shared.isCurrentlyConnected {
-            presentGeneratingGroupViewController()
+            presentGroupDetailViewController()
         } else {
             showPageAccordingToNetworkConnection(
-                connectionAction: presentGeneratingGroupViewController,
+                connectionAction: presentGroupDetailViewController,
                 navigationController: navigationController
             )
         }
     }
     
-    private func presentGeneratingGroupViewController() {
+    private func presentGroupDetailViewController() {
         guard let navigationController = navigationController else { return }
         
+        // TODO: GruopDetail View를 띄울 수 있도록 변경
         let generatingGroupViewModel = GeneratingGroupViewModel()
         let generatingGroupViewController = GeneratingGroupViewController(viewModel: generatingGroupViewModel)
         generatingGroupViewController.modalPresentationStyle = .fullScreen
