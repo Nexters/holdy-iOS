@@ -176,7 +176,6 @@ final class LoginViewController: UIViewController {
                     self.showWrongCodeAlert()
                     
                     UserDefaults.standard.set(nil, forKey: "loginSession")
-                    UserDefaults.standard.set(nil, forKey: "loginTime")
                     
                     return
                 }

@@ -23,14 +23,9 @@ final class AppCoordinator: CoordinatorDescribing {
         if FirstLaunchChecker.isFirstLaunched() {
             startOnboardingCoordinator()
         } else {
-            guard let loginTime = UserDefaults.standard.value(forKey: "loginTime") as? Date else {
+            guard let _ = UserDefaults.standard.value(forKey: "loginSession") else {
                 startLoginCoordinator()
                 return
-            }
-            let loginTimeElapsedOneHour = loginTime + 3600
-            
-            if loginTimeElapsedOneHour < Date() {
-                startLoginCoordinator()
             }
             
             startHomeCoordinator()
