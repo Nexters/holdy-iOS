@@ -55,12 +55,15 @@ final class GroupListViewController: UIViewController {
     
     // MARK: - Properties
     private var viewModel: GroupListViewModel!
+    private var coordinator: HomeCoordinator!
     private let disposeBag = DisposeBag()
     
-    convenience init(viewModel: GroupListViewModel) {
+    convenience init(viewModel: GroupListViewModel, coordinator: HomeCoordinator) {
         self.init(nibName: nil, bundle: nil)
         
         self.viewModel = viewModel
+        self.coordinator = coordinator
+        
         bind()
     }
     
@@ -134,6 +137,7 @@ final class GroupListViewController: UIViewController {
         let output = viewModel.transform(input)
         
         configureCollectionViewContent(output.groupInfos)
+        configureGenratingGroupButton()
     }
     
     private func configureCollectionViewContent(_ output: Observable<[GroupInfo]?>) {
@@ -157,6 +161,15 @@ final class GroupListViewController: UIViewController {
             )) { _, item, cell in
                 cell.configureContent(by: item)
             }
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureGenratingGroupButton() {
+        generatingGroupButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { (viewController, _) in
+                viewController.coordinator.startGeneratingGruopCoordinator()
+            })
             .disposed(by: disposeBag)
     }
 }

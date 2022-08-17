@@ -32,7 +32,20 @@ final class HomeCoordinator: CoordinatorDescribing, NetworkEssentialDescribing {
         }
         
         let homeViewModel = GroupListViewModel()
-        let homeViewController = GroupListViewController(viewModel: homeViewModel)
+        let homeViewController = GroupListViewController(viewModel: homeViewModel, coordinator: self)
         navigationController.pushViewController(homeViewController, animated: true)
+    }
+}
+
+extension HomeCoordinator {
+    func startGeneratingGruopCoordinator() {
+        guard let navigationController = navigationController else { return }
+        navigationController.navigationBar.isHidden = true
+        
+        let generatingGroupCoordinator = GeneratingGroupCoordinator(
+            navigationController: navigationController
+        )
+        childCoordinators.append(generatingGroupCoordinator)
+        generatingGroupCoordinator.start()
     }
 }
