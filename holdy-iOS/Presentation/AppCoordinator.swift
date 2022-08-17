@@ -23,8 +23,9 @@ final class AppCoordinator: CoordinatorDescribing {
         if FirstLaunchChecker.isFirstLaunched() {
             startOnboardingCoordinator()
         } else {
-            guard let _ = UserDefaults.standard.value(forKey: "loginSession") else {
+            guard UserDefaults.standard.value(forKey: "loginSession") != nil else {
                 startLoginCoordinator()
+                
                 return
             }
             

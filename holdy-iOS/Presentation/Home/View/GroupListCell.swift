@@ -155,13 +155,16 @@ final class GroupListCell: UICollectionViewCell {
     }
     
     private func generateStatusIcon(_ model: GroupInfo) {
-        // TODO: 분기 처리 다시 만들기 4가지 경우의 수가 다 안들어감.
-        if model.loginUser.isHost {
-            statusIcon.image = Status.host.icon
-        } else if !model.loginUser.wantToAttend {
-            statusIcon.image = Status.attendance.icon
-        } else {
+        if model.isEnd {
             statusIcon.image = Status.complete.icon
+        } else {
+            if model.loginUser.isHost {
+                statusIcon.image = Status.host.icon
+            } else if model.loginUser.wantToAttend {
+                statusIcon.image = Status.attendance.icon
+            } else {
+                statusIcon.image = Status.absent.icon
+            }
         }
     }
     
