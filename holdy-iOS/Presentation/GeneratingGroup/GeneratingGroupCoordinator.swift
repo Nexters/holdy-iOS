@@ -7,6 +7,7 @@ import UIKit
 final class GeneratingGroupCoordinator: CoordinatorDescribing, NetworkEssentialDescribing {
     // MARK: - Properties
     weak var navigationController: UINavigationController?
+    weak var parentCoordinator: CoordinatorDescribing?
     var childCoordinators = [CoordinatorDescribing]()
     
     // MARK: - Initializers
