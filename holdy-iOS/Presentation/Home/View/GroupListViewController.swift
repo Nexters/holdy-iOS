@@ -49,6 +49,10 @@ final class GroupListViewController: UIViewController {
         return collectionView
     }()
     
+    private let generatingGroupButton = UIButton().then {
+        $0.setImage(UIImage(named: "icon_add_selected"), for: .normal)
+    }
+    
     // MARK: - Properties
     private var viewModel: GroupListViewModel!
     private let disposeBag = DisposeBag()
@@ -80,7 +84,8 @@ final class GroupListViewController: UIViewController {
             emptyImageView,
             emptyLabel,
             hideCompeltedGroupButton,
-            listCollectionview
+            listCollectionview,
+            generatingGroupButton
         ])
         
         navigationView.snp.makeConstraints {
@@ -115,6 +120,12 @@ final class GroupListViewController: UIViewController {
             $0.top.equalTo(hideCompeltedGroupButton.snp.bottom).offset(30)
             $0.bottom.leading.trailing.equalToSuperview()
         }
+        
+        generatingGroupButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(40)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.width.height.equalTo(64)
+        }
     }
     
     // MARK: - Binding Methods
@@ -123,7 +134,6 @@ final class GroupListViewController: UIViewController {
         let output = viewModel.transform(input)
         
         configureCollectionViewContent(output.groupInfos)
-        
     }
     
     private func configureCollectionViewContent(_ output: Observable<[GroupInfo]?>) {
