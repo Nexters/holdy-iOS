@@ -5,6 +5,7 @@
 
 import UIKit
 
+import RxCocoa
 import RxSwift
 import SnapKit
 import Then
@@ -45,6 +46,7 @@ final class GroupListViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isUserInteractionEnabled = true
         
         return collectionView
     }()
@@ -133,7 +135,9 @@ final class GroupListViewController: UIViewController {
     
     // MARK: - Binding Methods
     private func bind() {
-        let input = GroupListViewModel.Input(viewDidLoad: rx.viewDidLoad)
+        let input = GroupListViewModel.Input(
+            viewDidLoad: rx.viewDidLoad
+        )
         let output = viewModel.transform(input)
         
         configureCollectionViewContent(output.groupInfos)
@@ -170,6 +174,16 @@ final class GroupListViewController: UIViewController {
                 viewController.coordinator.startGeneratingGruopCoordinator()
             })
             .disposed(by: disposeBag)
+    }
+}
+
+extension GroupListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? GroupListCell else {
+            return
+        }
+        
+        coordinator.startGroupDetailCoordinator(with: cell.id)
     }
 }
 
