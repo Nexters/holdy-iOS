@@ -64,6 +64,8 @@ final class GroupListCell: UICollectionViewCell {
         $0.font = .pretendard(family: .regular, size: 14)
     }
     
+    private(set) var id: Int = .zero
+    
     // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -173,5 +175,6 @@ final class GroupListCell: UICollectionViewCell {
         titleLocationLabel.text = model.place.summary
         locationLabel.text = model.place.address
         dateLabel.text = attributeDateLabel(model.startDate)
+        id = model.id
     }
 }

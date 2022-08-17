@@ -48,4 +48,15 @@ extension HomeCoordinator {
         childCoordinators.append(generatingGroupCoordinator)
         generatingGroupCoordinator.start()
     }
+    
+    func startGroupDetailCoordinator(with item: Int) {
+        guard let navigationController = navigationController else { return }
+        navigationController.navigationBar.isHidden = true
+        
+        let groupDetailCoordinator = GroupDetailCoordinator(
+            navigationController: navigationController
+        )
+        childCoordinators.append(groupDetailCoordinator)
+        groupDetailCoordinator.start()
+    }
 }
