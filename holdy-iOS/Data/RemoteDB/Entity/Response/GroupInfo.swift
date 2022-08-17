@@ -26,6 +26,7 @@ struct HostInfo: Decodable {
     let id: Int
     let nickname: String
     let group: String
+    let profileImageUrl: String
 }
 
 struct LoginUser: Decodable {
@@ -43,5 +44,6 @@ struct UserInfo: Decodable {
     let id: Int
     let nickname: String
     let group: String
-    let attend: Bool
+    let attended: Bool
+    let profileImageUrl: String
 }
