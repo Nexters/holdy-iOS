@@ -48,7 +48,7 @@ struct HoldyAPI {
         var url: URL?
         var method: HttpMethod = .get
         
-        init(id: String) {
+        init(id: Int) {
             self.url = URL(string: HoldyAPI.baseURL + "api/meetings/\(id)")
         }
     }

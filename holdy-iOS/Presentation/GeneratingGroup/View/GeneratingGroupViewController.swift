@@ -443,26 +443,7 @@ final class GeneratingGroupViewController: UIViewController {
     }
     
     private func bind() {
-        let textInputObservable = generatingGroupButton.rx.tap.asObservable()
-            .withUnretained(self)
-            .map { view, _ -> (startDate: String, endDate: String, summary: String, address: String, mapLink: String) in
-                guard
-                    let date = view.dateTextField.text,
-                    let startTime = view.startTimeTextField.text,
-                    let endTime = view.endTimeTextField.text,
-                    let summary = view.locationDetailTextField.text,
-                    let address = view.locationNameTextField.text,
-                    let mapLink = view.locationLinkTextField.text
-                else {
-                    return ("", "", "", "", "")
-                }
-                
-                let formattedDate = date.prefix(10)
-                let startDate = "\(formattedDate)T\(startTime):00"
-                let endDate = "\(formattedDate)T\(endTime):00"
-                
-                return (startDate, endDate, summary, address, mapLink)
-            }
+        let textInputObservable = configureTextInputObserable()
         let input = GeneratingGroupViewModel.Input(generatingGroupButtonDidTap: textInputObservable)
         let output = viewModel.transform(input)
         
@@ -470,6 +451,35 @@ final class GeneratingGroupViewController: UIViewController {
         configureCloseButton()
         configureEditingTextField()
         configureEndEditingTextField()
+    }
+
+    private func configureTextInputObserable() -> Observable<(
+        startDate: String,
+        endDate: String,
+        summary: String,
+        address: String,
+        mapLink: String
+    )> {
+        return generatingGroupButton.rx.tap.asObservable()
+            .withUnretained(self)
+            .map { view, _ -> (startDate: String, endDate: String, summary: String, address: String, mapLink: String) in
+                guard
+                    let date = view.dateTextField.text,
+                    let startTime = view.startTimeTextField.text,
+                    let endTime = view.endTimeTextField.text,
+                    let summary = view.locationNameTextField.text,
+                    let address = view.locationDetailTextField.text,
+                    let mapLink = view.locationLinkTextField.text
+                else {
+                    return ("", "", "", "", "")
+                }
+
+                let formattedDate = date.prefix(10)
+                let startDate = "\(formattedDate)T\(startTime):00"
+                let endDate = "\(formattedDate)T\(endTime):00"
+
+                return (startDate, endDate, summary, address, mapLink)
+            }
     }
     
     private func configureGeneratingGroupButton(output: Driver<GeneratingGroupResponse>) {
@@ -479,6 +489,8 @@ final class GeneratingGroupViewController: UIViewController {
                 
                 if response.data == nil {
                     self.showGeneratingGroupFailAlert()
+                } else {
+                    self.dismiss(animated: true)
                 }
             })
             .disposed(by: disposeBag)
