@@ -9,6 +9,7 @@ final class GroupDetailCoordinator: CoordinatorDescribing, NetworkEssentialDescr
     weak var navigationController: UINavigationController?
     weak var parentCoordinator: CoordinatorDescribing?
     var childCoordinators = [CoordinatorDescribing]()
+    private var viewModel: GroupDetailViewModel!
     
     // MARK: - Initializers
     init(navigationController: UINavigationController) {
@@ -26,17 +27,17 @@ final class GroupDetailCoordinator: CoordinatorDescribing, NetworkEssentialDescr
             )
         }
     }
+
+    func setupGroupDetailViewModel(id: Int) {
+        viewModel = GroupDetailViewModel(id: id)
+    }
     
     private func presentGroupDetailViewController() {
         guard let navigationController = navigationController else { return }
-        
-        // TODO: GruopDetail View를 띄울 수 있도록 변경
-//        let generatingGroupViewModel = GeneratingGroupViewModel()
-//        let generatingGroupViewController = GeneratingGroupViewController(
-//            viewModel: generatingGroupViewModel,
-//            coordinator: self
-//        )
-//        generatingGroupViewController.modalPresentationStyle = .fullScreen
-//        navigationController.present(generatingGroupViewController, animated: true)
+
+        let groupDetailViewController = GroupDetailViewController(viewModel: viewModel, coordinator: self)
+
+        groupDetailViewController.modalPresentationStyle = .fullScreen
+        navigationController.present(groupDetailViewController, animated: true)
     }
 }
