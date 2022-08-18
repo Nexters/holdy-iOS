@@ -52,4 +52,39 @@ struct HoldyAPI {
             self.url = URL(string: HoldyAPI.baseURL + "api/meetings/\(id)")
         }
     }
+
+    struct RequestInvitaion: Postable {
+        var url: URL? = URL(string: HoldyAPI.baseURL + "api/invitations")
+        var method: HttpMethod = .post
+        var contentType: String? = "application/json"
+        var body: Data?
+    }
+
+    struct RequestAttendance: Puttable {
+        let id: Int
+        var url: URL?
+        var method: HttpMethod = .put
+        var contentType: String? = "application/json"
+        var body: Data?
+
+        init(id: Int) {
+            self.id = id
+            self.url  = URL(string: HoldyAPI.baseURL + "api/meetings/\(id)/attendance")
+        }
+    }
+
+    struct RequestAttendanceCheck: Puttable {
+        let groupID: Int
+        let userID: Int
+        var url: URL?
+        var method: HttpMethod = .put
+        var contentType: String? = "application/json"
+        var body: Data?
+
+        init(groupID: Int, userID: Int) {
+            self.groupID = groupID
+            self.userID = userID
+            self.url = URL(string: HoldyAPI.baseURL + "api/meetings/\(groupID)/users/\(userID)/attendance")
+        }
+    }
 }

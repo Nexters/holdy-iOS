@@ -44,7 +44,6 @@ final class GeneratingGroupViewController: UIViewController {
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fillEqually
-//        $0.spacing = -1
     }
     
     private let dateTitleLabel = UILabel().then {
@@ -86,7 +85,6 @@ final class GeneratingGroupViewController: UIViewController {
         $0.axis = .horizontal
         $0.alignment = .fill
         $0.distribution = .fillEqually
-//        $0.spacing = -1
     }
     
     private let startTimePicker = UIPickerView().then {
@@ -135,7 +133,6 @@ final class GeneratingGroupViewController: UIViewController {
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fillEqually
-//        $0.spacing = -1
     }
     
     private let locationTitleLabel = UILabel().then {
@@ -240,6 +237,7 @@ final class GeneratingGroupViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private var viewModel: GeneratingGroupViewModel!
+    private var coordinator: GeneratingGroupCoordinator!
     
     private let hourList: [String] = [
         "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
@@ -251,15 +249,20 @@ final class GeneratingGroupViewController: UIViewController {
     private var selectedMinute = "00"
     
     // MARK: - Initializers
-    convenience init(viewModel: GeneratingGroupViewModel) {
+    convenience init(viewModel: GeneratingGroupViewModel, coordinator: GeneratingGroupCoordinator) {
         self.init(nibName: nil, bundle: nil)
         
         self.viewModel = viewModel
+        self.coordinator = coordinator
         
         setAttributes()
         configureDatePicker()
         configureTimePicker()
         configureTextField()
+    }
+
+    deinit {
+        coordinator.end()
     }
     
     // MARK: - Lifecycle Methods
