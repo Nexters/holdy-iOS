@@ -31,9 +31,12 @@ final class GroupDetailCoordinator: CoordinatorDescribing, NetworkEssentialDescr
         guard let navigationController = navigationController else { return }
         
         // TODO: GruopDetail View를 띄울 수 있도록 변경
-        let generatingGroupViewModel = GeneratingGroupViewModel()
-        let generatingGroupViewController = GeneratingGroupViewController(viewModel: generatingGroupViewModel)
-        generatingGroupViewController.modalPresentationStyle = .fullScreen
-        navigationController.present(generatingGroupViewController, animated: true)
+//        let generatingGroupViewModel = GeneratingGroupViewModel()
+//        let generatingGroupViewController = GeneratingGroupViewController(
+//            viewModel: generatingGroupViewModel,
+//            coordinator: self
+//        )
+//        generatingGroupViewController.modalPresentationStyle = .fullScreen
+//        navigationController.present(generatingGroupViewController, animated: true)
     }
 }

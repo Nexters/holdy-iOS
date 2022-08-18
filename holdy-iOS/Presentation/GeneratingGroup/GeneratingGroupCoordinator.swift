@@ -26,12 +26,21 @@ final class GeneratingGroupCoordinator: CoordinatorDescribing, NetworkEssentialD
             )
         }
     }
+
+    func end() {
+        guard let homeCoordinator = parentCoordinator as? HomeCoordinator else { return }
+
+        homeCoordinator.endGeneratingGroupCoordinator(self)
+    }
     
     private func presentGeneratingGroupViewController() {
         guard let navigationController = navigationController else { return }
         
         let generatingGroupViewModel = GeneratingGroupViewModel()
-        let generatingGroupViewController = GeneratingGroupViewController(viewModel: generatingGroupViewModel)
+        let generatingGroupViewController = GeneratingGroupViewController(
+            viewModel: generatingGroupViewModel,
+            coordinator: self
+        )
         generatingGroupViewController.modalPresentationStyle = .fullScreen
         navigationController.present(generatingGroupViewController, animated: true)
     }

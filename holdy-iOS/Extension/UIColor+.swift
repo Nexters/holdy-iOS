@@ -5,6 +5,7 @@
 import UIKit
 
 extension UIColor {
+    static let gray0 = #colorLiteral(red: 0.9716638923, green: 0.9766353965, blue: 0.9808526635, alpha: 1)
     static let gray1 = #colorLiteral(red: 0.9433212876, green: 0.9532696605, blue: 0.9617015719, alpha: 1)
     static let gray3 = #colorLiteral(red: 0.8718334436, green: 0.8867655993, blue: 0.9037054777, alpha: 1)
     static let gray5 = #colorLiteral(red: 0.6808335185, green: 0.7107729316, blue: 0.740308404, alpha: 1)

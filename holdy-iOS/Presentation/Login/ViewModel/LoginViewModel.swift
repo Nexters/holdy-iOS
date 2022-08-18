@@ -18,7 +18,7 @@ final class LoginViewModel {
         let loginResponse: Driver<LoginResponse>
     }
     
-    private let baseRouter = BaseRouter()
+    private let baseRouter = LoginRouter()
     private var inputText = ""
     
     func transform(_ input: Input) -> Output {

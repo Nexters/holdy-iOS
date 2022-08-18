@@ -7,35 +7,7 @@ import Foundation
 import Alamofire
 import RxSwift
 
-struct BaseRouter {
-    func fetchData<T: Decodable>(api: Gettable, decodingType: T.Type) -> Single<T> {
-        return Single.create { emitter in
-            let headers: HTTPHeaders = [
-                //                "Cookie": UserDefaults.standard.
-//                "Accept": api ?? ""
-            ]
-            let httpMethod = HTTPMethod(rawValue: api.method.description)
-            
-            AF
-                .request(
-                    api.url ?? URL(fileURLWithPath: ""),
-                    method: httpMethod,
-                    headers: headers
-                )
-                .validate(statusCode: 200..<300)
-                .responseDecodable(of: T.self) { response in
-                    switch response.result {
-                    case .success(let data):
-                        emitter(.success(data))
-                    case .failure(let error):
-                        emitter(.failure(error))
-                    }
-                }
-            
-            return Disposables.create()
-        }
-    }
-    
+struct LoginRouter {
     func requestLogin<T: Decodable>(
         api: Requestable,
         authKey: String,

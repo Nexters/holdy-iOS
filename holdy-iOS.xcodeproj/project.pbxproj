@@ -11,6 +11,11 @@
 		9B29173328A9450700CFFDEA /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173228A9450700CFFDEA /* GroupListViewController.swift */; };
 		9B29173528A9457900CFFDEA /* GroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173428A9457900CFFDEA /* GroupListCell.swift */; };
 		9B29173728A9464F00CFFDEA /* GroupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173628A9464F00CFFDEA /* GroupInfo.swift */; };
+		DE15222A28ADCB6C0048C07B /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15222928ADCB6C0048C07B /* GroupDetailViewController.swift */; };
+		DE15222C28ADCBD50048C07B /* GroupDetailNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15222B28ADCBD50048C07B /* GroupDetailNavigationView.swift */; };
+		DE15222F28ADCF350048C07B /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15222E28ADCF350048C07B /* BottomSheetView.swift */; };
+		DE15223128ADD5960048C07B /* ParticipantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15223028ADD5960048C07B /* ParticipantCell.swift */; };
+		DE15223328ADD9780048C07B /* InvitationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15223228ADD9780048C07B /* InvitationResponse.swift */; };
 		DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E74B2895271B00C75C23 /* AppDelegate.swift */; };
 		DE16E74E2895271B00C75C23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E74D2895271B00C75C23 /* SceneDelegate.swift */; };
 		DE16E7552895271D00C75C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7542895271D00C75C23 /* Assets.xcassets */; };
@@ -31,7 +36,7 @@
 		DE16E7A3289552F600C75C23 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE16E7A2289552F600C75C23 /* Alamofire */; };
 		DE16E7A62895530F00C75C23 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = DE16E7A52895530F00C75C23 /* RxDataSources */; };
 		DE16E7AB2895557100C75C23 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E7AA2895557100C75C23 /* LoginCoordinator.swift */; };
-		DE16E7B0289556BE00C75C23 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E7AF289556BE00C75C23 /* BaseRouter.swift */; };
+		DE16E7B0289556BE00C75C23 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E7AF289556BE00C75C23 /* LoginRouter.swift */; };
 		DE16E7B22895577000C75C23 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E7B12895577000C75C23 /* APIProtocol.swift */; };
 		DE16E7B4289558A000C75C23 /* HoldyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E7B3289558A000C75C23 /* HoldyAPI.swift */; };
 		DE16E7B828955E3700C75C23 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E7B728955E3700C75C23 /* LoginRequest.swift */; };
@@ -89,6 +94,11 @@
 		9B29173228A9450700CFFDEA /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
 		9B29173428A9457900CFFDEA /* GroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListCell.swift; sourceTree = "<group>"; };
 		9B29173628A9464F00CFFDEA /* GroupInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfo.swift; sourceTree = "<group>"; };
+		DE15222928ADCB6C0048C07B /* GroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
+		DE15222B28ADCBD50048C07B /* GroupDetailNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailNavigationView.swift; sourceTree = "<group>"; };
+		DE15222E28ADCF350048C07B /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		DE15223028ADD5960048C07B /* ParticipantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCell.swift; sourceTree = "<group>"; };
+		DE15223228ADD9780048C07B /* InvitationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationResponse.swift; sourceTree = "<group>"; };
 		DE16E7482895271B00C75C23 /* holdy-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "holdy-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE16E74B2895271B00C75C23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE16E74D2895271B00C75C23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,7 +114,7 @@
 		DE16E78B289551ED00C75C23 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		DE16E78F2895521300C75C23 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		DE16E7AA2895557100C75C23 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		DE16E7AF289556BE00C75C23 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		DE16E7AF289556BE00C75C23 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		DE16E7B12895577000C75C23 /* APIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		DE16E7B3289558A000C75C23 /* HoldyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoldyAPI.swift; sourceTree = "<group>"; };
 		DE16E7B728955E3700C75C23 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
@@ -179,6 +189,33 @@
 				9B29173028A9443200CFFDEA /* GroupListViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DE15222828ADCB3F0048C07B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE15222D28ADCF250048C07B /* CustomView */,
+				DE15222B28ADCBD50048C07B /* GroupDetailNavigationView.swift */,
+				DE15222928ADCB6C0048C07B /* GroupDetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE15222D28ADCF250048C07B /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				DE15222E28ADCF350048C07B /* BottomSheetView.swift */,
+				DE15223028ADD5960048C07B /* ParticipantCell.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		DE15223428ADDC420048C07B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				DE16E7AF289556BE00C75C23 /* LoginRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		DE16E73F2895271B00C75C23 = {
@@ -340,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				DE16E7AA2895557100C75C23 /* LoginCoordinator.swift */,
+				DE15223428ADDC420048C07B /* Router */,
 				DE16E7A92895556400C75C23 /* View */,
 				DE16E7A82895555E00C75C23 /* ViewModel */,
 			);
@@ -382,7 +420,6 @@
 		DE16E7AE2895568500C75C23 /* RemoteDB */ = {
 			isa = PBXGroup;
 			children = (
-				DE16E7AF289556BE00C75C23 /* BaseRouter.swift */,
 				DE16E7B3289558A000C75C23 /* HoldyAPI.swift */,
 				DE16E7B528955DE800C75C23 /* Entity */,
 			);
@@ -412,6 +449,7 @@
 				9B29173628A9464F00CFFDEA /* GroupInfo.swift */,
 				DE16E7BB28955EC500C75C23 /* LoginResponse.swift */,
 				DE2024E128A756E3004B4F59 /* GeneratingGroupResponse.swift */,
+				DE15223228ADD9780048C07B /* InvitationResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -480,24 +518,9 @@
 			children = (
 				DE3A014528AD294B0049CE42 /* GroupDetailCoordinator.swift */,
 				DE3A014928AD2A280049CE42 /* Router */,
-				DE3A014828AD2A1E0049CE42 /* View */,
-				DE3A014728AD2A160049CE42 /* ViewModel */,
+				DE15222828ADCB3F0048C07B /* View */,
 			);
 			path = GroupDetail;
-			sourceTree = "<group>";
-		};
-		DE3A014728AD2A160049CE42 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		DE3A014828AD2A1E0049CE42 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		DE3A014928AD2A280049CE42 /* Router */ = {
@@ -707,10 +730,12 @@
 				DE2024EA28A7AFD4004B4F59 /* OnboardingCoordinator.swift in Sources */,
 				DE20250028A8DDC9004B4F59 /* NetworkEssentialDescribing.swift in Sources */,
 				DE545F67289BE9F4002E6B83 /* GeneratingGroupViewController.swift in Sources */,
+				DE15223128ADD5960048C07B /* ParticipantCell.swift in Sources */,
 				DE16E7B22895577000C75C23 /* APIProtocol.swift in Sources */,
 				9B29173528A9457900CFFDEA /* GroupListCell.swift in Sources */,
 				9B29173128A9443200CFFDEA /* GroupListViewModel.swift in Sources */,
 				DE16E76F28954F7000C75C23 /* UITextField+.swift in Sources */,
+				DE15222C28ADCBD50048C07B /* GroupDetailNavigationView.swift in Sources */,
 				DE2024F128A7E91B004B4F59 /* Array+.swift in Sources */,
 				DE16E7AB2895557100C75C23 /* LoginCoordinator.swift in Sources */,
 				DE2024EF28A7B624004B4F59 /* OnboardingContentViewController.swift in Sources */,
@@ -727,7 +752,7 @@
 				DE20250928ABE788004B4F59 /* GroupListRouter.swift in Sources */,
 				DE20250228ABD9CB004B4F59 /* UICollectionView+.swift in Sources */,
 				DE2024FE28A8DD10004B4F59 /* NetworkConnectionManager.swift in Sources */,
-				DE16E7B0289556BE00C75C23 /* BaseRouter.swift in Sources */,
+				DE16E7B0289556BE00C75C23 /* LoginRouter.swift in Sources */,
 				DE16E7B4289558A000C75C23 /* HoldyAPI.swift in Sources */,
 				9B29173328A9450700CFFDEA /* GroupListViewController.swift in Sources */,
 				DE2024E028A2A7E9004B4F59 /* GeneratingGroupRouter.swift in Sources */,
@@ -737,11 +762,14 @@
 				DE3A014B28AD2A780049CE42 /* GroupDetailRouter.swift in Sources */,
 				DE16E7BE2895692600C75C23 /* LoginViewController.swift in Sources */,
 				DE2024F828A7FC08004B4F59 /* NetworkConnectErrorCoordinator.swift in Sources */,
+				DE15222F28ADCF350048C07B /* BottomSheetView.swift in Sources */,
 				DE545F65289BE905002E6B83 /* GeneratingGroupCoordinator.swift in Sources */,
 				DE16E7C3289570EC00C75C23 /* UIView+.swift in Sources */,
 				DE16E7902895521300C75C23 /* HomeCoordinator.swift in Sources */,
 				DE16E76E28954F7000C75C23 /* UIFont+.swift in Sources */,
 				DE2024ED28A7B60A004B4F59 /* OnboardingPageViewController.swift in Sources */,
+				DE15222A28ADCB6C0048C07B /* GroupDetailViewController.swift in Sources */,
+				DE15223328ADD9780048C07B /* InvitationResponse.swift in Sources */,
 				DE16E74E2895271B00C75C23 /* SceneDelegate.swift in Sources */,
 				DE2024FB28A86748004B4F59 /* NetworkConnectErrorViewController.swift in Sources */,
 			);
