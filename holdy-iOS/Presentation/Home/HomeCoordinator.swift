@@ -46,7 +46,16 @@ extension HomeCoordinator {
             navigationController: navigationController
         )
         childCoordinators.append(generatingGroupCoordinator)
+        generatingGroupCoordinator.parentCoordinator = self
         generatingGroupCoordinator.start()
+    }
+
+    func endGeneratingGroupCoordinator(_ coodinator: CoordinatorDescribing) {
+        guard let index = childCoordinators.firstIndex(where: { $0 === coodinator }) else {
+            return
+        }
+
+        childCoordinators.remove(at: index)
     }
     
     func startGroupDetailCoordinator(with item: Int) {

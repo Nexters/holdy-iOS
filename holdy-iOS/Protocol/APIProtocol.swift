@@ -11,6 +11,8 @@ protocol Postable: Requestable { }
 
 protocol Deletable: Requestable { }
 
+protocol Puttable: Requestable { }
+
 protocol Requestable: APIProtocol {
     var contentType: String? { get }
     var body: Data? { get }

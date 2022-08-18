@@ -8,12 +8,12 @@ import XCTest
 import RxSwift
 
 class LoginAPITests: XCTestCase {
-    var sut: BaseRouter!
+    var sut: LoginRouter!
     var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = BaseRouter()
+        sut = LoginRouter()
         disposeBag = DisposeBag()
     }
 
