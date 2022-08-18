@@ -27,6 +27,12 @@ final class GroupDetailCoordinator: CoordinatorDescribing, NetworkEssentialDescr
             )
         }
     }
+    
+    func end() {
+        guard let homeCoordinator = parentCoordinator as? HomeCoordinator else { return }
+
+        homeCoordinator.endGeneratingGroupCoordinator(self)
+    }
 
     func setupGroupDetailViewModel(id: Int) {
         viewModel = GroupDetailViewModel(id: id)

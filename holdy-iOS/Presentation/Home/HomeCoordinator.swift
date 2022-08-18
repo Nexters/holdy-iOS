@@ -67,6 +67,7 @@ extension HomeCoordinator {
         )
         childCoordinators.append(groupDetailCoordinator)
         groupDetailCoordinator.setupGroupDetailViewModel(id: item)
+        groupDetailCoordinator.parentCoordinator = self
         groupDetailCoordinator.start()
     }
 }
