@@ -4,6 +4,7 @@
 
 import UIKit
 
+import FloatingPanel
 import RxCocoa
 import RxSwift
 import SnapKit
@@ -25,7 +26,10 @@ final class GroupDetailViewController: UIViewController {
     }
 
     // MARK: - UI Components
-    private let navigationView = GroupDetailNavigationView(frame: .zero)
+    private let closeButton = UIButton().then {
+        $0.setImage(UIImage(named: "icon_close_highlighted"), for: .normal)
+        $0.setImage(UIImage(named: "icon_close"), for: .highlighted)
+    }
 
     private let titleLabel = UILabel().then {
         $0.textColor = .white
@@ -61,7 +65,8 @@ final class GroupDetailViewController: UIViewController {
         $0.titleLabel?.font = .pretendard(family: .regular, size: 12)
         $0.contentHorizontalAlignment = .leading
     }
-//    private let participantsBottomSheet
+    
+    private let bottomSheetViewController = FloatingPanelController()
 
     // MARK: - Properties
     private var viewModel: GroupDetailViewModel!
@@ -78,38 +83,45 @@ final class GroupDetailViewController: UIViewController {
 
         bind()
     }
-
-    // MARK: - Gesture
-//    private let panGesture = UIPanGestureRecognizer(target: self, action: <#T##Selector?#>)
+    
+    deinit {
+        coordinator.end()
+    }
 
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
         render()
+        configureBottomSheet()
     }
 
     private func render() {
         view.backgroundColor = .strongBlue
 
         view.adds([
-            navigationView,
+            closeButton,
             titleLabel,
             locationIcon,
             locationLabel,
             dateIcon,
             dateLabel,
-            openMapAppButton
+            openMapAppButton,
+            bottomSheetViewController.view
         ])
-
-        navigationView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(50)
+        
+        bottomSheetViewController.view.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        closeButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.width.height.equalTo(24)
         }
 
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(navigationView.snp.bottom).offset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(70)
             $0.leading.equalToSuperview().inset(20)
             $0.width.equalTo(view.bounds.width - 20)
             $0.height.equalTo(45)
@@ -148,16 +160,27 @@ final class GroupDetailViewController: UIViewController {
             $0.height.equalTo(20)
         }
     }
+    
+    private func configureBottomSheet() {
+        let contentViewController = BottomSheetContentViewController()
+        let layout = BottomSheetLayout()
+        
+        bottomSheetViewController.set(contentViewController: contentViewController)
+        bottomSheetViewController.changeSheetStyle()
+        bottomSheetViewController.addPanel(toParent: self)
+        bottomSheetViewController.layout = layout
+    }
 
     // MARK: - Binding Methods
     private func bind() {
         let input = GroupDetailViewModel.Input(viewDidLoad: rx.viewDidLoad)
         let output = viewModel.transform(input)
-
+        
+        configureCloseButton()
         configureContent(with: output.groupInfo)
     }
 
-    private func configureContent(with groupInfo: Driver<GroupInfo>)  {
+    private func configureContent(with groupInfo: Driver<GroupInfo>) {
         groupInfo
             .drive(onNext: { [weak self] groupInfo in
                 guard let self = self else { return }
@@ -168,6 +191,15 @@ final class GroupDetailViewController: UIViewController {
                 let endDate = self.attributeEndDateLabel(groupInfo.endDate)
                 self.dateLabel.text = "\(startDate) ~ \(endDate)"
 
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureCloseButton() {
+        closeButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { (viewController, _) in
+                viewController.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
     }
@@ -194,11 +226,23 @@ final class GroupDetailViewController: UIViewController {
         guard let date: Date = formatter.date(from: text) else { return Date() }
         return date
     }
+}
 
-    // MARK: - Gesture Action
-    @objc
-    private func didPan(_ recoginizer: UIPanGestureRecognizer) {
-        // 움직인 거리
-//        let translationY = recoginizer.translation(in: self)
+extension FloatingPanelController {
+    func changeSheetStyle() {
+        let appearance = SurfaceAppearance()
+        appearance.cornerRadius = 30
+        surfaceView.appearance = appearance
+    }
+}
+
+final class BottomSheetLayout: FloatingPanelLayout {
+    var position: FloatingPanelPosition = .bottom
+    var initialState: FloatingPanelState = .half
+    var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+        return [
+            .full: FloatingPanelLayoutAnchor(absoluteInset: 15, edge: .top, referenceGuide: .safeArea),
+            .half: FloatingPanelLayoutAnchor(fractionalInset: 0.6, edge: .bottom, referenceGuide: .safeArea)
+        ]
     }
 }
