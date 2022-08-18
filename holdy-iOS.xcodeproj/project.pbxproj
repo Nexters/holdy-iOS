@@ -12,7 +12,6 @@
 		9B29173528A9457900CFFDEA /* GroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173428A9457900CFFDEA /* GroupListCell.swift */; };
 		9B29173728A9464F00CFFDEA /* GroupInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173628A9464F00CFFDEA /* GroupInfoResponse.swift */; };
 		DE15222A28ADCB6C0048C07B /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15222928ADCB6C0048C07B /* GroupDetailViewController.swift */; };
-		DE15222C28ADCBD50048C07B /* GroupDetailNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15222B28ADCBD50048C07B /* GroupDetailNavigationView.swift */; };
 		DE15222F28ADCF350048C07B /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15222E28ADCF350048C07B /* BottomSheetView.swift */; };
 		DE15223128ADD5960048C07B /* ParticipantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15223028ADD5960048C07B /* ParticipantCell.swift */; };
 		DE15223328ADD9780048C07B /* InvitationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15223228ADD9780048C07B /* InvitationResponse.swift */; };
@@ -73,6 +72,8 @@
 		DE20250928ABE788004B4F59 /* GroupListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE20250828ABE788004B4F59 /* GroupListRouter.swift */; };
 		DE3A014628AD294B0049CE42 /* GroupDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A014528AD294B0049CE42 /* GroupDetailCoordinator.swift */; };
 		DE3A014B28AD2A780049CE42 /* GroupDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A014A28AD2A780049CE42 /* GroupDetailRouter.swift */; };
+		DE3A014E28AE5D330049CE42 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = DE3A014D28AE5D330049CE42 /* FloatingPanel */; };
+		DE3A015028AE5E0C0049CE42 /* BottomSheetContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A014F28AE5E0C0049CE42 /* BottomSheetContentViewController.swift */; };
 		DE545F65289BE905002E6B83 /* GeneratingGroupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE545F64289BE905002E6B83 /* GeneratingGroupCoordinator.swift */; };
 		DE545F67289BE9F4002E6B83 /* GeneratingGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE545F66289BE9F4002E6B83 /* GeneratingGroupViewController.swift */; };
 		DE6452F7289C0CB200CD19D1 /* GeneratingGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6452F6289C0CB200CD19D1 /* GeneratingGroupViewModel.swift */; };
@@ -97,7 +98,6 @@
 		9B29173428A9457900CFFDEA /* GroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListCell.swift; sourceTree = "<group>"; };
 		9B29173628A9464F00CFFDEA /* GroupInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoResponse.swift; sourceTree = "<group>"; };
 		DE15222928ADCB6C0048C07B /* GroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
-		DE15222B28ADCBD50048C07B /* GroupDetailNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailNavigationView.swift; sourceTree = "<group>"; };
 		DE15222E28ADCF350048C07B /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		DE15223028ADD5960048C07B /* ParticipantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCell.swift; sourceTree = "<group>"; };
 		DE15223228ADD9780048C07B /* InvitationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationResponse.swift; sourceTree = "<group>"; };
@@ -153,6 +153,7 @@
 		DE20250828ABE788004B4F59 /* GroupListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListRouter.swift; sourceTree = "<group>"; };
 		DE3A014528AD294B0049CE42 /* GroupDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailCoordinator.swift; sourceTree = "<group>"; };
 		DE3A014A28AD2A780049CE42 /* GroupDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailRouter.swift; sourceTree = "<group>"; };
+		DE3A014F28AE5E0C0049CE42 /* BottomSheetContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentViewController.swift; sourceTree = "<group>"; };
 		DE545F64289BE905002E6B83 /* GeneratingGroupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupCoordinator.swift; sourceTree = "<group>"; };
 		DE545F66289BE9F4002E6B83 /* GeneratingGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratingGroupViewController.swift; sourceTree = "<group>"; };
 		DE6452F6289C0CB200CD19D1 /* GeneratingGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupViewModel.swift; sourceTree = "<group>"; };
@@ -168,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE16E7A0289552CE00C75C23 /* Then in Frameworks */,
+				DE3A014E28AE5D330049CE42 /* FloatingPanel in Frameworks */,
 				DE16E799289552BF00C75C23 /* RxCocoa in Frameworks */,
 				DE16E7932895529700C75C23 /* SnapKit in Frameworks */,
 				DE16E7A3289552F600C75C23 /* Alamofire in Frameworks */,
@@ -199,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				DE15222D28ADCF250048C07B /* CustomView */,
-				DE15222B28ADCBD50048C07B /* GroupDetailNavigationView.swift */,
 				DE15222928ADCB6C0048C07B /* GroupDetailViewController.swift */,
 			);
 			path = View;
@@ -209,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				DE15222E28ADCF350048C07B /* BottomSheetView.swift */,
+				DE3A014F28AE5E0C0049CE42 /* BottomSheetContentViewController.swift */,
 				DE15223028ADD5960048C07B /* ParticipantCell.swift */,
 			);
 			path = CustomView;
@@ -614,6 +616,7 @@
 				DE16E79F289552CE00C75C23 /* Then */,
 				DE16E7A2289552F600C75C23 /* Alamofire */,
 				DE16E7A52895530F00C75C23 /* RxDataSources */,
+				DE3A014D28AE5D330049CE42 /* FloatingPanel */,
 			);
 			productName = "holdy-iOS";
 			productReference = DE16E7482895271B00C75C23 /* holdy-iOS.app */;
@@ -671,6 +674,7 @@
 				DE16E79E289552CE00C75C23 /* XCRemoteSwiftPackageReference "Then" */,
 				DE16E7A1289552F600C75C23 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				DE16E7A42895530F00C75C23 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				DE3A014C28AE5D330049CE42 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 			);
 			productRefGroup = DE16E7492895271B00C75C23 /* Products */;
 			projectDirPath = "";
@@ -747,9 +751,9 @@
 				DE15223128ADD5960048C07B /* ParticipantCell.swift in Sources */,
 				DE16E7B22895577000C75C23 /* APIProtocol.swift in Sources */,
 				9B29173528A9457900CFFDEA /* GroupListCell.swift in Sources */,
+				DE3A015028AE5E0C0049CE42 /* BottomSheetContentViewController.swift in Sources */,
 				9B29173128A9443200CFFDEA /* GroupListViewModel.swift in Sources */,
 				DE16E76F28954F7000C75C23 /* UITextField+.swift in Sources */,
-				DE15222C28ADCBD50048C07B /* GroupDetailNavigationView.swift in Sources */,
 				DE2024F128A7E91B004B4F59 /* Array+.swift in Sources */,
 				DE16E7AB2895557100C75C23 /* LoginCoordinator.swift in Sources */,
 				DE2024EF28A7B624004B4F59 /* OnboardingContentViewController.swift in Sources */,
@@ -1101,6 +1105,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		DE3A014C28AE5D330049CE42 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SCENEE/FloatingPanel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1138,6 +1150,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE16E7A42895530F00C75C23 /* XCRemoteSwiftPackageReference "RxDataSources" */;
 			productName = RxDataSources;
+		};
+		DE3A014D28AE5D330049CE42 /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE3A014C28AE5D330049CE42 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

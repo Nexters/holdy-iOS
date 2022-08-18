@@ -61,15 +61,15 @@ final class OnboardingCoordinator: CoordinatorDescribing {
 extension OnboardingCoordinator {
     enum Content {
         static let firstText = "클라이머를 위한\n출첵 서비스 홀디를 소개해요"
-        static let firstImage = UIImage(named: "FirstOnboarding")
+        static let firstImage = UIImage(named: "firstOnboarding")
         
         static let secondText = "모임을 만들고\n게스트를 초대할 수 있어요"
-        static let secondImage = UIImage(named: "SecondOnboarding")
+        static let secondImage = UIImage(named: "secondOnboarding")
         
         static let thirdText = "초대 받은 모임에\n참여 의사를 밝힐 수 있어요"
-        static let thirdImage = UIImage(named: "ThirdOnboarding")
+        static let thirdImage = UIImage(named: "thirdOnboarding")
         
         static let fourthText = "참여한 모임이 끝나면\n홀드를 얻고 자랑할 수 있어요"
-        static let fourthImage = UIImage(named: "FourthOnboarding")
+        static let fourthImage = UIImage(named: "fourthOnboarding")
     }
 }

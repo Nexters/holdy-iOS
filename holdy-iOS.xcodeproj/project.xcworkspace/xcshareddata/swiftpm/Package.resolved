@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "floatingpanel",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SCENEE/FloatingPanel",
+      "state" : {
+        "revision" : "639e4221e83a92363ae2c0b30abca44b83854ac9",
+        "version" : "2.5.3"
+      }
+    },
+    {
       "identity" : "rxdatasources",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RxSwiftCommunity/RxDataSources.git",
