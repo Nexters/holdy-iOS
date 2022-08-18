@@ -76,6 +76,12 @@ final class GroupListViewController: UIViewController {
         configureCollectionView()
         render()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        listCollectionview.reloadData()
+    }
     
     // MARK: - Methods
     private func configureCollectionView() {

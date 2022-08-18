@@ -66,6 +66,7 @@ extension HomeCoordinator {
             navigationController: navigationController
         )
         childCoordinators.append(groupDetailCoordinator)
+        groupDetailCoordinator.setupGroupDetailViewModel(id: item)
         groupDetailCoordinator.start()
     }
 }

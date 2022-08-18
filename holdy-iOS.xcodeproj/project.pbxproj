@@ -10,12 +10,14 @@
 		9B29173128A9443200CFFDEA /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173028A9443200CFFDEA /* GroupListViewModel.swift */; };
 		9B29173328A9450700CFFDEA /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173228A9450700CFFDEA /* GroupListViewController.swift */; };
 		9B29173528A9457900CFFDEA /* GroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173428A9457900CFFDEA /* GroupListCell.swift */; };
-		9B29173728A9464F00CFFDEA /* GroupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173628A9464F00CFFDEA /* GroupInfo.swift */; };
+		9B29173728A9464F00CFFDEA /* GroupInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173628A9464F00CFFDEA /* GroupInfoResponse.swift */; };
 		DE15222A28ADCB6C0048C07B /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15222928ADCB6C0048C07B /* GroupDetailViewController.swift */; };
 		DE15222C28ADCBD50048C07B /* GroupDetailNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15222B28ADCBD50048C07B /* GroupDetailNavigationView.swift */; };
 		DE15222F28ADCF350048C07B /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15222E28ADCF350048C07B /* BottomSheetView.swift */; };
 		DE15223128ADD5960048C07B /* ParticipantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15223028ADD5960048C07B /* ParticipantCell.swift */; };
 		DE15223328ADD9780048C07B /* InvitationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15223228ADD9780048C07B /* InvitationResponse.swift */; };
+		DE15223728ADFEFE0048C07B /* GroupDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15223628ADFEFE0048C07B /* GroupDetailViewModel.swift */; };
+		DE15223928AE0D170048C07B /* GroupDetailInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15223828AE0D170048C07B /* GroupDetailInfoResponse.swift */; };
 		DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E74B2895271B00C75C23 /* AppDelegate.swift */; };
 		DE16E74E2895271B00C75C23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16E74D2895271B00C75C23 /* SceneDelegate.swift */; };
 		DE16E7552895271D00C75C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7542895271D00C75C23 /* Assets.xcassets */; };
@@ -93,12 +95,14 @@
 		9B29173028A9443200CFFDEA /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
 		9B29173228A9450700CFFDEA /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
 		9B29173428A9457900CFFDEA /* GroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListCell.swift; sourceTree = "<group>"; };
-		9B29173628A9464F00CFFDEA /* GroupInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfo.swift; sourceTree = "<group>"; };
+		9B29173628A9464F00CFFDEA /* GroupInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoResponse.swift; sourceTree = "<group>"; };
 		DE15222928ADCB6C0048C07B /* GroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
 		DE15222B28ADCBD50048C07B /* GroupDetailNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailNavigationView.swift; sourceTree = "<group>"; };
 		DE15222E28ADCF350048C07B /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		DE15223028ADD5960048C07B /* ParticipantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCell.swift; sourceTree = "<group>"; };
 		DE15223228ADD9780048C07B /* InvitationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationResponse.swift; sourceTree = "<group>"; };
+		DE15223628ADFEFE0048C07B /* GroupDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewModel.swift; sourceTree = "<group>"; };
+		DE15223828AE0D170048C07B /* GroupDetailInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailInfoResponse.swift; sourceTree = "<group>"; };
 		DE16E7482895271B00C75C23 /* holdy-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "holdy-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE16E74B2895271B00C75C23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE16E74D2895271B00C75C23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +220,14 @@
 				DE16E7AF289556BE00C75C23 /* LoginRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		DE15223528ADEE990048C07B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DE15223628ADFEFE0048C07B /* GroupDetailViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		DE16E73F2895271B00C75C23 = {
@@ -446,7 +458,8 @@
 		DE16E7BA28955EA900C75C23 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				9B29173628A9464F00CFFDEA /* GroupInfo.swift */,
+				9B29173628A9464F00CFFDEA /* GroupInfoResponse.swift */,
+				DE15223828AE0D170048C07B /* GroupDetailInfoResponse.swift */,
 				DE16E7BB28955EC500C75C23 /* LoginResponse.swift */,
 				DE2024E128A756E3004B4F59 /* GeneratingGroupResponse.swift */,
 				DE15223228ADD9780048C07B /* InvitationResponse.swift */,
@@ -519,6 +532,7 @@
 				DE3A014528AD294B0049CE42 /* GroupDetailCoordinator.swift */,
 				DE3A014928AD2A280049CE42 /* Router */,
 				DE15222828ADCB3F0048C07B /* View */,
+				DE15223528ADEE990048C07B /* ViewModel */,
 			);
 			path = GroupDetail;
 			sourceTree = "<group>";
@@ -742,7 +756,8 @@
 				DE3A014628AD294B0049CE42 /* GroupDetailCoordinator.swift in Sources */,
 				DE16E7BC28955EC500C75C23 /* LoginResponse.swift in Sources */,
 				DE86D4B428980CA4007BC448 /* LoginViewModel.swift in Sources */,
-				9B29173728A9464F00CFFDEA /* GroupInfo.swift in Sources */,
+				DE15223928AE0D170048C07B /* GroupDetailInfoResponse.swift in Sources */,
+				9B29173728A9464F00CFFDEA /* GroupInfoResponse.swift in Sources */,
 				DE16E7B828955E3700C75C23 /* LoginRequest.swift in Sources */,
 				DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */,
 				DE2024F328A7EAFC004B4F59 /* FirstLaunchChecker.swift in Sources */,
@@ -752,6 +767,7 @@
 				DE20250928ABE788004B4F59 /* GroupListRouter.swift in Sources */,
 				DE20250228ABD9CB004B4F59 /* UICollectionView+.swift in Sources */,
 				DE2024FE28A8DD10004B4F59 /* NetworkConnectionManager.swift in Sources */,
+				DE15223728ADFEFE0048C07B /* GroupDetailViewModel.swift in Sources */,
 				DE16E7B0289556BE00C75C23 /* LoginRouter.swift in Sources */,
 				DE16E7B4289558A000C75C23 /* HoldyAPI.swift in Sources */,
 				9B29173328A9450700CFFDEA /* GroupListViewController.swift in Sources */,
