@@ -10,7 +10,7 @@ import RxSwift
 struct GroupDetailRouter {
     func requestGroupDetail<T: Decodable>(api: Gettable, decodingType: T.Type) -> Single<T> {
             return Single.create { element in
-                let loginSession: String =  UserDefaults.standard.string(forKey: "loginSession") ?? ""
+                let loginSession: String =  UserDefaultsManager.loginSession
                 let headers: HTTPHeaders = ["Cookie": "SESSION=\(loginSession)"]
                 let httpMethod = HTTPMethod(rawValue: api.method.description)
 
@@ -32,7 +32,7 @@ struct GroupDetailRouter {
 
     func requestInviteGroup<T: Decodable>(api: Postable, groupID: Int ,decodingType: T.Type) -> Single<T> {
         return Single.create { emitter in
-            let loginSession: String =  UserDefaults.standard.string(forKey: "loginSession") ?? ""
+            let loginSession: String =  UserDefaultsManager.loginSession
             let headers: HTTPHeaders = ["Cookie": "SESSION=\(loginSession)"]
             let httpMethod = HTTPMethod(rawValue: api.method.description)
             let bodyParams: Parameters = [
@@ -66,7 +66,7 @@ struct GroupDetailRouter {
         decodingType: T.Type
     ) -> Single<T> {
         return Single.create { emitter in
-            let loginSession: String =  UserDefaults.standard.string(forKey: "loginSession") ?? ""
+            let loginSession: String =  UserDefaultsManager.loginSession
             let headers: HTTPHeaders = ["Cookie": "SESSION=\(loginSession)"]
             let httpMethod = HTTPMethod(rawValue: api.method.description)
             let bodyParams: Parameters = [
@@ -100,7 +100,7 @@ struct GroupDetailRouter {
         decodingType: T.Type
     ) -> Single<T> {
         return Single.create { emitter in
-            let loginSession: String =  UserDefaults.standard.string(forKey: "loginSession") ?? ""
+            let loginSession: String =  UserDefaultsManager.loginSession
             let headers: HTTPHeaders = ["Cookie": "SESSION=\(loginSession)"]
             let httpMethod = HTTPMethod(rawValue: api.method.description)
             let bodyParams: Parameters = [

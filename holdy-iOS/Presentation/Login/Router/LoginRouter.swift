@@ -45,6 +45,7 @@ struct LoginRouter {
                         let firstRangeIndex = session.index(after: firstEqualIndex)
                         let sessionKey = String(session[firstRangeIndex..<lastRangeIndex]) 
                         UserDefaults.standard.set(sessionKey, forKey: "loginSession")
+                        
                         emitter(.success(data))
                     case .failure(let error):
                         emitter(.failure(error))

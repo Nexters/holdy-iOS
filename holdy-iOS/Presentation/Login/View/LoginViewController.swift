@@ -179,6 +179,9 @@ final class LoginViewController: UIViewController {
                     
                     return
                 }
+                
+                UserDefaults.standard.set(loginResponse.data?.id, forKey: "id")
+                
                 self.coordinator.startHomeCoordinator()
             })
             .disposed(by: disposeBag)
