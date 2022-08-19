@@ -79,6 +79,8 @@ final class GroupListCell: UICollectionViewCell {
     
     // MARK: - Lifecycle Methods
     override func prepareForReuse() {
+        super.prepareForReuse()
+        
         statusIcon.image = nil
         titleLocationLabel.text = nil
         locationLabel.text = nil
