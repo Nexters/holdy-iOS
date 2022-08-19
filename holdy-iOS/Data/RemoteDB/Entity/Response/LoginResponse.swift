@@ -9,6 +9,7 @@ struct LoginResponse: Decodable {
         let id: Int
         let nickname: String
         let group: String
+        let profileImageUrl: String
     }
     
     let statusCode: Int
