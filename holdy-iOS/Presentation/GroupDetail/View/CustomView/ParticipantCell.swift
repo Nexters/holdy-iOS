@@ -116,7 +116,7 @@ final class ParticipantCell: UICollectionViewCell {
         }
     }
     
-    func configureContent(imageURL: String, name: String, group: String, id: Int, hostID: Int) {
+    func configureContent(imageURL: String, name: String, group: String, id: Int) {
         guard
             let url = URL(string: imageURL),
             let data = try? Data(contentsOf: url),
@@ -129,7 +129,7 @@ final class ParticipantCell: UICollectionViewCell {
         nameLabel.text = name
         groupLabel.text = group
         
-        if id == hostID {
+        if id == UserDefaultsManager.id {
             hostIcon.isHidden = false
             participantButton.isHidden = true
         } else {
