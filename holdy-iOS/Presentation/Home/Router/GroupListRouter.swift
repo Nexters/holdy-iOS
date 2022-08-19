@@ -6,7 +6,7 @@ import RxSwift
 struct GroupListRouter {
     func requestGroupList<T: Decodable>(api: Gettable, decodingType: T.Type) -> Single<T> {
             return Single.create { element in
-                let loginSession: String =  UserDefaults.standard.string(forKey: "loginSession") ?? ""
+                let loginSession: String =  UserDefaultsManager.loginSession
                 let headers: HTTPHeaders = ["Cookie": "SESSION=\(loginSession)"]
                 let httpMethod = HTTPMethod(rawValue: api.method.description)
 

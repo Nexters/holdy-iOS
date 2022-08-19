@@ -91,7 +91,7 @@ final class ParticipantCell: UICollectionViewCell {
         }
         
         groupLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(5)
             $0.leading.equalTo(nameLabel.snp.leading)
         }
         
