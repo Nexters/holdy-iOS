@@ -20,9 +20,9 @@ final class GroupDetailViewModel {
     // MARK: - Properties
     private let router = GroupDetailRouter()
     private let id: Int
-    private var participantsInfo: [ParticipantsDescribing] = []
     private let participantsObservable = PublishSubject<[ParticipantsDescribing]>()
-    private(set) var isHost: Bool!
+    private var participantsInfo: [ParticipantsDescribing] = []
+    private(set) var hostID = 0
 
     init(id: Int) {
         self.id = id
@@ -51,11 +51,15 @@ final class GroupDetailViewModel {
                 return response
             }
             .map {
+                self.hostID = $0.data.host.id
                 self.participantsInfo.append($0.data.host)
-                $0.data.participants.forEach { participantInfo in
+                for participantInfo in $0.data.participants {
+                    if participantInfo.id == $0.data.host.id {
+                        break
+                    }
+                    
                     self.participantsInfo.append(participantInfo)
                 }
-                self.isHost = $0.data.id == $0.data.host.id
                 
                 self.participantsObservable.onNext(self.participantsInfo)
                 
