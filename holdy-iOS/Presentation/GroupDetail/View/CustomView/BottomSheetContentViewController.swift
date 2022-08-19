@@ -178,7 +178,8 @@ final class BottomSheetContentViewController: UIViewController {
                     imageURL: item.profileImageUrl,
                     name: item.nickname,
                     group: item.group,
-                    isHost: self.viewModel.isHost
+                    id: item.id,
+                    hostID: self.viewModel.hostID
                 )
             }
             .disposed(by: disposeBag)
