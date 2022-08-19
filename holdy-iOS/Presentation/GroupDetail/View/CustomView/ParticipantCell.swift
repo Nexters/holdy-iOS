@@ -97,7 +97,7 @@ final class ParticipantCell: UICollectionViewCell {
         
         hostIcon.snp.makeConstraints {
             $0.centerY.equalTo(nameLabel.snp.centerY)
-            $0.leading.equalTo(nameLabel.snp.trailing)
+            $0.leading.equalTo(nameLabel.snp.trailing).offset(8)
             $0.width.equalTo(28)
             $0.height.equalTo(16)
         }
@@ -116,7 +116,7 @@ final class ParticipantCell: UICollectionViewCell {
         }
     }
     
-    func configureContent(imageURL: String, name: String, group: String, isHost: Bool) {
+    func configureContent(imageURL: String, name: String, group: String, id: Int, hostID: Int) {
         guard
             let url = URL(string: imageURL),
             let data = try? Data(contentsOf: url),
@@ -129,7 +129,7 @@ final class ParticipantCell: UICollectionViewCell {
         nameLabel.text = name
         groupLabel.text = group
         
-        if isHost {
+        if id == hostID {
             hostIcon.isHidden = false
             participantButton.isHidden = true
         } else {
