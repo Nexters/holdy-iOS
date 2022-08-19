@@ -14,11 +14,15 @@ final class GroupDetailViewModel {
 
     struct Output {
         let groupInfo: Driver<GroupInfo>
+        let participantsInfo: Observable<[ParticipantsDescribing]>
     }
 
     // MARK: - Properties
     private let router = GroupDetailRouter()
     private let id: Int
+    private var participantsInfo: [ParticipantsDescribing] = []
+    private let participantsObservable = PublishSubject<[ParticipantsDescribing]>()
+    private(set) var isHost: Bool!
 
     init(id: Int) {
         self.id = id
@@ -26,8 +30,10 @@ final class GroupDetailViewModel {
 
     func transform(_ input: Input) -> Output {
         let groupInfo = configureGroupInfo(with: input.viewDidLoad)
+        let participantsInfo = participantsObservable.asObservable()
         let output = Output(
-            groupInfo: groupInfo
+            groupInfo: groupInfo,
+            participantsInfo: participantsInfo
         )
 
         return output
@@ -44,7 +50,17 @@ final class GroupDetailViewModel {
 
                 return response
             }
-            .map { $0.data }
+            .map {
+                self.participantsInfo.append($0.data.host)
+                $0.data.participants.forEach { participantInfo in
+                    self.participantsInfo.append(participantInfo)
+                }
+                self.isHost = $0.data.id == $0.data.host.id
+                
+                self.participantsObservable.onNext(self.participantsInfo)
+                
+                return $0.data
+            }
             .asDriver(onErrorJustReturn:
                         GroupInfo(
                             id: 0,

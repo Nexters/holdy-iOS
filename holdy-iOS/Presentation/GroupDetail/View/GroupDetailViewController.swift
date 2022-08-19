@@ -67,6 +67,7 @@ final class GroupDetailViewController: UIViewController {
     }
     
     private let bottomSheetViewController = FloatingPanelController()
+    private var contentViewController: BottomSheetContentViewController!
 
     // MARK: - Properties
     private var viewModel: GroupDetailViewModel!
@@ -93,7 +94,6 @@ final class GroupDetailViewController: UIViewController {
         super.viewDidLoad()
 
         render()
-        configureBottomSheet()
     }
 
     private func render() {
@@ -161,8 +161,11 @@ final class GroupDetailViewController: UIViewController {
         }
     }
     
-    private func configureBottomSheet() {
-        let contentViewController = BottomSheetContentViewController()
+    private func configureBottomSheet(participantsInfo: Observable<[ParticipantsDescribing]>) {
+        contentViewController = BottomSheetContentViewController(
+            viewModel: viewModel,
+            participantsInfo: participantsInfo
+        )
         let layout = BottomSheetLayout()
         
         bottomSheetViewController.set(contentViewController: contentViewController)
@@ -178,6 +181,7 @@ final class GroupDetailViewController: UIViewController {
         
         configureCloseButton()
         configureContent(with: output.groupInfo)
+        configureBottomSheet(participantsInfo: output.participantsInfo)
     }
 
     private func configureContent(with groupInfo: Driver<GroupInfo>) {

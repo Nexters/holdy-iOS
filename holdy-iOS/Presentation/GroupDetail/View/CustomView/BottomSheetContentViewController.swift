@@ -4,6 +4,9 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 final class BottomSheetContentViewController: UIViewController {
     // MARK: - UI Components
     private let guestGuideContainer = UIView().then {
@@ -50,6 +53,11 @@ final class BottomSheetContentViewController: UIViewController {
     private let inviteButton = UIButton().then {
         $0.setImage(UIImage(named: "icon_invite"), for: .normal)
     }
+    
+    private let inviteButtonExplanation = UIImageView().then {
+        $0.image = UIImage(named: "info_invitation_link")
+        $0.contentMode = .scaleAspectFit
+    }
 
     private let attendanceButton = UIButton().then {
         $0.setTitle("갈게요", for: .normal)
@@ -61,18 +69,52 @@ final class BottomSheetContentViewController: UIViewController {
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
     }
-
+    
+    private let participantsCollectionview: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 16
+        layout.minimumInteritemSpacing = .zero
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isUserInteractionEnabled = true
+        
+        return collectionView
+    }()
+    
+    // MARK: - Properties
+    private var viewModel: GroupDetailViewModel!
+    private var participantsInfo: Observable<[ParticipantsDescribing]>!
+    private let disposeBag = DisposeBag()
+    
+    // MARK: - Initializers
+    convenience init(viewModel: GroupDetailViewModel, participantsInfo: Observable<[ParticipantsDescribing]>) {
+        self.init(nibName: nil, bundle: nil)
+        
+        self.viewModel = viewModel
+        self.participantsInfo = participantsInfo
+    }
+    
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         render()
+        configureCollectionView()
+        bind()
     }
     
+    // MARK: - Methods
     private func render() {
         view.backgroundColor = .white
         
         view.adds([
-            titleLabel
+            titleLabel,
+            participantsCollectionview,
+            inviteButton,
+            inviteButtonExplanation
         ])
         
         titleLabel.snp.makeConstraints {
@@ -81,5 +123,77 @@ final class BottomSheetContentViewController: UIViewController {
             $0.width.equalTo(100)
             $0.height.equalTo(25)
         }
+        
+        participantsCollectionview.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.bottom.equalToSuperview()
+        }
+        
+        inviteButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel.snp.centerY)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.width.height.equalTo(24)
+        }
+        
+        inviteButtonExplanation.snp.makeConstraints {
+            $0.centerY.equalTo(inviteButton.snp.centerY)
+            $0.trailing.equalTo(inviteButton.snp.leading).offset(-4)
+            $0.width.equalTo(173)
+            $0.height.equalTo(27)
+        }
+    }
+    
+    private func configureCollectionView() {
+        participantsCollectionview.delegate = self
+        participantsCollectionview.register(cellClass: ParticipantCell.self)
+    }
+    
+    private func configureInviteButtonExplanation() {
+        UIView.animate(
+            withDuration: 1.0,
+            delay: 0.0,
+            options: .curveEaseIn,
+            animations: { [weak self] in
+                self?.inviteButtonExplanation.alpha = .zero
+            },
+            completion: nil
+        )
+    }
+    
+    // MARK: - Binding Methods
+    private func bind() {
+        configureParticipantsCollectionViewContent()
+    }
+    
+    private func configureParticipantsCollectionViewContent() {
+        participantsInfo
+            .bind(to: participantsCollectionview.rx.items(
+                cellIdentifier: String(describing: ParticipantCell.self),
+                cellType: ParticipantCell.self
+            )) { [weak self]  _, item, cell in
+                guard let self = self else { return }
+                
+                cell.configureContent(
+                    imageURL: item.profileImageUrl,
+                    name: item.nickname,
+                    group: item.group,
+                    isHost: self.viewModel.isHost
+                )
+            }
+            .disposed(by: disposeBag)
+    }
+}
+
+extension BottomSheetContentViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        return CGSize(
+            width: participantsCollectionview.frame.width,
+            height: 72
+        )
     }
 }
