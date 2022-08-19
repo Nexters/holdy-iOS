@@ -28,11 +28,11 @@ struct PlaceInfo: Decodable {
     let mapLink: String
 }
 
-struct HostInfo: Decodable {
-    let id: Int
-    let nickname: String
-    let group: String
-    let profileImageUrl: String
+struct HostInfo: Decodable, ParticipantsDescribing {
+    var id: Int
+    var nickname: String
+    var group: String
+    var profileImageUrl: String
 }
 
 struct LoginUser: Decodable {
@@ -40,10 +40,10 @@ struct LoginUser: Decodable {
     let wantToAttend: Bool
 }
 
-struct UserInfo: Decodable {
-    let id: Int
-    let nickname: String
-    let group: String
-    let attended: Bool
-    let profileImageUrl: String
+struct UserInfo: Decodable, ParticipantsDescribing {
+    var id: Int
+    var nickname: String
+    var group: String
+    var attended: Bool
+    var profileImageUrl: String
 }
