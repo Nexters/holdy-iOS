@@ -111,14 +111,38 @@ final class BottomSheetContentViewController: UIViewController {
         view.backgroundColor = .white
         
         view.adds([
+            guestGuideContainer,
             titleLabel,
             participantsCollectionview,
             inviteButton,
             inviteButtonExplanation
         ])
         
-        titleLabel.snp.makeConstraints {
+        guestGuideContainer.adds([
+            guestGuideIcon,
+            guestGuideLabel
+        ])
+        
+        guestGuideContainer.snp.makeConstraints {
             $0.top.equalToSuperview().inset(32)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.width.equalTo(327)
+            $0.height.equalTo(48)
+        }
+        
+        guestGuideIcon.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(14)
+            $0.leading.equalToSuperview().inset(16)
+            $0.width.height.equalTo(20)
+        }
+        
+        guestGuideLabel.snp.makeConstraints {
+            $0.centerY.equalTo(guestGuideIcon.snp.centerY)
+            $0.leading.equalTo(guestGuideIcon.snp.trailing).offset(4)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(guestGuideContainer.snp.bottom).offset(28)
             $0.leading.equalToSuperview().inset(24)
             $0.width.equalTo(100)
             $0.height.equalTo(25)
@@ -171,9 +195,7 @@ final class BottomSheetContentViewController: UIViewController {
             .bind(to: participantsCollectionview.rx.items(
                 cellIdentifier: String(describing: ParticipantCell.self),
                 cellType: ParticipantCell.self
-            )) { [weak self]  _, item, cell in
-                guard let self = self else { return }
-                
+            )) { _, item, cell in
                 cell.configureContent(
                     imageURL: item.profileImageUrl,
                     name: item.nickname,
