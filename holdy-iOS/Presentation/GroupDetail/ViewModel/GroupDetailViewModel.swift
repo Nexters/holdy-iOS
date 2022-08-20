@@ -23,6 +23,7 @@ final class GroupDetailViewModel {
     private let participantsObservable = PublishSubject<[ParticipantsDescribing]>()
     private var participantsInfo: [ParticipantsDescribing] = []
     private(set) var hostID = 0
+    private(set) var startDate = Date()
 
     init(id: Int) {
         self.id = id
@@ -52,6 +53,8 @@ final class GroupDetailViewModel {
             }
             .map {
                 self.hostID = $0.data.host.id
+                self.startDate = self.generateDate($0.data.startDate)
+                
                 self.participantsInfo.append($0.data.host)
                 for participantInfo in $0.data.participants {
                     if participantInfo.id == $0.data.host.id {
@@ -77,5 +80,12 @@ final class GroupDetailViewModel {
                             participants: []
                         )
             )
+    }
+    
+    private func generateDate(_ text: String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        guard let date: Date = formatter.date(from: text) else { return Date() }
+        return date
     }
 }
