@@ -35,6 +35,11 @@ final class GroupDetailViewController: UIViewController {
         $0.textColor = .white
         $0.font = .pretendard(family: .bold, size: 32)
     }
+    
+    private let reportButton = UIButton().then {
+        $0.setImage(UIImage(named: "icon_report"), for: .normal)
+        $0.isHidden = true
+    }
 
     private let locationIcon = UIImageView().then {
         $0.contentMode = .scaleAspectFit
@@ -66,6 +71,8 @@ final class GroupDetailViewController: UIViewController {
         $0.contentHorizontalAlignment = .leading
     }
     
+    
+    
     private let bottomSheetViewController = FloatingPanelController()
     private var contentViewController: BottomSheetContentViewController!
 
@@ -94,6 +101,7 @@ final class GroupDetailViewController: UIViewController {
         super.viewDidLoad()
 
         render()
+        configureGuestPage()
     }
 
     private func render() {
@@ -102,6 +110,7 @@ final class GroupDetailViewController: UIViewController {
         view.adds([
             closeButton,
             titleLabel,
+            reportButton,
             locationIcon,
             locationLabel,
             dateIcon,
@@ -125,6 +134,12 @@ final class GroupDetailViewController: UIViewController {
             $0.leading.equalToSuperview().inset(20)
             $0.width.equalTo(view.bounds.width - 20)
             $0.height.equalTo(45)
+        }
+        
+        reportButton.snp.makeConstraints {
+            $0.top.equalTo(closeButton.snp.bottom).offset(41)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.width.height.equalTo(24)
         }
 
         locationIcon.snp.makeConstraints {
@@ -172,6 +187,14 @@ final class GroupDetailViewController: UIViewController {
         bottomSheetViewController.changeSheetStyle()
         bottomSheetViewController.addPanel(toParent: self)
         bottomSheetViewController.layout = layout
+    }
+    
+    private func configureGuestPage() {
+        guard UserDefaultsManager.id == viewModel.hostID else {
+            return
+        }
+        
+        reportButton.isHidden = false
     }
 
     // MARK: - Binding Methods
