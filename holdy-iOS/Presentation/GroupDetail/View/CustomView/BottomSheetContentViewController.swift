@@ -103,6 +103,7 @@ final class BottomSheetContentViewController: UIViewController {
         
         render()
         configureCollectionView()
+        configureGuestPage()
         bind()
     }
     
@@ -183,6 +184,37 @@ final class BottomSheetContentViewController: UIViewController {
             },
             completion: nil
         )
+    }
+    
+    private func configureGuestPage() {
+        guard UserDefaultsManager.id == viewModel.hostID else {
+            return
+        }
+        
+        let text = "모임이 끝나면 홀드를 확인할 수 있어요"
+        let highlightedText = "홀드를 확인할 수"
+        let allRange = (text as NSString).range(of: text)
+        let highlightedRange = (text as NSString).range(of: highlightedText)
+        let mutableAttributedString = NSMutableAttributedString(string: text)
+        mutableAttributedString.addAttribute(
+            NSAttributedString.Key.font,
+            value: UIFont.pretendard(family: .regular, size: 14),
+            range: allRange
+        )
+        mutableAttributedString.addAttribute(
+            NSAttributedString.Key.foregroundColor,
+            value: UIColor.gray9,
+            range: allRange
+        )
+        mutableAttributedString.addAttribute(
+            NSAttributedString.Key.foregroundColor,
+            value: UIColor.customRed,
+            range: highlightedRange
+        )
+        guestGuideLabel.attributedText = mutableAttributedString
+        
+        inviteButtonExplanation.isHidden = true
+        inviteButton.isHidden = true
     }
     
     // MARK: - Binding Methods
