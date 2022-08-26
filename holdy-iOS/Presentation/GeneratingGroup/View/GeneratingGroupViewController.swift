@@ -87,13 +87,16 @@ final class GeneratingGroupViewController: UIViewController {
         $0.distribution = .fillEqually
     }
     
-    private let startTimePicker = UIPickerView().then {
-        $0.tag = PickerTag.startTime
-    }
+    private let startTimePicker = UIDatePicker()
+    private let endTimePicker = UIDatePicker()
     
-    private let endTimePicker = UIPickerView().then {
-        $0.tag = PickerTag.endTime
-    }
+//    private let startTimePicker = UIPickerView().then {
+//        $0.tag = PickerTag.startTime
+//    }
+//
+//    private let endTimePicker = UIPickerView().then {
+//        $0.tag = PickerTag.endTime
+//    }
     
     private let startTimeTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
@@ -239,15 +242,6 @@ final class GeneratingGroupViewController: UIViewController {
     private var viewModel: GeneratingGroupViewModel!
     private var coordinator: GeneratingGroupCoordinator!
     
-    private let hourList: [String] = [
-        "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
-        "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"
-    ]
-    private let minuteList: [String] = ["00", "15", "30", "45"]
-    
-    private var selectedHour = "00"
-    private var selectedMinute = "00"
-    
     // MARK: - Initializers
     convenience init(viewModel: GeneratingGroupViewModel, coordinator: GeneratingGroupCoordinator) {
         self.init(nibName: nil, bundle: nil)
@@ -294,7 +288,6 @@ final class GeneratingGroupViewController: UIViewController {
         
         toolbar.setItems([flexibleSpace, cancelButton, doneButton], animated: true)
         
-        datePicker.tag = PickerTag.date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
         datePicker.minimumDate = Date()
@@ -308,35 +301,38 @@ final class GeneratingGroupViewController: UIViewController {
         startToolbar.sizeToFit()
         endToolbar.sizeToFit()
         
-        let flexibleSpace = UIBarButtonItem(
+        let startFlexibleSpace = UIBarButtonItem(
             barButtonSystemItem: .flexibleSpace, target: nil, action: nil
         )
-        let cancelButton = UIBarButtonItem(
+        let startCancelButton = UIBarButtonItem(
             barButtonSystemItem: .cancel, target: nil, action: #selector(cancelButtonTapped)
         )
         let startDoneButton = UIBarButtonItem(
             barButtonSystemItem: .done, target: nil, action: #selector(doneButtonTappedAtStartTimePicker)
         )
+        
+        let endFlexibleSpace = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace, target: nil, action: nil
+        )
+        let endCancelButton = UIBarButtonItem(
+            barButtonSystemItem: .cancel, target: nil, action: #selector(cancelButtonTapped)
+        )
         let endDoneButton = UIBarButtonItem(
             barButtonSystemItem: .done, target: nil, action: #selector(doneButtonTappedAtEndTimePicker)
         )
         
-        startToolbar.setItems([flexibleSpace, cancelButton, startDoneButton], animated: true)
-        endToolbar.setItems([flexibleSpace, cancelButton, endDoneButton], animated: true)
+        startToolbar.setItems([startFlexibleSpace, startCancelButton, startDoneButton], animated: true)
+        endToolbar.setItems([endFlexibleSpace, endCancelButton, endDoneButton], animated: true)
         
-        startTimePicker.delegate = self
-        startTimePicker.dataSource = self
-        
-        endTimePicker.delegate = self
-        endTimePicker.dataSource = self
-        
-        startTimeTextField.tintColor = .clear
-        startTimeTextField.inputView = startTimePicker
+        startTimePicker.preferredDatePickerStyle = .wheels
+        startTimePicker.datePickerMode = .time
         startTimeTextField.inputAccessoryView = startToolbar
+        startTimeTextField.inputView = startTimePicker
         
-        endTimeTextField.tintColor = .clear
-        endTimeTextField.inputView = endTimePicker
+        endTimePicker.preferredDatePickerStyle = .wheels
+        endTimePicker.datePickerMode = .time
         endTimeTextField.inputAccessoryView = endToolbar
+        endTimeTextField.inputView = endTimePicker
     }
     
     private func configureTextField() {
@@ -361,14 +357,30 @@ final class GeneratingGroupViewController: UIViewController {
     
     @objc
     private func doneButtonTappedAtStartTimePicker() {
-        startTimeTextField.text = "\(selectedHour):\(selectedMinute)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH : mm"
+        
+        startTimeTextField.attributedText = NSAttributedString(
+            string: dateFormatter.string(from: startTimePicker.date),
+            attributes: [
+                NSAttributedString.Key.font: UIFont.pretendardWithDefaultSize(family: .regular)
+            ]
+        )
         
         view.endEditing(true)
     }
     
     @objc
     private func doneButtonTappedAtEndTimePicker() {
-        endTimeTextField.text = "\(selectedHour):\(selectedMinute)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH : mm"
+        
+        endTimeTextField.attributedText = NSAttributedString(
+            string: dateFormatter.string(from: endTimePicker.date),
+            attributes: [
+                NSAttributedString.Key.font: UIFont.pretendardWithDefaultSize(family: .regular)
+            ]
+        )
         
         view.endEditing(true)
     }
@@ -465,8 +477,8 @@ final class GeneratingGroupViewController: UIViewController {
             .map { view, _ -> (startDate: String, endDate: String, summary: String, address: String, mapLink: String) in
                 guard
                     let date = view.dateTextField.text,
-                    let startTime = view.startTimeTextField.text,
-                    let endTime = view.endTimeTextField.text,
+                    let startTime = view.startTimeTextField.text?.replacingOccurrences(of: " ", with: ""),
+                    let endTime = view.endTimeTextField.text?.replacingOccurrences(of: " ", with: ""),
                     let summary = view.locationNameTextField.text,
                     let address = view.locationDetailTextField.text,
                     let mapLink = view.locationLinkTextField.text
@@ -650,57 +662,6 @@ final class GeneratingGroupViewController: UIViewController {
     }
 }
 
-extension GeneratingGroupViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        guard let componentCount = Picker(rawValue: pickerView.tag)?.componentCount else {
-            return 0
-        }
-        
-        return componentCount
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch component {
-        case 0:
-            return hourList.count
-        case 1:
-            return minuteList.count
-        default:
-            return 0
-        }
-    }
-    
-    func pickerView(
-        _ pickerView: UIPickerView,
-        titleForRow row: Int,
-        forComponent component: Int
-    ) -> String? {
-        switch component {
-        case 0:
-            return "\(hourList[row]) : "
-        case 1:
-            return "\(minuteList[row])"
-        default:
-            return ""
-        }
-    }
-    
-    func pickerView(
-        _ pickerView: UIPickerView,
-        didSelectRow row: Int,
-        inComponent component: Int
-    ) {
-        switch component {
-        case 0:
-            selectedHour = hourList[row]
-        case 1:
-            selectedMinute = minuteList[row]
-        default:
-            break
-        }
-    }
-}
-
 extension GeneratingGroupViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -711,13 +672,5 @@ extension GeneratingGroupViewController: UITextFieldDelegate {
             ]
         )
         return true
-    }
-}
-
-extension GeneratingGroupViewController {
-    enum PickerTag {
-        static let date = 0
-        static let startTime = 1
-        static let endTime = 2
     }
 }
