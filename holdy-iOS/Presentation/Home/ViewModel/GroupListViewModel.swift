@@ -10,7 +10,7 @@ import RxSwift
 
 final class GroupListViewModel {
     struct Input {
-        let viewDidLoad: Observable<Void>
+        let viewWillAppear: Observable<Bool>
     }
     
     struct Output {
@@ -20,7 +20,7 @@ final class GroupListViewModel {
     private let router = GroupListRouter()
     
     func transform(_ input: Input) -> Output {
-        let groupInfos = configureGroupInfos(with: input.viewDidLoad)
+        let groupInfos = configureGroupInfos(with: input.viewWillAppear)
         let output = Output(
             groupInfos: groupInfos
         )
@@ -28,7 +28,7 @@ final class GroupListViewModel {
         return output
     }
     
-    private func configureGroupInfos(with inputObserver: Observable<Void>) -> Observable<[GroupInfo]> {
+    private func configureGroupInfos(with inputObserver: Observable<Bool>) -> Observable<[GroupInfo]> {
         inputObserver
             .withUnretained(self)
             .flatMap { (viewModel, _) -> Single<GroupInfoResponse> in

@@ -142,7 +142,7 @@ final class GroupListViewController: UIViewController {
     // MARK: - Binding Methods
     private func bind() {
         let input = GroupListViewModel.Input(
-            viewDidLoad: rx.viewDidLoad
+            viewWillAppear: rx.viewWillAppear
         )
         let output = viewModel.transform(input)
         
