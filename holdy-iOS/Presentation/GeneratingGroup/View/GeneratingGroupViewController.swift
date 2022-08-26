@@ -90,14 +90,6 @@ final class GeneratingGroupViewController: UIViewController {
     private let startTimePicker = UIDatePicker()
     private let endTimePicker = UIDatePicker()
     
-//    private let startTimePicker = UIPickerView().then {
-//        $0.tag = PickerTag.startTime
-//    }
-//
-//    private let endTimePicker = UIPickerView().then {
-//        $0.tag = PickerTag.endTime
-//    }
-    
     private let startTimeTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: "모임 시작 시간",
@@ -115,6 +107,13 @@ final class GeneratingGroupViewController: UIViewController {
         $0.font = UIFont.pretendardWithDefaultSize(family: .regular)
     }
     
+    private let startTimeWarningLabel = UILabel().then {
+        $0.text = "현재 시간 이후로 시작 시간을 설정해주세요"
+        $0.textColor = .customRed
+        $0.font = .pretendard(family: .regular, size: 12)
+        $0.isHidden = true
+    }
+    
     private let endTimeTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(
             string: "모임 종료 시간",
@@ -130,6 +129,13 @@ final class GeneratingGroupViewController: UIViewController {
         $0.addLeftPadding()
         $0.clearButtonMode = .always
         $0.font = UIFont.pretendardWithDefaultSize(family: .regular)
+    }
+    
+    private let endTimeWarningLabel = UILabel().then {
+        $0.text = "시작 시간 이후로 종료 시간을 설정해주세요"
+        $0.textColor = .customRed
+        $0.font = .pretendard(family: .regular, size: 12)
+        $0.isHidden = true
     }
     
     private let locationContainer = UIStackView().then {
@@ -241,6 +247,9 @@ final class GeneratingGroupViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var viewModel: GeneratingGroupViewModel!
     private var coordinator: GeneratingGroupCoordinator!
+    private var isRightLink: Bool = false
+    private var isRightStart: Bool = false
+    private var isRightEnd: Bool = false
     
     // MARK: - Initializers
     convenience init(viewModel: GeneratingGroupViewModel, coordinator: GeneratingGroupCoordinator) {
@@ -391,10 +400,14 @@ final class GeneratingGroupViewController: UIViewController {
     }
     
     private func render() {
-        view.addSubview(closeButton)
-        view.addSubview(contentContainer)
-        view.addSubview(generatingGroupButton)
-        view.addSubview(linkWarningLabel)
+        view.adds([
+            closeButton,
+            contentContainer,
+            generatingGroupButton,
+            startTimeWarningLabel,
+            endTimeWarningLabel,
+            linkWarningLabel
+        ])
         
         contentContainer.addArrangedSubview(dateContainer)
         contentContainer.addArrangedSubview(locationContainer)
@@ -429,6 +442,18 @@ final class GeneratingGroupViewController: UIViewController {
         }
         startTimeTextField.snp.makeConstraints {
             $0.height.equalTo(48)
+        }
+        
+        startTimeWarningLabel.snp.makeConstraints {
+            $0.top.equalTo(startTimeTextField.snp.bottom).offset(5)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(24)
+            $0.height.equalTo(17)
+        }
+        
+        endTimeWarningLabel.snp.makeConstraints {
+            $0.top.equalTo(startTimeTextField.snp.bottom).offset(22)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(24)
+            $0.height.equalTo(17)
         }
 
         locationNameTextField.snp.makeConstraints {
@@ -501,9 +526,12 @@ final class GeneratingGroupViewController: UIViewController {
                 
                 if response.data == nil {
                     self.showGeneratingGroupFailAlert()
-                } else {
-                    self.dismiss(animated: true)
+                    
+                    return
                 }
+                
+                self.dismiss(animated: true)
+                
             })
             .disposed(by: disposeBag)
     }
@@ -537,6 +565,7 @@ final class GeneratingGroupViewController: UIViewController {
             .withUnretained(self)
             .subscribe(onNext: { viewController, _ in
                 viewController.dateTextField.layer.borderColor = UIColor.strongBlue.cgColor
+                viewController.judgeEssentialTextField()
             })
             .disposed(by: disposeBag)
         
@@ -551,6 +580,7 @@ final class GeneratingGroupViewController: UIViewController {
             .withUnretained(self)
             .subscribe(onNext: { viewController, _ in
                 viewController.endTimeTextField.layer.borderColor = UIColor.strongBlue.cgColor
+                viewController.judgeEssentialTextField()
             })
             .disposed(by: disposeBag)
         
@@ -558,6 +588,7 @@ final class GeneratingGroupViewController: UIViewController {
             .withUnretained(self)
             .subscribe(onNext: { viewController, _ in
                 viewController.locationNameTextField.layer.borderColor = UIColor.strongBlue.cgColor
+                viewController.judgeEssentialTextField()
             })
             .disposed(by: disposeBag)
         
@@ -565,6 +596,7 @@ final class GeneratingGroupViewController: UIViewController {
             .withUnretained(self)
             .subscribe(onNext: { viewController, _ in
                 viewController.locationDetailTextField.layer.borderColor = UIColor.strongBlue.cgColor
+                viewController.judgeEssentialTextField()
             })
             .disposed(by: disposeBag)
         
@@ -582,13 +614,26 @@ final class GeneratingGroupViewController: UIViewController {
                 guard isKakapmap || isNaverMap else {
                     viewController.linkWarningLabel.isHidden = false
                     viewController.locationLinkTextField.layer.borderColor = UIColor.strongBlue.cgColor
+                    viewController.generatingGroupButton.isUserInteractionEnabled = false
                     
                     return
                 }
                 
                 viewController.linkWarningLabel.isHidden = true
+                viewController.isRightLink = true
+                
+                viewController.judgeEssentialTextField()
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func generateDate(_ text: String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        guard let date: Date = formatter.date(from: text) else {
+            return Date()
+        }
+        return date
     }
     
     private func configureEndEditingTextField() {
@@ -596,23 +641,61 @@ final class GeneratingGroupViewController: UIViewController {
             .withUnretained(self)
             .subscribe(onNext: { viewController, _ in
                 viewController.dateTextField.layer.borderColor = UIColor.gray5.cgColor
-                viewController.judgeEssentialTextField()
             })
             .disposed(by: disposeBag)
         
         startTimeTextField.rx.controlEvent(.editingDidEnd).asObservable()
             .withUnretained(self)
             .subscribe(onNext: { viewController, _ in
-                viewController.startTimeTextField.layer.borderColor = UIColor.gray5.cgColor
+                guard
+                    let date = viewController.dateTextField.text,
+                    let startTime = viewController.startTimeTextField.text?.replacingOccurrences(of: " ", with: "")
+                else {
+                    return
+                }
+                
+                let formattedDate = date.prefix(10)
+                let startDate = "\(formattedDate) \(startTime):00"
+                let start = viewController.generateDate(startDate)
+                
+                if start >= Date() {
+                    viewController.isRightStart = true
+                    viewController.startTimeWarningLabel.isHidden = true
+                } else {
+                    viewController.startTimeWarningLabel.isHidden = false
+                }
+                
                 viewController.judgeEssentialTextField()
+                viewController.startTimeTextField.layer.borderColor = UIColor.gray5.cgColor
             })
             .disposed(by: disposeBag)
         
         endTimeTextField.rx.controlEvent(.editingDidEnd).asObservable()
             .withUnretained(self)
             .subscribe(onNext: { viewController, _ in
-                viewController.endTimeTextField.layer.borderColor = UIColor.gray5.cgColor
+                guard
+                    let date = viewController.dateTextField.text,
+                    let startTime = viewController.startTimeTextField.text?.replacingOccurrences(of: " ", with: ""),
+                    let endTime = viewController.endTimeTextField.text?.replacingOccurrences(of: " ", with: "")
+                else {
+                    return
+                }
+                
+                let formattedDate = date.prefix(10)
+                let startDate = "\(formattedDate) \(startTime):00"
+                let endDate = "\(formattedDate) \(endTime):00"
+                let start = viewController.generateDate(startDate)
+                let end = viewController.generateDate(endDate)
+                
+                if start <= end {
+                    viewController.isRightEnd = true
+                    viewController.endTimeWarningLabel.isHidden = true
+                } else {
+                    viewController.endTimeWarningLabel.isHidden = false
+                }
+                
                 viewController.judgeEssentialTextField()
+                viewController.endTimeTextField.layer.borderColor = UIColor.gray5.cgColor
             })
             .disposed(by: disposeBag)
         
@@ -620,7 +703,6 @@ final class GeneratingGroupViewController: UIViewController {
             .withUnretained(self)
             .subscribe(onNext: { viewController, _ in
                 viewController.locationNameTextField.layer.borderColor = UIColor.gray5.cgColor
-                viewController.judgeEssentialTextField()
             })
             .disposed(by: disposeBag)
         
@@ -628,7 +710,6 @@ final class GeneratingGroupViewController: UIViewController {
             .withUnretained(self)
             .subscribe(onNext: { viewController, _ in
                 viewController.locationDetailTextField.layer.borderColor = UIColor.gray5.cgColor
-                viewController.judgeEssentialTextField()
             })
             .disposed(by: disposeBag)
         
@@ -651,11 +732,9 @@ final class GeneratingGroupViewController: UIViewController {
             return
         }
         
-        if dateText.count > 0 &&
-            startTimeText.count > 0 &&
-            endTimeText.count > 0 &&
-            locationNameText.count > 0 &&
-            locationDetailText.count > 0 {
+        let isFull = dateText.count > 0 && startTimeText.count > 0 && endTimeText.count > 0 && locationNameText.count > 0 && locationDetailText.count > 0 
+        
+        if isFull && isRightLink && isRightStart && isRightEnd {
             generatingGroupButton.backgroundColor = .strongBlue
             generatingGroupButton.isUserInteractionEnabled = true
         }
