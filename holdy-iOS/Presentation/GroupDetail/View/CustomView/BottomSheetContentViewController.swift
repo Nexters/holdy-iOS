@@ -4,8 +4,11 @@
 
 import UIKit
 
+import KakaoSDKShare
+import KakaoSDKTemplate
 import RxCocoa
 import RxSwift
+import SafariServices
 
 final class BottomSheetContentViewController: UIViewController {
     // MARK: - UI Components
@@ -233,6 +236,7 @@ final class BottomSheetContentViewController: UIViewController {
     // MARK: - Binding Methods
     private func bind() {
         configureParticipantsCollectionViewContent()
+        configureInviteButton()
     }
     
     private func configureParticipantsCollectionViewContent() {
@@ -248,6 +252,38 @@ final class BottomSheetContentViewController: UIViewController {
                     id: item.id
                 )
             }
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureInviteButton() {
+        inviteButton.rx.tap
+            .subscribe(onNext: {
+                let templateID: Int64 = 81345
+                 
+                if ShareApi.isKakaoTalkSharingAvailable() {
+                    ShareApi.shared.shareCustom(templateId: templateID) { shareResult, error in
+                        if let error = error {
+                            #if DEBUG
+                            print(error)
+                            #endif
+                        } else {
+                            if let shareResult = shareResult {
+                                UIApplication.shared.open(shareResult.url)
+                            }
+                        }
+                    }
+                } else {
+                    if let url = ShareApi.shared.makeCustomUrl(
+                        templateId: templateID,
+                        templateArgs:["title": "제목입니다.", "description": "설명입니다."]
+                    ) {
+                        let safariViewController = SFSafariViewController(url: url)
+                        safariViewController.modalTransitionStyle = .crossDissolve
+                        safariViewController.modalPresentationStyle = .overCurrentContext
+                        self.present(safariViewController, animated: true)
+                    }
+                }
+            })
             .disposed(by: disposeBag)
     }
 }

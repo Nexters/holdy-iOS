@@ -12,7 +12,6 @@
 		9B29173528A9457900CFFDEA /* GroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173428A9457900CFFDEA /* GroupListCell.swift */; };
 		9B29173728A9464F00CFFDEA /* GroupInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29173628A9464F00CFFDEA /* GroupInfoResponse.swift */; };
 		DE15222A28ADCB6C0048C07B /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15222928ADCB6C0048C07B /* GroupDetailViewController.swift */; };
-		DE15222F28ADCF350048C07B /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15222E28ADCF350048C07B /* BottomSheetView.swift */; };
 		DE15223128ADD5960048C07B /* ParticipantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15223028ADD5960048C07B /* ParticipantCell.swift */; };
 		DE15223328ADD9780048C07B /* InvitationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15223228ADD9780048C07B /* InvitationResponse.swift */; };
 		DE15223728ADFEFE0048C07B /* GroupDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15223628ADFEFE0048C07B /* GroupDetailViewModel.swift */; };
@@ -82,6 +81,8 @@
 		DE86D4A328964541007BC448 /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4A228964541007BC448 /* URLRequest+.swift */; };
 		DE86D4AB28980062007BC448 /* LoginAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4AA28980062007BC448 /* LoginAPITests.swift */; };
 		DE86D4B428980CA4007BC448 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4B328980CA4007BC448 /* LoginViewModel.swift */; };
+		DEE002ED28C2401400D4896C /* KakaoSDKShare in Frameworks */ = {isa = PBXBuildFile; productRef = DEE002EC28C2401400D4896C /* KakaoSDKShare */; };
+		DEE002EF28C2401400D4896C /* KakaoSDKTemplate in Frameworks */ = {isa = PBXBuildFile; productRef = DEE002EE28C2401400D4896C /* KakaoSDKTemplate */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,7 +101,6 @@
 		9B29173428A9457900CFFDEA /* GroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListCell.swift; sourceTree = "<group>"; };
 		9B29173628A9464F00CFFDEA /* GroupInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoResponse.swift; sourceTree = "<group>"; };
 		DE15222928ADCB6C0048C07B /* GroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
-		DE15222E28ADCF350048C07B /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		DE15223028ADD5960048C07B /* ParticipantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCell.swift; sourceTree = "<group>"; };
 		DE15223228ADD9780048C07B /* InvitationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationResponse.swift; sourceTree = "<group>"; };
 		DE15223628ADFEFE0048C07B /* GroupDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewModel.swift; sourceTree = "<group>"; };
@@ -177,9 +177,11 @@
 				DE16E799289552BF00C75C23 /* RxCocoa in Frameworks */,
 				DE16E7932895529700C75C23 /* SnapKit in Frameworks */,
 				DE16E7A3289552F600C75C23 /* Alamofire in Frameworks */,
+				DEE002EF28C2401400D4896C /* KakaoSDKTemplate in Frameworks */,
 				DE16E7A62895530F00C75C23 /* RxDataSources in Frameworks */,
 				DE16E79D289552BF00C75C23 /* RxSwift in Frameworks */,
 				DE16E79B289552BF00C75C23 /* RxRelay in Frameworks */,
+				DEE002ED28C2401400D4896C /* KakaoSDKShare in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,7 +215,6 @@
 		DE15222D28ADCF250048C07B /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				DE15222E28ADCF350048C07B /* BottomSheetView.swift */,
 				DE3A014F28AE5E0C0049CE42 /* BottomSheetContentViewController.swift */,
 				DE15223028ADD5960048C07B /* ParticipantCell.swift */,
 			);
@@ -623,6 +624,8 @@
 				DE16E7A2289552F600C75C23 /* Alamofire */,
 				DE16E7A52895530F00C75C23 /* RxDataSources */,
 				DE3A014D28AE5D330049CE42 /* FloatingPanel */,
+				DEE002EC28C2401400D4896C /* KakaoSDKShare */,
+				DEE002EE28C2401400D4896C /* KakaoSDKTemplate */,
 			);
 			productName = "holdy-iOS";
 			productReference = DE16E7482895271B00C75C23 /* holdy-iOS.app */;
@@ -681,6 +684,7 @@
 				DE16E7A1289552F600C75C23 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				DE16E7A42895530F00C75C23 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				DE3A014C28AE5D330049CE42 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				DEE002EB28C2401400D4896C /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 			);
 			productRefGroup = DE16E7492895271B00C75C23 /* Products */;
 			projectDirPath = "";
@@ -790,7 +794,6 @@
 				DE3A014B28AD2A780049CE42 /* GroupDetailRouter.swift in Sources */,
 				DE16E7BE2895692600C75C23 /* LoginViewController.swift in Sources */,
 				DE2024F828A7FC08004B4F59 /* NetworkConnectErrorCoordinator.swift in Sources */,
-				DE15222F28ADCF350048C07B /* BottomSheetView.swift in Sources */,
 				DE545F65289BE905002E6B83 /* GeneratingGroupCoordinator.swift in Sources */,
 				DE16E7C3289570EC00C75C23 /* UIView+.swift in Sources */,
 				DE16E7902895521300C75C23 /* HomeCoordinator.swift in Sources */,
@@ -957,7 +960,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RUFP7D8BXB;
+				DEVELOPMENT_TEAM = FA464JRW3F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "holdy-iOS/SupportFile/Configure/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -984,7 +987,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RUFP7D8BXB;
+				DEVELOPMENT_TEAM = FA464JRW3F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "holdy-iOS/SupportFile/Configure/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1123,6 +1126,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		DEE002EB28C2401400D4896C /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1165,6 +1176,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE3A014C28AE5D330049CE42 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
+		};
+		DEE002EC28C2401400D4896C /* KakaoSDKShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEE002EB28C2401400D4896C /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKShare;
+		};
+		DEE002EE28C2401400D4896C /* KakaoSDKTemplate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEE002EB28C2401400D4896C /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKTemplate;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
