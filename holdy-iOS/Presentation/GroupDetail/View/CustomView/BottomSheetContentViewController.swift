@@ -58,17 +58,6 @@ final class BottomSheetContentViewController: UIViewController {
         $0.image = UIImage(named: "info_invitation_link")
         $0.contentMode = .scaleAspectFit
     }
-
-    private let attendanceButton = UIButton().then {
-        $0.setTitle("갈게요", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = .pretendard(family: .medium, size: 16)
-
-        $0.backgroundColor = .veryStrongBlue
-
-        $0.layer.cornerRadius = 8
-        $0.clipsToBounds = true
-    }
     
     private let participantsCollectionview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -84,13 +73,26 @@ final class BottomSheetContentViewController: UIViewController {
         return collectionView
     }()
     
+    private let participantButton = UIButton().then {
+        $0.setTitle("갈게요", for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.setTitleColor(.red, for: .highlighted)
+        $0.backgroundColor = .strongBlue
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+        $0.isHidden = true
+    }
+    
     // MARK: - Properties
     private var viewModel: GroupDetailViewModel!
     private var participantsInfo: Observable<[ParticipantsDescribing]>!
     private let disposeBag = DisposeBag()
     
     // MARK: - Initializers
-    convenience init(viewModel: GroupDetailViewModel, participantsInfo: Observable<[ParticipantsDescribing]>) {
+    convenience init(
+        viewModel: GroupDetailViewModel,
+        participantsInfo: Observable<[ParticipantsDescribing]>
+    ) {
         self.init(nibName: nil, bundle: nil)
         
         self.viewModel = viewModel
@@ -116,7 +118,8 @@ final class BottomSheetContentViewController: UIViewController {
             titleLabel,
             participantsCollectionview,
             inviteButton,
-            inviteButtonExplanation
+            inviteButtonExplanation,
+            participantButton
         ])
         
         guestGuideContainer.adds([
@@ -167,6 +170,13 @@ final class BottomSheetContentViewController: UIViewController {
             $0.width.equalTo(173)
             $0.height.equalTo(27)
         }
+        
+        participantButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(40)
+            $0.width.equalTo(335)
+            $0.height.equalTo(48)
+        }
     }
     
     private func configureCollectionView() {
@@ -196,6 +206,7 @@ final class BottomSheetContentViewController: UIViewController {
         let allRange = (text as NSString).range(of: text)
         let highlightedRange = (text as NSString).range(of: highlightedText)
         let mutableAttributedString = NSMutableAttributedString(string: text)
+        
         mutableAttributedString.addAttribute(
             NSAttributedString.Key.font,
             value: UIFont.pretendard(family: .regular, size: 14),
@@ -215,6 +226,8 @@ final class BottomSheetContentViewController: UIViewController {
         
         inviteButtonExplanation.isHidden = true
         inviteButton.isHidden = true
+        
+        participantButton.isHidden = false
     }
     
     // MARK: - Binding Methods
