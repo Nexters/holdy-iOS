@@ -71,13 +71,6 @@ final class GroupDetailViewController: UIViewController {
         $0.contentHorizontalAlignment = .leading
     }
     
-    private let participantButton = UIButton().then {
-        $0.setTitle("갈게요", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .strongBlue
-        $0.isHidden = true
-    }
-    
     private let bottomSheetViewController = FloatingPanelController()
     private var contentViewController: BottomSheetContentViewController!
 
@@ -121,8 +114,7 @@ final class GroupDetailViewController: UIViewController {
             dateIcon,
             dateLabel,
             openMapAppButton,
-            bottomSheetViewController.view,
-            participantButton
+            bottomSheetViewController.view
         ])
         
         bottomSheetViewController.view.snp.makeConstraints {
@@ -179,13 +171,6 @@ final class GroupDetailViewController: UIViewController {
             $0.leading.equalToSuperview().inset(44)
             $0.width.equalTo(253)
             $0.height.equalTo(20)
-        }
-        
-        participantButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(40)
-            $0.width.equalTo(335)
-            $0.height.equalTo(48)
         }
     }
     
