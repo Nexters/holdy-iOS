@@ -34,4 +34,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) { }
 
     func sceneDidEnterBackground(_ scene: UIScene) { }
+    
+    // MARK: - Kakao Link
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            // TODO: 나중에 링크 연결할 수 있도록 수정
+            print(url)
+        }
+    }
 }

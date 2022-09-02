@@ -4,6 +4,8 @@
 
 import UIKit
 
+import KakaoSDKCommon
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(
@@ -13,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK: - Network Connection Check
         let networkConnectionManager = NetworkConnectionManager.shared
         networkConnectionManager.startMonitoring()
+        
+        KakaoSDK.initSDK(appKey: "bce48acc93854a13f254a2c429f23856")
         
         return true
     }
