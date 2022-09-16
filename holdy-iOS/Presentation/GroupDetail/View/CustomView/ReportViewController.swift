@@ -29,46 +29,34 @@ final class ReportViewController: UIViewController {
     
     private let firstCheckBox = UIButton().then {
         $0.setImage(UIImage(named: "icon_check_square"), for: .normal)
-//        $0.setImage(UIImage(named: "icon_check_selected_square"), for: .selected)
-    }
-    
-    private let firstContent = UILabel().then {
-        $0.text = "모임 정보에 부적절한 내용이 포함되어 있어요"
-        $0.textColor = .gray9
-        $0.font = .pretendard(family: .regular, size: 14)
+        $0.setTitle("모임 정보에 부적절한 내용이 포함되어 있어요", for: .normal)
+        $0.setTitleColor(.gray9, for: .normal)
+        $0.titleLabel?.font = .pretendard(family: .regular, size: 14)
+        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
     }
     
     private let secondCheckBox = UIButton().then {
         $0.setImage(UIImage(named: "icon_check_square"), for: .normal)
-//        $0.setImage(UIImage(named: "icon_check_selected_square"), for: .selected)
-    }
-    
-    private let secondContent = UILabel().then {
-        $0.text = "광고나 홍보를 위해 만들어진 모임이에요"
-        $0.textColor = .gray9
-        $0.font = .pretendard(family: .regular, size: 14)
+        $0.setTitle("광고나 홍보를 위해 만들어진 모임이에요", for: .normal)
+        $0.setTitleColor(.gray9, for: .normal)
+        $0.titleLabel?.font = .pretendard(family: .regular, size: 14)
+        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
     }
     
     private let thirdCheckBox = UIButton().then {
         $0.setImage(UIImage(named: "icon_check_square"), for: .normal)
-//        $0.setImage(UIImage(named: "icon_check_selected_square"), for: .selected)
-    }
-    
-    private let thirdContent = UILabel().then {
-        $0.text = "실제로 이루어지지 않는 모임이에요"
-        $0.textColor = .gray9
-        $0.font = .pretendard(family: .regular, size: 14)
+        $0.setTitle("실제로 이루어지지 않는 모임이에요", for: .normal)
+        $0.setTitleColor(.gray9, for: .normal)
+        $0.titleLabel?.font = .pretendard(family: .regular, size: 14)
+        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
     }
     
     private let fourthCheckBox = UIButton().then {
         $0.setImage(UIImage(named: "icon_check_square"), for: .normal)
-//        $0.setImage(UIImage(named: "icon_check_selected_square"), for: .selected)
-    }
-    
-    private let fourthContent = UILabel().then {
-        $0.text = "기타"
-        $0.textColor = .gray9
-        $0.font = .pretendard(family: .regular, size: 14)
+        $0.setTitle("기타", for: .normal)
+        $0.setTitleColor(.gray9, for: .normal)
+        $0.titleLabel?.font = .pretendard(family: .regular, size: 14)
+        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
     }
     
     private let reasonTextView = UITextView().then {
@@ -108,13 +96,9 @@ final class ReportViewController: UIViewController {
             titleLabel,
             descriptionLabel,
             firstCheckBox,
-            firstContent,
             secondCheckBox,
-            secondContent,
             thirdCheckBox,
-            thirdContent,
             fourthCheckBox,
-            fourthContent,
             reasonTextView,
             textNumberLabel,
             reportButton
@@ -137,42 +121,22 @@ final class ReportViewController: UIViewController {
         
         firstCheckBox.snp.makeConstraints {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(30)
-            $0.leading.equalTo(titleLabel.snp.leading)
-        }
-        
-        firstContent.snp.makeConstraints {
-            $0.centerY.equalTo(firstCheckBox.snp.centerY)
-            $0.leading.equalTo(firstCheckBox.snp.trailing).offset(8)
+            $0.leading.equalTo(titleLabel.snp.leading).inset(8)
         }
         
         secondCheckBox.snp.makeConstraints {
             $0.top.equalTo(firstCheckBox.snp.bottom).offset(16)
-            $0.leading.equalTo(titleLabel.snp.leading)
-        }
-        
-        secondContent.snp.makeConstraints {
-            $0.centerY.equalTo(secondCheckBox.snp.centerY)
-            $0.leading.equalTo(secondCheckBox.snp.trailing).offset(8)
+            $0.leading.equalTo(titleLabel.snp.leading).inset(8)
         }
         
         thirdCheckBox.snp.makeConstraints {
             $0.top.equalTo(secondCheckBox.snp.bottom).offset(16)
-            $0.leading.equalTo(titleLabel.snp.leading)
-        }
-        
-        thirdContent.snp.makeConstraints {
-            $0.centerY.equalTo(thirdCheckBox.snp.centerY)
-            $0.leading.equalTo(thirdCheckBox.snp.trailing).offset(8)
+            $0.leading.equalTo(titleLabel.snp.leading).inset(8)
         }
         
         fourthCheckBox.snp.makeConstraints {
             $0.top.equalTo(thirdCheckBox.snp.bottom).offset(16)
-            $0.leading.equalTo(titleLabel.snp.leading)
-        }
-        
-        fourthContent.snp.makeConstraints {
-            $0.centerY.equalTo(fourthCheckBox.snp.centerY)
-            $0.leading.equalTo(fourthCheckBox.snp.trailing).offset(8)
+            $0.leading.equalTo(titleLabel.snp.leading).inset(8)
         }
         
         reasonTextView.snp.makeConstraints {
