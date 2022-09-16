@@ -73,6 +73,7 @@ final class ReportViewController: UIViewController {
     
     private let reasonTextView = UITextView().then {
         $0.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        $0.backgroundColor = .gray0
     }
     
     private let textNumberLabel = UILabel().then {
@@ -100,7 +101,96 @@ final class ReportViewController: UIViewController {
     }
     
     private func render() {
-        view.backgroundColor = .black.withAlphaComponent(0.6)
+        view.backgroundColor = .black.withAlphaComponent(0.7)
+        
+        view.add(bottomContainerView)
+        bottomContainerView.adds([
+            titleLabel,
+            descriptionLabel,
+            firstCheckBox,
+            firstContent,
+            secondCheckBox,
+            secondContent,
+            thirdCheckBox,
+            thirdContent,
+            fourthCheckBox,
+            fourthContent,
+            reasonTextView,
+            textNumberLabel,
+            reportButton
+        ])
+        
+        bottomContainerView.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalToSuperview()
+            $0.height.equalTo(470)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(bottomContainerView.snp.top).inset(32)
+            $0.leading.equalTo(bottomContainerView.snp.leading).inset(24)
+        }
+        
+        descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(titleLabel.snp.leading)
+        }
+        
+        firstCheckBox.snp.makeConstraints {
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(30)
+            $0.leading.equalTo(titleLabel.snp.leading)
+        }
+        
+        firstContent.snp.makeConstraints {
+            $0.centerY.equalTo(firstCheckBox.snp.centerY)
+            $0.leading.equalTo(firstCheckBox.snp.trailing).offset(8)
+        }
+        
+        secondCheckBox.snp.makeConstraints {
+            $0.top.equalTo(firstCheckBox.snp.bottom).offset(16)
+            $0.leading.equalTo(titleLabel.snp.leading)
+        }
+        
+        secondContent.snp.makeConstraints {
+            $0.centerY.equalTo(secondCheckBox.snp.centerY)
+            $0.leading.equalTo(secondCheckBox.snp.trailing).offset(8)
+        }
+        
+        thirdCheckBox.snp.makeConstraints {
+            $0.top.equalTo(secondCheckBox.snp.bottom).offset(16)
+            $0.leading.equalTo(titleLabel.snp.leading)
+        }
+        
+        thirdContent.snp.makeConstraints {
+            $0.centerY.equalTo(thirdCheckBox.snp.centerY)
+            $0.leading.equalTo(thirdCheckBox.snp.trailing).offset(8)
+        }
+        
+        fourthCheckBox.snp.makeConstraints {
+            $0.top.equalTo(thirdCheckBox.snp.bottom).offset(16)
+            $0.leading.equalTo(titleLabel.snp.leading)
+        }
+        
+        fourthContent.snp.makeConstraints {
+            $0.centerY.equalTo(fourthCheckBox.snp.centerY)
+            $0.leading.equalTo(fourthCheckBox.snp.trailing).offset(8)
+        }
+        
+        reasonTextView.snp.makeConstraints {
+            $0.top.equalTo(fourthCheckBox.snp.bottom).offset(12)
+            $0.leading.trailing.equalToSuperview().inset(24)
+            $0.height.equalTo(85)
+        }
+        
+        textNumberLabel.snp.makeConstraints {
+            $0.top.equalTo(reasonTextView.snp.bottom).offset(4)
+            $0.trailing.equalTo(reasonTextView.snp.trailing)
+        }
+        
+        reportButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(textNumberLabel.snp.bottom).offset(40)
+            $0.width.equalTo(335)
+            $0.height.equalTo(48)
+        }
     }
-
 }
