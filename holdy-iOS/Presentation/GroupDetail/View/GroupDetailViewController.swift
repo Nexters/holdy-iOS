@@ -188,9 +188,9 @@ final class GroupDetailViewController: UIViewController {
     }
     
     private func configureGuestPage() {
-        guard UserDefaultsManager.id == viewModel.hostID else {
-            return
-        }
+//        guard UserDefaultsManager.id == viewModel.hostID else {
+//            return
+//        }
         
         reportButton.isHidden = false
     }
@@ -201,6 +201,7 @@ final class GroupDetailViewController: UIViewController {
         let output = viewModel.transform(input)
         
         configureCloseButton()
+        configureReportButton()
         configureContent(with: output.groupInfo)
         configureBottomSheet(participantsInfo: output.participantsInfo)
     }
@@ -225,6 +226,18 @@ final class GroupDetailViewController: UIViewController {
             .withUnretained(self)
             .subscribe(onNext: { (viewController, _) in
                 viewController.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureReportButton() {
+        reportButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { (viewController, _) in
+                let reportViewController = ReportViewController()
+                reportViewController.modalPresentationStyle = .overFullScreen
+                
+                viewController.present(reportViewController, animated: true)
             })
             .disposed(by: disposeBag)
     }
