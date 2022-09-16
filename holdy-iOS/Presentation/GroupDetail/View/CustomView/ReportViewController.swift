@@ -21,6 +21,10 @@ final class ReportViewController: UIViewController {
         $0.font = .pretendard(family: .semiBold, size: 18)
     }
     
+    private let closeButton = UIButton().then {
+        $0.setImage(UIImage(named: "icon_close"), for: .normal)
+    }
+    
     private let descriptionLabel = UILabel().then {
         $0.text = "모임을 신고하면 모임을 더 이상 볼 수 없어요"
         $0.textColor = .gray6
@@ -94,6 +98,7 @@ final class ReportViewController: UIViewController {
         view.add(bottomContainerView)
         bottomContainerView.adds([
             titleLabel,
+            closeButton,
             descriptionLabel,
             firstCheckBox,
             secondCheckBox,
@@ -112,6 +117,11 @@ final class ReportViewController: UIViewController {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(bottomContainerView.snp.top).inset(32)
             $0.leading.equalTo(bottomContainerView.snp.leading).inset(24)
+        }
+        
+        closeButton.snp.makeConstraints {
+            $0.top.trailing.equalToSuperview().inset(24)
+            $0.size.equalTo(20)
         }
         
         descriptionLabel.snp.makeConstraints {
