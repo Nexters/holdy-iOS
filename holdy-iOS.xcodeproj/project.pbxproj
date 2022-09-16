@@ -81,6 +81,7 @@
 		DE86D4A328964541007BC448 /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4A228964541007BC448 /* URLRequest+.swift */; };
 		DE86D4AB28980062007BC448 /* LoginAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4AA28980062007BC448 /* LoginAPITests.swift */; };
 		DE86D4B428980CA4007BC448 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4B328980CA4007BC448 /* LoginViewModel.swift */; };
+		DEB2E93428D0A7AC0071A532 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB2E93328D0A7AC0071A532 /* ReportViewController.swift */; };
 		DEE002ED28C2401400D4896C /* KakaoSDKShare in Frameworks */ = {isa = PBXBuildFile; productRef = DEE002EC28C2401400D4896C /* KakaoSDKShare */; };
 		DEE002EF28C2401400D4896C /* KakaoSDKTemplate in Frameworks */ = {isa = PBXBuildFile; productRef = DEE002EE28C2401400D4896C /* KakaoSDKTemplate */; };
 /* End PBXBuildFile section */
@@ -165,6 +166,7 @@
 		DE86D4A828980062007BC448 /* holdy-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "holdy-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE86D4AA28980062007BC448 /* LoginAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPITests.swift; sourceTree = "<group>"; };
 		DE86D4B328980CA4007BC448 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		DEB2E93328D0A7AC0071A532 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 			children = (
 				DE3A014F28AE5E0C0049CE42 /* BottomSheetContentViewController.swift */,
 				DE15223028ADD5960048C07B /* ParticipantCell.swift */,
+				DEB2E93328D0A7AC0071A532 /* ReportViewController.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -792,6 +795,7 @@
 				DE3A015228AFA8B00049CE42 /* ParticipantsDescribing.swift in Sources */,
 				DE2024E228A756E3004B4F59 /* GeneratingGroupResponse.swift in Sources */,
 				DE3A014B28AD2A780049CE42 /* GroupDetailRouter.swift in Sources */,
+				DEB2E93428D0A7AC0071A532 /* ReportViewController.swift in Sources */,
 				DE16E7BE2895692600C75C23 /* LoginViewController.swift in Sources */,
 				DE2024F828A7FC08004B4F59 /* NetworkConnectErrorCoordinator.swift in Sources */,
 				DE545F65289BE905002E6B83 /* GeneratingGroupCoordinator.swift in Sources */,
