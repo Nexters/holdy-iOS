@@ -87,4 +87,11 @@ struct HoldyAPI {
             self.url = URL(string: HoldyAPI.baseURL + "api/meetings/\(groupID)/users/\(userID)/attendance")
         }
     }
+    
+    struct RequestReport: Postable {
+        var url: URL? = URL(string: HoldyAPI.baseURL + "api/blacklist")
+        var method: HttpMethod = .post
+        var contentType: String? = "application/json"
+        var body: Data?
+    }
 }

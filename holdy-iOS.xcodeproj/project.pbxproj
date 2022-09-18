@@ -53,6 +53,8 @@
 		DE16E7D428957C8100C75C23 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7CA2895799000C75C23 /* Pretendard-ExtraBold.otf */; };
 		DE16E7D528957C8400C75C23 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7C62895799000C75C23 /* Pretendard-Black.otf */; };
 		DE16E7D9289589E400C75C23 /* Poppins-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE16E7D8289588F000C75C23 /* Poppins-SemiBold.otf */; };
+		DE1984B128D6C65800B30590 /* ReportRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1984B028D6C65800B30590 /* ReportRouter.swift */; };
+		DE1984B328D6C79B00B30590 /* ReportResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1984B228D6C79B00B30590 /* ReportResponse.swift */; };
 		DE2024E028A2A7E9004B4F59 /* GeneratingGroupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024DF28A2A7E9004B4F59 /* GeneratingGroupRouter.swift */; };
 		DE2024E228A756E3004B4F59 /* GeneratingGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024E128A756E3004B4F59 /* GeneratingGroupResponse.swift */; };
 		DE2024E428A76F20004B4F59 /* GeneratingGroupAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2024E328A76F20004B4F59 /* GeneratingGroupAPITests.swift */; };
@@ -82,6 +84,7 @@
 		DE86D4AB28980062007BC448 /* LoginAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4AA28980062007BC448 /* LoginAPITests.swift */; };
 		DE86D4B428980CA4007BC448 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4B328980CA4007BC448 /* LoginViewModel.swift */; };
 		DEB2E93428D0A7AC0071A532 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB2E93328D0A7AC0071A532 /* ReportViewController.swift */; };
+		DEB8CF8628D44A0E00F3C967 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB8CF8528D44A0E00F3C967 /* ReportViewModel.swift */; };
 		DEE002ED28C2401400D4896C /* KakaoSDKShare in Frameworks */ = {isa = PBXBuildFile; productRef = DEE002EC28C2401400D4896C /* KakaoSDKShare */; };
 		DEE002EF28C2401400D4896C /* KakaoSDKTemplate in Frameworks */ = {isa = PBXBuildFile; productRef = DEE002EE28C2401400D4896C /* KakaoSDKTemplate */; };
 /* End PBXBuildFile section */
@@ -138,6 +141,8 @@
 		DE16E7CB2895799000C75C23 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
 		DE16E7CC2895799000C75C23 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		DE16E7D8289588F000C75C23 /* Poppins-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.otf"; sourceTree = "<group>"; };
+		DE1984B028D6C65800B30590 /* ReportRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRouter.swift; sourceTree = "<group>"; };
+		DE1984B228D6C79B00B30590 /* ReportResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportResponse.swift; sourceTree = "<group>"; };
 		DE2024DF28A2A7E9004B4F59 /* GeneratingGroupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupRouter.swift; sourceTree = "<group>"; };
 		DE2024E128A756E3004B4F59 /* GeneratingGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupResponse.swift; sourceTree = "<group>"; };
 		DE2024E328A76F20004B4F59 /* GeneratingGroupAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupAPITests.swift; sourceTree = "<group>"; };
@@ -167,6 +172,7 @@
 		DE86D4AA28980062007BC448 /* LoginAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPITests.swift; sourceTree = "<group>"; };
 		DE86D4B328980CA4007BC448 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		DEB2E93328D0A7AC0071A532 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		DEB8CF8528D44A0E00F3C967 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				DE15223628ADFEFE0048C07B /* GroupDetailViewModel.swift */,
+				DEB8CF8528D44A0E00F3C967 /* ReportViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -475,6 +482,7 @@
 				DE15223828AE0D170048C07B /* GroupDetailInfoResponse.swift */,
 				DE2024E128A756E3004B4F59 /* GeneratingGroupResponse.swift */,
 				DE15223228ADD9780048C07B /* InvitationResponse.swift */,
+				DE1984B228D6C79B00B30590 /* ReportResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -553,6 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				DE3A014A28AD2A780049CE42 /* GroupDetailRouter.swift */,
+				DE1984B028D6C65800B30590 /* ReportRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -772,12 +781,14 @@
 				DE2024EF28A7B624004B4F59 /* OnboardingContentViewController.swift in Sources */,
 				DE3A014628AD294B0049CE42 /* GroupDetailCoordinator.swift in Sources */,
 				DE16E7BC28955EC500C75C23 /* LoginResponse.swift in Sources */,
+				DEB8CF8628D44A0E00F3C967 /* ReportViewModel.swift in Sources */,
 				DE86D4B428980CA4007BC448 /* LoginViewModel.swift in Sources */,
 				DE15223928AE0D170048C07B /* GroupDetailInfoResponse.swift in Sources */,
 				9B29173728A9464F00CFFDEA /* GroupInfoResponse.swift in Sources */,
 				DE16E7B828955E3700C75C23 /* LoginRequest.swift in Sources */,
 				DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */,
 				DE3A015428AFC1E40049CE42 /* UserDefaultManager.swift in Sources */,
+				DE1984B328D6C79B00B30590 /* ReportResponse.swift in Sources */,
 				DE2024F328A7EAFC004B4F59 /* FirstLaunchChecker.swift in Sources */,
 				DE16E76D28954F7000C75C23 /* CALayer+.swift in Sources */,
 				DE20250428ABDB7D004B4F59 /* Reactive+.swift in Sources */,
@@ -804,6 +815,7 @@
 				DE16E76E28954F7000C75C23 /* UIFont+.swift in Sources */,
 				DE2024ED28A7B60A004B4F59 /* OnboardingPageViewController.swift in Sources */,
 				DE15222A28ADCB6C0048C07B /* GroupDetailViewController.swift in Sources */,
+				DE1984B128D6C65800B30590 /* ReportRouter.swift in Sources */,
 				DE15223328ADD9780048C07B /* InvitationResponse.swift in Sources */,
 				DE16E74E2895271B00C75C23 /* SceneDelegate.swift in Sources */,
 				DE2024FB28A86748004B4F59 /* NetworkConnectErrorViewController.swift in Sources */,

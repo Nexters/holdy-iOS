@@ -4,6 +4,8 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
 import SnapKit
 import Then
 
@@ -85,11 +87,23 @@ final class ReportViewController: UIViewController {
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
     }
+    
+    private var viewModel: ReportViewModel!
+    private let disposeBag = DisposeBag()
+    private let reasontInput = PublishSubject<String>()
+    
+    convenience init(viewModel: ReportViewModel) {
+        self.init(nibName: nil, bundle: nil)
+        
+        self.viewModel = viewModel
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         render()
+        bind()
+        setAttributes()
     }
     
     private func render() {
@@ -166,5 +180,188 @@ final class ReportViewController: UIViewController {
             $0.width.equalTo(335)
             $0.height.equalTo(48)
         }
+    }
+    
+    private func bind() {
+        let input = ReportViewModel.Input(
+            firstCheckBoxDidTap: firstCheckBox.rx.tap.asObservable(),
+            secondCheckBoxDidTap: secondCheckBox.rx.tap.asObservable(),
+            thirdCheckBoxDidTap: thirdCheckBox.rx.tap.asObservable(),
+            fourthCheckBoxDidTap: reasontInput.asObservable(),
+            reportButtonDidTap: reportButton.rx.tap.asObservable()
+        )
+        
+        let output = viewModel.transform(input)
+        
+        configureCloseButton()
+        configureFirstCheckBoxAction(output: output.firstCheckBoxDidTap)
+        configureSecondCheckBoxAction(output: output.secondCheckBoxDidTap)
+        configureThirdCheckBoxAction(output: output.thirdCheckBoxDidTap)
+        configureFourthCheckBoxAction(output: output.fourthCheckBoxDidTap)
+    }
+    
+    private func configureCloseButton() {
+        closeButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { (viewController, _) in
+                viewController.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureFirstCheckBoxAction(output: Observable<Void>) {
+        output
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.firstCheckBox.setImage(
+                    UIImage(named: "icon_check_selected_square"),
+                    for: .normal
+                )
+                
+                viewController.secondCheckBox.setImage(
+                    UIImage(named: "icon_check_square"),
+                    for: .normal
+                )
+                
+                viewController.thirdCheckBox.setImage(
+                    UIImage(named: "icon_check_square"),
+                    for: .normal
+                )
+                
+                viewController.fourthCheckBox.setImage(
+                    UIImage(named: "icon_check_square"),
+                    for: .normal
+                )
+                
+                viewController.reasonTextView.text = ""
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureSecondCheckBoxAction(output: Observable<Void>) {
+        output
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.firstCheckBox.setImage(
+                    UIImage(named: "icon_check_square"),
+                    for: .normal
+                )
+                
+                viewController.secondCheckBox.setImage(
+                    UIImage(named: "icon_check_selected_square"),
+                    for: .normal
+                )
+                
+                viewController.thirdCheckBox.setImage(
+                    UIImage(named: "icon_check_square"),
+                    for: .normal
+                )
+                
+                viewController.fourthCheckBox.setImage(
+                    UIImage(named: "icon_check_square"),
+                    for: .normal
+                )
+                
+                viewController.reasonTextView.text = ""
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureThirdCheckBoxAction(output: Observable<Void>) {
+        output
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.firstCheckBox.setImage(
+                    UIImage(named: "icon_check_square"),
+                    for: .normal
+                )
+                
+                viewController.secondCheckBox.setImage(
+                    UIImage(named: "icon_check_square"),
+                    for: .normal
+                )
+                
+                viewController.thirdCheckBox.setImage(
+                    UIImage(named: "icon_check_selected_square"),
+                    for: .normal
+                )
+                
+                viewController.fourthCheckBox.setImage(
+                    UIImage(named: "icon_check_square"),
+                    for: .normal
+                )
+                
+                viewController.reasonTextView.text = ""
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureFourthCheckBoxAction(output: Observable<Void>) {
+        output
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.firstCheckBox.setImage(
+                    UIImage(named: "icon_check_square"),
+                    for: .normal
+                )
+                
+                viewController.secondCheckBox.setImage(
+                    UIImage(named: "icon_check_square"),
+                    for: .normal
+                )
+                
+                viewController.thirdCheckBox.setImage(
+                    UIImage(named: "icon_check_square"),
+                    for: .normal
+                )
+                
+                viewController.fourthCheckBox.setImage(
+                    UIImage(named: "icon_check_selected_square"),
+                    for: .normal
+                )
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureReportAction() {
+        
+    }
+    
+    private func setAttributes() {
+        reasonTextView.delegate = self
+    }
+}
+
+extension ReportViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if fourthCheckBox.currentImage != UIImage(named: "icon_check_selected_square") {
+            firstCheckBox.setImage(
+                UIImage(named: "icon_check_square"),
+                for: .normal
+            )
+            
+            secondCheckBox.setImage(
+                UIImage(named: "icon_check_square"),
+                for: .normal
+            )
+            
+            thirdCheckBox.setImage(
+                UIImage(named: "icon_check_square"),
+                for: .normal
+            )
+            
+            fourthCheckBox.setImage(
+                UIImage(named: "icon_check_selected_square"),
+                for: .normal
+            )
+        }
+        
+        if reasonTextView.text.count > 100 {
+            reasonTextView.deleteBackward()
+        }
+        
+        textNumberLabel.text = "\(reasonTextView.text.count)/100"
+        
+        reasontInput.onNext(reasonTextView.text)
     }
 }
