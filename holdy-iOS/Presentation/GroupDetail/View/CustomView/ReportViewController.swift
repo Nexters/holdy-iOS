@@ -198,6 +198,7 @@ final class ReportViewController: UIViewController {
         configureSecondCheckBoxAction(output: output.secondCheckBoxDidTap)
         configureThirdCheckBoxAction(output: output.thirdCheckBoxDidTap)
         configureFourthCheckBoxAction(output: output.fourthCheckBoxDidTap)
+        configureReportAction(output: output.selectedCheck)
     }
     
     private func configureCloseButton() {
@@ -323,8 +324,27 @@ final class ReportViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func configureReportAction() {
-        
+    private func configureReportAction(output: Driver<ReportResponse>) {
+        output
+            .drive(onNext: { [weak self] response in
+                guard let self = self else { return }
+                
+                if response.message == nil {
+                    self.dismiss(animated: true)
+                    return
+                }
+                
+                let alert = UIAlertController(
+                    title: response.message,
+                    message: nil,
+                    preferredStyle: .alert
+                )
+                let okAction = UIAlertAction(title: "확인", style: .default)
+                alert.addAction(okAction)
+                
+                self.present(alert, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func setAttributes() {

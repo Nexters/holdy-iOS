@@ -9,7 +9,7 @@ import Foundation
 
 struct ReportResponse: Decodable {
     let statusCode: Int
-    let message: String
+    let message: String?
     let data: GroupID?
 }
 
