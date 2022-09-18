@@ -234,7 +234,8 @@ final class GroupDetailViewController: UIViewController {
         reportButton.rx.tap
             .withUnretained(self)
             .subscribe(onNext: { (viewController, _) in
-                let reportViewController = ReportViewController()
+                let reportViewModel = ReportViewModel(groupID: viewController.viewModel.id)
+                let reportViewController = ReportViewController(viewModel: reportViewModel)
                 reportViewController.modalPresentationStyle = .overFullScreen
                 
                 viewController.present(reportViewController, animated: true)
