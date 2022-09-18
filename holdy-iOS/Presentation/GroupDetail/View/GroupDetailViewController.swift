@@ -235,7 +235,10 @@ final class GroupDetailViewController: UIViewController {
             .withUnretained(self)
             .subscribe(onNext: { (viewController, _) in
                 let reportViewModel = ReportViewModel(groupID: viewController.viewModel.id)
-                let reportViewController = ReportViewController(viewModel: reportViewModel)
+                let reportViewController = ReportViewController(
+                    viewModel: reportViewModel,
+                    fromViewController: self
+                )
                 reportViewController.modalPresentationStyle = .overFullScreen
                 
                 viewController.present(reportViewController, animated: true)

@@ -89,13 +89,15 @@ final class ReportViewController: UIViewController {
     }
     
     private var viewModel: ReportViewModel!
+    private var fromViewController: GroupDetailViewController!
     private let disposeBag = DisposeBag()
     private let reasontInput = PublishSubject<String>()
     
-    convenience init(viewModel: ReportViewModel) {
+    convenience init(viewModel: ReportViewModel, fromViewController: GroupDetailViewController) {
         self.init(nibName: nil, bundle: nil)
         
         self.viewModel = viewModel
+        self.fromViewController = fromViewController
     }
 
     override func viewDidLoad() {
@@ -331,6 +333,9 @@ final class ReportViewController: UIViewController {
                 
                 if response.message == nil {
                     self.dismiss(animated: true)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                        self.fromViewController.dismiss(animated: true)
+                    }
                     return
                 }
                 
