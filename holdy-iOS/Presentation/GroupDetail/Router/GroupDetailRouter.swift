@@ -30,7 +30,7 @@ struct GroupDetailRouter {
             }
         }
 
-    func requestInviteGroup<T: Decodable>(api: Postable, groupID: Int ,decodingType: T.Type) -> Single<T> {
+    func requestInviteGroup<T: Decodable>(api: Postable, groupID: Int, decodingType: T.Type) -> Single<T> {
         return Single.create { emitter in
             let loginSession: String =  UserDefaultsManager.loginSession
             let headers: HTTPHeaders = ["Cookie": "SESSION=\(loginSession)"]

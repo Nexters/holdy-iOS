@@ -19,9 +19,9 @@ final class GroupDetailViewModel {
 
     // MARK: - Properties
     private let router = GroupDetailRouter()
-    private let id: Int
     private let participantsObservable = PublishSubject<[ParticipantsDescribing]>()
     private var participantsInfo: [ParticipantsDescribing] = []
+    private(set) var id: Int
     private(set) var hostID = 0
     private(set) var startDate = Date()
 
