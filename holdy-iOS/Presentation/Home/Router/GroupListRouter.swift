@@ -10,9 +10,11 @@ struct GroupListRouter {
                 let headers: HTTPHeaders = ["Cookie": "SESSION=\(loginSession)"]
                 let httpMethod = HTTPMethod(rawValue: api.method.description)
 
-                AF.request(api.url ?? URL(fileURLWithPath: ""),
-                           method: httpMethod,
-                           headers: headers)
+                AF.request(
+                    api.url ?? URL(fileURLWithPath: ""),
+                    method: httpMethod,
+                    headers: headers
+                )
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: T.self) { response in
                     switch response.result {

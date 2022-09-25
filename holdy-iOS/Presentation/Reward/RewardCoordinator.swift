@@ -7,6 +7,7 @@ import UIKit
 final class RewardCoordinator: CoordinatorDescribing, NetworkEssentialDescribing {
     // MARK: - Properties
     weak var navigationController: UINavigationController?
+    weak var parentCoordinator: CoordinatorDescribing?
     var childCoordinators = [CoordinatorDescribing]()
     
     // MARK: - Initializers
@@ -17,19 +18,24 @@ final class RewardCoordinator: CoordinatorDescribing, NetworkEssentialDescribing
     // MARK: - Methods
     func start() {
         if NetworkConnectionManager.shared.isCurrentlyConnected {
-            pushRewardViewController()
+            presentRewardViewController()
         } else {
             showPageAccordingToNetworkConnection(
-                connectionAction: pushRewardViewController,
+                connectionAction: presentRewardViewController,
                 navigationController: navigationController
             )
         }
     }
     
-    private func pushRewardViewController() {
+    private func presentRewardViewController() {
         guard let navigationController = navigationController else {
             return
         }
+        
+        let rewardViewController = RewardListViewController()
+        
+        rewardViewController.modalPresentationStyle = .fullScreen
+        navigationController.present(rewardViewController, animated: true)
     }
 }
 
