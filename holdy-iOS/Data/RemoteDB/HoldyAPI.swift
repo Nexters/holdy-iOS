@@ -94,4 +94,9 @@ struct HoldyAPI {
         var contentType: String? = "application/json"
         var body: Data?
     }
+    
+    struct RequestRewardList: Gettable {
+        var url: URL? = URL(string: HoldyAPI.baseURL + "api/stamps")
+        var method: HttpMethod = .get
+    }
 }

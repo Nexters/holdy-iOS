@@ -72,6 +72,8 @@
 		DE20250628ABDC8F004B4F59 /* GroupListNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE20250528ABDC8F004B4F59 /* GroupListNavigationView.swift */; };
 		DE20250928ABE788004B4F59 /* GroupListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE20250828ABE788004B4F59 /* GroupListRouter.swift */; };
 		DE2A980C28DFC09E00F7402F /* RewardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A980B28DFC09E00F7402F /* RewardCoordinator.swift */; };
+		DE2A981228DFC27800F7402F /* RewardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A981128DFC27800F7402F /* RewardRouter.swift */; };
+		DE2A981628DFCBD700F7402F /* RewardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A981528DFCBD700F7402F /* RewardListViewController.swift */; };
 		DE3A014628AD294B0049CE42 /* GroupDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A014528AD294B0049CE42 /* GroupDetailCoordinator.swift */; };
 		DE3A014B28AD2A780049CE42 /* GroupDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A014A28AD2A780049CE42 /* GroupDetailRouter.swift */; };
 		DE3A014E28AE5D330049CE42 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = DE3A014D28AE5D330049CE42 /* FloatingPanel */; };
@@ -161,6 +163,8 @@
 		DE20250528ABDC8F004B4F59 /* GroupListNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListNavigationView.swift; sourceTree = "<group>"; };
 		DE20250828ABE788004B4F59 /* GroupListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListRouter.swift; sourceTree = "<group>"; };
 		DE2A980B28DFC09E00F7402F /* RewardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardCoordinator.swift; sourceTree = "<group>"; };
+		DE2A981128DFC27800F7402F /* RewardRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardRouter.swift; sourceTree = "<group>"; };
+		DE2A981528DFCBD700F7402F /* RewardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardListViewController.swift; sourceTree = "<group>"; };
 		DE3A014528AD294B0049CE42 /* GroupDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailCoordinator.swift; sourceTree = "<group>"; };
 		DE3A014A28AD2A780049CE42 /* GroupDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailRouter.swift; sourceTree = "<group>"; };
 		DE3A014F28AE5E0C0049CE42 /* BottomSheetContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentViewController.swift; sourceTree = "<group>"; };
@@ -563,6 +567,7 @@
 		DE2A980D28DFC1F600F7402F /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				DE2A981128DFC27800F7402F /* RewardRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -577,6 +582,7 @@
 		DE2A980F28DFC20500F7402F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DE2A981528DFCBD700F7402F /* RewardListViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -810,6 +816,7 @@
 				DE16E7B22895577000C75C23 /* APIProtocol.swift in Sources */,
 				9B29173528A9457900CFFDEA /* GroupListCell.swift in Sources */,
 				DE3A015028AE5E0C0049CE42 /* BottomSheetContentViewController.swift in Sources */,
+				DE2A981628DFCBD700F7402F /* RewardListViewController.swift in Sources */,
 				9B29173128A9443200CFFDEA /* GroupListViewModel.swift in Sources */,
 				DE16E76F28954F7000C75C23 /* UITextField+.swift in Sources */,
 				DE2024F128A7E91B004B4F59 /* Array+.swift in Sources */,
@@ -830,6 +837,7 @@
 				DE20250428ABDB7D004B4F59 /* Reactive+.swift in Sources */,
 				DE6452F7289C0CB200CD19D1 /* GeneratingGroupViewModel.swift in Sources */,
 				DE20250928ABE788004B4F59 /* GroupListRouter.swift in Sources */,
+				DE2A981228DFC27800F7402F /* RewardRouter.swift in Sources */,
 				DE20250228ABD9CB004B4F59 /* UICollectionView+.swift in Sources */,
 				DE2024FE28A8DD10004B4F59 /* NetworkConnectionManager.swift in Sources */,
 				DE15223728ADFEFE0048C07B /* GroupDetailViewModel.swift in Sources */,

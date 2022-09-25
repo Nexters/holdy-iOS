@@ -12,7 +12,7 @@ import Then
 
 final class GroupListViewController: UIViewController {
     // MARK: - UI Components
-    private let navigationView = GroupListNavigationView(frame: .zero)
+    private lazy var navigationView = GroupListNavigationView(cooridnator: coordinator)
     
     private let hideCompeltedGroupButton = UIButton().then {
         $0.setImage(UIImage(named: "icon_check"), for: .normal)
