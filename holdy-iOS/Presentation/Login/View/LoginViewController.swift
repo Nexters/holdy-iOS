@@ -181,6 +181,9 @@ final class LoginViewController: UIViewController {
                 }
                 
                 UserDefaults.standard.set(loginResponse.data?.id, forKey: "id")
+                UserDefaults.standard.set(loginResponse.data?.nickname, forKey: "nickname")
+                UserDefaults.standard.set(loginResponse.data?.group, forKey: "group")
+                UserDefaults.standard.set(loginResponse.data?.profileImageUrl, forKey: "profileImageUrl")
                 
                 self.coordinator.startHomeCoordinator()
             })

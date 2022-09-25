@@ -11,20 +11,6 @@ import SnapKit
 import Then
 
 final class GroupDetailViewController: UIViewController {
-    enum SheetMode {
-        case common
-        case full
-
-        var ratio: CGFloat {
-            switch self {
-            case .common:
-                return 0.5
-            case .full:
-                return 0
-            }
-        }
-    }
-
     // MARK: - UI Components
     private let closeButton = UIButton().then {
         $0.setImage(UIImage(named: "icon_close_highlighted"), for: .normal)

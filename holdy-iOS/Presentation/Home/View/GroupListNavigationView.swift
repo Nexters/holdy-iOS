@@ -4,10 +4,14 @@
 
 import UIKit
 
+import RxSwift
 import SnapKit
 import Then
 
 final class GroupListNavigationView: UIView {
+    private var coordinator: HomeCoordinator!
+    private let disposeBag = DisposeBag()
+    
     private let nameImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
         $0.image = UIImage(named: "holdy_black")
@@ -17,15 +21,23 @@ final class GroupListNavigationView: UIView {
         $0.setImage(UIImage(named: "icon_holdy"), for: .normal)
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//
+//        render()
+//    }
+//
+//    @available(*, unavailable)
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    convenience init(cooridnator: HomeCoordinator) {
+        self.init(frame: .zero)
+
+        self.coordinator = cooridnator
+
         render()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        bind()
     }
     
     private func render() {
@@ -46,5 +58,14 @@ final class GroupListNavigationView: UIView {
             $0.trailing.equalToSuperview().inset(20)
             $0.width.height.equalTo(40)
         }
+    }
+    
+    private func bind() {
+        myInfoButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { view, _ in
+                view.coordinator.startRewardCoordinator()
+            })
+            .disposed(by: disposeBag)
     }
 }

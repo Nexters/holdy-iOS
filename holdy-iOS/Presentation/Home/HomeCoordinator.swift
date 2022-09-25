@@ -50,7 +50,7 @@ extension HomeCoordinator {
         generatingGroupCoordinator.start()
     }
 
-    func endGeneratingGroupCoordinator(_ coodinator: CoordinatorDescribing) {
+    func endCoordinator(_ coodinator: CoordinatorDescribing) {
         guard let index = childCoordinators.firstIndex(where: { $0 === coodinator }) else {
             return
         }
@@ -69,5 +69,18 @@ extension HomeCoordinator {
         groupDetailCoordinator.setupGroupDetailViewModel(id: item)
         groupDetailCoordinator.parentCoordinator = self
         groupDetailCoordinator.start()
+    }
+    
+    func startRewardCoordinator() {
+        guard let navigationController = navigationController else { return }
+        navigationController.navigationBar.isHidden = true
+        
+        let rewardCoordinator = RewardCoordinator(
+            navigationController: navigationController
+        )
+        
+        childCoordinators.append(rewardCoordinator)
+        rewardCoordinator.parentCoordinator = self
+        rewardCoordinator.start()
     }
 }

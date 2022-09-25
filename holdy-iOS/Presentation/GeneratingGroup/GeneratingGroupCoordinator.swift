@@ -30,7 +30,7 @@ final class GeneratingGroupCoordinator: CoordinatorDescribing, NetworkEssentialD
     func end() {
         guard let homeCoordinator = parentCoordinator as? HomeCoordinator else { return }
 
-        homeCoordinator.endGeneratingGroupCoordinator(self)
+        homeCoordinator.endCoordinator(self)
     }
     
     private func presentGeneratingGroupViewController() {
