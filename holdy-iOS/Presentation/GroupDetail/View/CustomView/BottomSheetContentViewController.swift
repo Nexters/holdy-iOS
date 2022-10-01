@@ -275,7 +275,7 @@ final class BottomSheetContentViewController: UIViewController {
                 } else {
                     if let url = ShareApi.shared.makeCustomUrl(
                         templateId: templateID,
-                        templateArgs:["title": "제목입니다.", "description": "설명입니다."]
+                        templateArgs: ["title": "제목입니다.", "description": "설명입니다."]
                     ) {
                         let safariViewController = SFSafariViewController(url: url)
                         safariViewController.modalTransitionStyle = .crossDissolve
