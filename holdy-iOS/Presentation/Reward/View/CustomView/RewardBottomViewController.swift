@@ -106,7 +106,7 @@ extension RewardBottomViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         let sectionCount = holdRewards.count / 7 + 1
         
-        return sectionCount * 2
+        return sectionCount * 2 + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -129,7 +129,6 @@ extension RewardBottomViewController: UICollectionViewDataSource {
         }
         
         let index = indexPath.section * 4 - indexPath.section / 2 + indexPath.item
-        print(index)
         
         guard let cellImage = holdRewards[safe: index] else {
             return cell
