@@ -85,6 +85,7 @@
 		DE55FD9828E8036800B72C2F /* RewardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE55FD9728E8036800B72C2F /* RewardViewModel.swift */; };
 		DE55FD9A28E8093300B72C2F /* RewardBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE55FD9928E8093300B72C2F /* RewardBottomViewController.swift */; };
 		DE55FD9C28E80F8A00B72C2F /* RewardHoldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE55FD9B28E80F8A00B72C2F /* RewardHoldCell.swift */; };
+		DE55FD9E28E81DE700B72C2F /* RewardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE55FD9D28E81DE700B72C2F /* RewardResponse.swift */; };
 		DE6452F7289C0CB200CD19D1 /* GeneratingGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6452F6289C0CB200CD19D1 /* GeneratingGroupViewModel.swift */; };
 		DE86D4A328964541007BC448 /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4A228964541007BC448 /* URLRequest+.swift */; };
 		DE86D4AB28980062007BC448 /* LoginAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86D4AA28980062007BC448 /* LoginAPITests.swift */; };
@@ -178,6 +179,7 @@
 		DE55FD9728E8036800B72C2F /* RewardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViewModel.swift; sourceTree = "<group>"; };
 		DE55FD9928E8093300B72C2F /* RewardBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBottomViewController.swift; sourceTree = "<group>"; };
 		DE55FD9B28E80F8A00B72C2F /* RewardHoldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardHoldCell.swift; sourceTree = "<group>"; };
+		DE55FD9D28E81DE700B72C2F /* RewardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardResponse.swift; sourceTree = "<group>"; };
 		DE6452F6289C0CB200CD19D1 /* GeneratingGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratingGroupViewModel.swift; sourceTree = "<group>"; };
 		DE86D4A228964541007BC448 /* URLRequest+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+.swift"; sourceTree = "<group>"; };
 		DE86D4A828980062007BC448 /* holdy-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "holdy-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -496,6 +498,7 @@
 				DE2024E128A756E3004B4F59 /* GeneratingGroupResponse.swift */,
 				DE15223228ADD9780048C07B /* InvitationResponse.swift */,
 				DE1984B228D6C79B00B30590 /* ReportResponse.swift */,
+				DE55FD9D28E81DE700B72C2F /* RewardResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -847,6 +850,7 @@
 				DE15223928AE0D170048C07B /* GroupDetailInfoResponse.swift in Sources */,
 				9B29173728A9464F00CFFDEA /* GroupInfoResponse.swift in Sources */,
 				DE16E7B828955E3700C75C23 /* LoginRequest.swift in Sources */,
+				DE55FD9E28E81DE700B72C2F /* RewardResponse.swift in Sources */,
 				DE16E74C2895271B00C75C23 /* AppDelegate.swift in Sources */,
 				DE3A015428AFC1E40049CE42 /* UserDefaultManager.swift in Sources */,
 				DE1984B328D6C79B00B30590 /* ReportResponse.swift in Sources */,

@@ -4,7 +4,6 @@
 
 import Foundation
 
-
 protocol ParticipantsDescribing {
     var id: Int { get set }
     var nickname: String { get set }
