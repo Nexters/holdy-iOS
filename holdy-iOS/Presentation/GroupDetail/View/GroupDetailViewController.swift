@@ -174,9 +174,9 @@ final class GroupDetailViewController: UIViewController {
     }
     
     private func configureGuestPage() {
-//        guard UserDefaultsManager.id == viewModel.hostID else {
-//            return
-//        }
+        guard UserDefaultsManager.id == viewModel.hostID else {
+            return
+        }
         
         reportButton.isHidden = false
     }
