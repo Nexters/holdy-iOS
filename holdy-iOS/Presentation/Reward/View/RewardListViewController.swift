@@ -48,6 +48,8 @@ final class RewardListViewController: UIViewController {
         
         self.coordinator = coordinator
         self.viewModel = viewModel
+        
+        bind()
     }
     
     deinit {
@@ -60,7 +62,6 @@ final class RewardListViewController: UIViewController {
         
         render()
         configureProfileImage()
-        bind()
     }
     
     private func render() {
@@ -117,18 +118,23 @@ final class RewardListViewController: UIViewController {
         let input = RewardViewModel.Input(viewDidLoad: rx.viewDidLoad)
         let output = viewModel.transform(input)
         
-        configureBottomSheet(holdReward: output.holds)
-        
         closeButton.rx.tap
             .withUnretained(self)
             .subscribe(onNext: { viewController, _ in
                 viewController.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
+        
+        output.holds
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, holds in
+                viewController.configureBottomSheet(holdRewards: holds)
+            })
+            .disposed(by: disposeBag)
     }
     
-    private func configureBottomSheet(holdReward: Observable<[UIImage?]>) {
-        contentViewController = RewardBottomViewController(holdRewardObserver: holdReward)
+    private func configureBottomSheet(holdRewards: [UIImage?]) {
+        contentViewController = RewardBottomViewController(holdRewards: holdRewards)
         let layout = BottomSheetLayout()
         
         bottomSheetViewController.set(contentViewController: contentViewController)

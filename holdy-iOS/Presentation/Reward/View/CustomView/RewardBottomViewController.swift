@@ -41,13 +41,13 @@ final class RewardBottomViewController: UIViewController {
     }()
     
     // MARK: - Properties
-    private var holdRewardObserver: Observable<[UIImage?]>!
+    private var holdRewards: [UIImage?]!
     private let disposeBag = DisposeBag()
     
-    convenience init(holdRewardObserver: Observable<[UIImage?]>) {
+    convenience init(holdRewards: [UIImage?]) {
         self.init(nibName: nil, bundle: nil)
         
-        self.holdRewardObserver = holdRewardObserver
+        self.holdRewards = holdRewards
     }
     
     // MARK: - Lifecycle Methods
@@ -56,6 +56,7 @@ final class RewardBottomViewController: UIViewController {
         
         render()
         configureCollectionView()
+        configureCountLabel()
     }
     
     // MARK: - Methods
@@ -95,14 +96,24 @@ final class RewardBottomViewController: UIViewController {
         rewardListView.delegate = self
         rewardListView.register(cellClass: RewardHoldCell.self)
     }
+    
+    private func configureCountLabel() {
+        countLabel.text = "\(holdRewards.count)개"
+    }
 }
 
 extension RewardBottomViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        let sectionCount = holdRewards.count / 7 + 1
+        
+        return sectionCount * 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section % 2 != 0 {
-            return 4
-        } else {
             return 3
+        } else {
+            return 4
         }
     }
     
@@ -117,13 +128,14 @@ extension RewardBottomViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        holdRewardObserver
-            .subscribe(onNext: { rewards in
-                for reward in rewards {
-                    cell.configureContent(image: reward)
-                }
-            })
-            .disposed(by: disposeBag)
+        let index = indexPath.section * 4 - indexPath.section / 2 + indexPath.item
+        print(index)
+        
+        guard let cellImage = holdRewards[safe: index] else {
+            return cell
+        }
+        
+        cell.configureContent(image: cellImage)
         
         return cell
     }
@@ -139,5 +151,20 @@ extension RewardBottomViewController: UICollectionViewDelegateFlowLayout {
             width: 80,
             height: 80
         )
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        let totalWidth = collectionView.bounds.width
+        let inset = (collectionView.bounds.width - 270) / 2
+        
+        if section % 2 == 0 {
+            return UIEdgeInsets(top: .zero, left: .zero, bottom: .zero, right: .zero)
+        } else {
+            return UIEdgeInsets(top: .zero, left: inset, bottom: .zero, right: inset)
+        }
     }
 }
