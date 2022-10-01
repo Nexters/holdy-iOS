@@ -45,10 +45,10 @@ final class RewardViewModel {
     private func configureRewardHolds(with inputObserver: Observable<Void>) -> Observable<[UIImage?]> {
         inputObserver
             .withUnretained(self)
-            .flatMap { viewModel, _ -> Single<GroupInfoResponse> in
+            .flatMap { viewModel, _ -> Single<RewardResponse> in
                 let response = viewModel.router.requestRewardList(
                     api: HoldyAPI.RequestRewardList(),
-                    decodingType: GroupInfoResponse.self
+                    decodingType: RewardResponse.self
                 )
                 
                 return response
@@ -58,8 +58,8 @@ final class RewardViewModel {
                 let rewardCount = response.data.count
                 var rewards: [UIImage?] = []
                 
-                for _ in 0..<rewardCount {
-                    let number = rewardCount % viewModel.holds.count
+                for count in 0..<rewardCount {
+                    let number = count % viewModel.holds.count
                     
                     rewards.append(viewModel.holds[number])
                 }
