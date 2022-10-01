@@ -582,6 +582,7 @@
 		DE2A980F28DFC20500F7402F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DE55FD9628E800BB00B72C2F /* CustomView */,
 				DE2A981528DFCBD700F7402F /* RewardListViewController.swift */,
 			);
 			path = View;
@@ -632,6 +633,13 @@
 				DE545F66289BE9F4002E6B83 /* GeneratingGroupViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DE55FD9628E800BB00B72C2F /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		DE86D4A928980062007BC448 /* holdy-iOSTests */ = {

@@ -27,12 +27,18 @@ final class RewardCoordinator: CoordinatorDescribing, NetworkEssentialDescribing
         }
     }
     
+    func end() {
+        guard let homeCoordinator = parentCoordinator as? HomeCoordinator else { return }
+
+        homeCoordinator.endCoordinator(self)
+    }
+    
     private func presentRewardViewController() {
         guard let navigationController = navigationController else {
             return
         }
         
-        let rewardViewController = RewardListViewController()
+        let rewardViewController = RewardListViewController(coordinator: self)
         
         rewardViewController.modalPresentationStyle = .fullScreen
         navigationController.present(rewardViewController, animated: true)

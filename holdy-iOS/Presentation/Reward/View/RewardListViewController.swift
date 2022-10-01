@@ -35,12 +35,27 @@ final class RewardListViewController: UIViewController {
         $0.font = .pretendard(family: .regular, size: 14)
     }
     
+    private let disposeBag = DisposeBag()
+    
+    private var coordinator: RewardCoordinator!
+    
+    convenience init(coordinator: RewardCoordinator) {
+        self.init(nibName: nil, bundle: nil)
+        
+        self.coordinator = coordinator
+    }
+    
+    deinit {
+        coordinator.end()
+    }
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         render()
         configureProfileImage()
+        bind()
     }
     
     private func render() {
@@ -87,5 +102,13 @@ final class RewardListViewController: UIViewController {
         
         profileImageView.image = image
     }
-
+    
+    private func bind() {
+        closeButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
 }
