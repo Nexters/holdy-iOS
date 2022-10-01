@@ -45,7 +45,6 @@ final class ParticipantCell: UICollectionViewCell {
         $0.backgroundColor = .gray1
     }
     
-    
     // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)

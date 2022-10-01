@@ -38,7 +38,8 @@ final class RewardCoordinator: CoordinatorDescribing, NetworkEssentialDescribing
             return
         }
         
-        let rewardViewController = RewardListViewController(coordinator: self)
+        let viewModel = RewardViewModel()
+        let rewardViewController = RewardListViewController(coordinator: self, viewModel: viewModel)
         
         rewardViewController.modalPresentationStyle = .fullScreen
         navigationController.present(rewardViewController, animated: true)
