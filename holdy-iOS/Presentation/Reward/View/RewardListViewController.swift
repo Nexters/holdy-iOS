@@ -35,14 +35,19 @@ final class RewardListViewController: UIViewController {
         $0.font = .pretendard(family: .regular, size: 14)
     }
     
+    private let bottomSheetViewController = FloatingPanelController()
+    private var contentViewController: RewardBottomViewController!
+    
     private let disposeBag = DisposeBag()
     
     private var coordinator: RewardCoordinator!
+    private var viewModel: RewardViewModel!
     
-    convenience init(coordinator: RewardCoordinator) {
+    convenience init(coordinator: RewardCoordinator, viewModel: RewardViewModel) {
         self.init(nibName: nil, bundle: nil)
         
         self.coordinator = coordinator
+        self.viewModel = viewModel
     }
     
     deinit {
@@ -65,8 +70,13 @@ final class RewardListViewController: UIViewController {
             closeButton,
             profileImageView,
             nicknameLabel,
-            groupLabel
+            groupLabel,
+            bottomSheetViewController.view
         ])
+        
+        bottomSheetViewController.view.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         
         closeButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(60)
@@ -104,11 +114,26 @@ final class RewardListViewController: UIViewController {
     }
     
     private func bind() {
+        let input = RewardViewModel.Input(viewDidLoad: rx.viewDidLoad)
+        let output = viewModel.transform(input)
+        
+        configureBottomSheet(holdReward: output.holds)
+        
         closeButton.rx.tap
             .withUnretained(self)
             .subscribe(onNext: { viewController, _ in
                 viewController.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func configureBottomSheet(holdReward: Observable<[UIImage?]>) {
+        contentViewController = RewardBottomViewController(holdRewardObserver: holdReward)
+        let layout = BottomSheetLayout()
+        
+        bottomSheetViewController.set(contentViewController: contentViewController)
+        bottomSheetViewController.changeSheetStyle()
+        bottomSheetViewController.addPanel(toParent: self)
+        bottomSheetViewController.layout = layout
     }
 }
