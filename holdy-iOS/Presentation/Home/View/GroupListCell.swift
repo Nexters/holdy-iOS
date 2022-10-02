@@ -35,6 +35,12 @@ final class GroupListCell: UICollectionViewCell {
         $0.contentMode = .scaleAspectFill
     }
     
+    private let halfDottedLine = UIImageView().then {
+        $0.image = UIImage(named: "half_dotted_line")
+        $0.contentMode = .scaleAspectFill
+        $0.isHidden = true
+    }
+    
     private let statusIcon = UIImageView().then {
         $0.contentMode = .scaleAspectFit
     }
@@ -90,6 +96,7 @@ final class GroupListCell: UICollectionViewCell {
     private func render() {
         adds([
             dottedLine,
+            halfDottedLine,
             statusIcon,
             titleLocationLabel,
             locationIcon,
@@ -99,7 +106,15 @@ final class GroupListCell: UICollectionViewCell {
         ])
         
         dottedLine.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(4)
+            $0.leading.equalToSuperview().inset(30)
+            $0.width.equalTo(1)
+        }
+        
+        halfDottedLine.snp.makeConstraints {
+            $0.top.equalTo(statusIcon.snp.bottom)
+            $0.bottom.equalToSuperview().inset(4)
             $0.leading.equalToSuperview().inset(30)
             $0.width.equalTo(1)
         }
@@ -172,11 +187,13 @@ final class GroupListCell: UICollectionViewCell {
         }
     }
     
-    func configureContent(by model: GroupInfo) {
+    func configureContent(by model: GroupInfo, isFirst: Bool) {
         generateStatusIcon(model)
         titleLocationLabel.text = model.place.summary
         locationLabel.text = model.place.address
         dateLabel.text = attributeDateLabel(model.startDate)
         id = model.id
+        halfDottedLine.isHidden = !isFirst
+        dottedLine.isHidden = isFirst
     }
 }

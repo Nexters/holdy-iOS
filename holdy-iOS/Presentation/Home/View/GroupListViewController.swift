@@ -197,8 +197,11 @@ final class GroupListViewController: UIViewController {
             .bind(to: listCollectionview.rx.items(
                 cellIdentifier: String(describing: GroupListCell.self),
                 cellType: GroupListCell.self
-            )) { _, item, cell in
-                cell.configureContent(by: item)
+            )) { row, item, cell in
+                cell.configureContent(
+                    by: item,
+                    isFirst: row == 0
+                )
             }
             .disposed(by: disposeBag)
     }
