@@ -16,7 +16,6 @@ final class GroupListViewController: UIViewController {
     
     private let hideCompeltedGroupButton = UIButton().then {
         $0.setImage(UIImage(named: "icon_check"), for: .normal)
-        $0.setImage(UIImage(named: "icon_check_selected"), for: .selected)
         $0.setTitle("끝난 모임 숨기기", for: .normal)
         $0.titleLabel?.font = .pretendard(family: .regular, size: 12)
         $0.setTitleColor(.gray6, for: .normal)
@@ -58,7 +57,9 @@ final class GroupListViewController: UIViewController {
     // MARK: - Properties
     private var viewModel: GroupListViewModel!
     private var coordinator: HomeCoordinator!
+    private var isFirstLoad = true
     private let disposeBag = DisposeBag()
+    private let loadDataWithViewWillAppear = PublishSubject<Bool>()
     
     convenience init(viewModel: GroupListViewModel, coordinator: HomeCoordinator) {
         self.init(nibName: nil, bundle: nil)
@@ -94,8 +95,15 @@ final class GroupListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        listCollectionview.reloadData()
+        
+        loadDataWithViewWillAppear.onNext(true)
+        
+        if !isFirstLoad {
+            listCollectionview.reloadData()
+            listCollectionview.scrollToItem(at: IndexPath(item: .zero, section: .zero), at: .top, animated: true)
+        }
+        
+        isFirstLoad = false
     }
     
     // MARK: - Methods
@@ -162,12 +170,13 @@ final class GroupListViewController: UIViewController {
     // MARK: - Binding Methods
     private func bind() {
         let input = GroupListViewModel.Input(
-            viewWillAppear: rx.viewWillAppear
+            loadDataWithViewWillAppear: loadDataWithViewWillAppear.asObservable()
         )
         let output = viewModel.transform(input)
         
         configureCollectionViewContent(output.groupInfos)
         configureGenratingGroupButton()
+        configureHideCompleteButton()
     }
     
     private func configureCollectionViewContent(_ output: Observable<[GroupInfo]>) {
@@ -198,6 +207,27 @@ final class GroupListViewController: UIViewController {
             .withUnretained(self)
             .subscribe(onNext: { (viewController, _) in
                 viewController.coordinator.startGeneratingGruopCoordinator()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureHideCompleteButton() {
+        hideCompeltedGroupButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                if viewController.viewModel.isFiltered {
+                    viewController.hideCompeltedGroupButton.setImage(
+                        UIImage(named: "icon_check"),
+                        for: .normal
+                    )
+                } else {
+                    viewController.hideCompeltedGroupButton.setImage(
+                        UIImage(named: "icon_check_selected"),
+                        for: .normal
+                    )
+                }
+                
+                viewController.loadDataWithViewWillAppear.onNext(false)
             })
             .disposed(by: disposeBag)
     }

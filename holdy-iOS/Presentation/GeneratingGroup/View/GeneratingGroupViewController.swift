@@ -531,7 +531,6 @@ final class GeneratingGroupViewController: UIViewController {
                 }
                 
                 self.dismiss(animated: true)
-                
             })
             .disposed(by: disposeBag)
     }
