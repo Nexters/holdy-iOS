@@ -10,6 +10,12 @@ struct RewardResponse: Decodable {
     let data: [RewardInfo]
 }
 
+struct RewardDetailResponse: Decodable {
+    let statusCode: Int
+    let message: String?
+    let data: RewardInfo
+}
+
 struct RewardInfo: Decodable {
     let id: Int?
     let startDate: String?

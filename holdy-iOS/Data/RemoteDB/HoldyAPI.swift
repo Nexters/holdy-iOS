@@ -108,7 +108,7 @@ struct HoldyAPI {
         
         init(id: Int) {
             self.id = id
-            self.url = URL(string: HoldyAPI.baseURL + "api/stamps\(id)")
+            self.url = URL(string: HoldyAPI.baseURL + "api/stamps/\(id)")
         }
     }
 }
