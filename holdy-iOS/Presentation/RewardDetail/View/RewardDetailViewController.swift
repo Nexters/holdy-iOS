@@ -57,9 +57,45 @@ final class RewardDetailViewController: UIViewController {
         $0.isUserInteractionEnabled = true
     }
     
+    // MARK: - Properties
     private var viewModel: RewardDetailViewModel!
     private let disposeBag = DisposeBag()
     
+    // MARK: - 인스타 공유 이미지
+    private let shareContainerView = UIView().then {
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    private let shareBackground = UIImageView().then {
+        let imageName = [
+            "bg_insta_1",
+            "bg_insta_2",
+            "bg_insta_3",
+            "bg_insta_4"
+        ].randomElement() ?? "bg_insta_1"
+        
+        $0.image = UIImage(named: imageName)
+    }
+    
+    private let shareHoldImage = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    private let sharePlaceLabel = UILabel().then {
+        $0.text = "장소"
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.font = .pretendard(family: .semiBold, size: 24)
+    }
+    
+    private let shareDateLabel = UILabel().then {
+        $0.text = "날짜"
+        $0.textColor = .gray5
+        $0.textAlignment = .center
+        $0.font = .pretendard(family: .regular, size: 16)
+    }
+    
+    // MARK: - Initializers
     convenience init(viewModel: RewardDetailViewModel) {
         self.init(nibName: nil, bundle: nil)
         
@@ -86,7 +122,8 @@ final class RewardDetailViewController: UIViewController {
             holdImageView,
             placeLabel,
             dateLabel,
-            shareInstaButton
+            shareInstaButton,
+            shareContainerView
         ])
         
         backgroundView.snp.makeConstraints {
@@ -129,6 +166,39 @@ final class RewardDetailViewController: UIViewController {
             $0.width.equalTo(335)
             $0.height.equalTo(50)
         }
+        
+        shareContainerView.snp.makeConstraints {
+            $0.top.equalTo(view.snp.bottom)
+            $0.width.equalTo(335)
+            $0.height.equalTo(400)
+        }
+        
+        shareContainerView.adds([
+            shareBackground,
+            shareHoldImage,
+            sharePlaceLabel,
+            shareDateLabel
+        ])
+        
+        shareBackground.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        shareHoldImage.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(118)
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(120)
+        }
+        
+        sharePlaceLabel.snp.makeConstraints {
+            $0.top.equalTo(shareHoldImage.snp.bottom).offset(50)
+            $0.centerX.equalToSuperview()
+        }
+        
+        shareDateLabel.snp.makeConstraints {
+            $0.top.equalTo(sharePlaceLabel.snp.bottom).offset(8)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     private func bind() {
@@ -140,7 +210,58 @@ final class RewardDetailViewController: UIViewController {
             .subscribe(onNext: { viewController, info in
                 viewController.holdImageView.image = info.image
                 viewController.placeLabel.text = info.place
-                viewController.dateLabel.text = "\(info.date)"
+                viewController.dateLabel.text = String(describing: info.date)
+            })
+            .disposed(by: disposeBag)
+        
+        configureShareInstaButton()
+        configureCloseButton()
+    }
+    
+    private func configureShareInstaButton() {
+        shareInstaButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                if let storyShareURL = URL(string: "instagram-stories://share") {
+                    if UIApplication.shared.canOpenURL(storyShareURL) {
+                        viewController.shareHoldImage.image = viewController.holdImageView.image
+                        viewController.sharePlaceLabel.text = viewController.placeLabel.text
+                        viewController.shareDateLabel.text = viewController.dateLabel.text
+                        
+                        let renderer = UIGraphicsImageRenderer(
+                            size: viewController.shareContainerView.bounds.size
+                        )
+                        let renderImage = renderer.image { _ in
+                            viewController.shareContainerView.drawHierarchy(
+                                in: viewController.shareContainerView.bounds,
+                                afterScreenUpdates: true
+                            )
+                        }
+                        
+                        guard let imageData = renderImage.pngData() else { return }
+                        
+                        let pasteboardItems : [String:Any] = [
+                           "com.instagram.sharedSticker.stickerImage": imageData
+                        ]
+                        
+                        let pasteboardOptions = [
+                            UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(300)
+                        ]
+                                        
+                        UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
+
+                        UIApplication.shared.open(storyShareURL, options: [:], completionHandler: nil)
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureCloseButton() {
+        closeButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                viewController.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
     }
