@@ -47,11 +47,20 @@ final class RewardCoordinator: CoordinatorDescribing, NetworkEssentialDescribing
 }
 
 extension RewardCoordinator {
-    func startRewardShareCoordinator() {
+    func startRewardDetailCoordinator(with selectedInfo: RewardViewModel.SelectedInfo) {
+        guard let navigationController = navigationController else { return }
+        navigationController.navigationBar.isHidden = true
         
+        let rewardDetailCoordinator = RewardDetailCoordinator(
+            navigationController: navigationController,
+            selectedInfo: selectedInfo
+        )
+        childCoordinators.append(rewardDetailCoordinator)
+        rewardDetailCoordinator.parentCoordinator = self
+        rewardDetailCoordinator.start()
     }
     
-    func endRewardShareCoordinator(_ coodinator: CoordinatorDescribing) {
+    func endCoordinator(_ coodinator: CoordinatorDescribing) {
         guard let index = childCoordinators.firstIndex(where: { $0 === coodinator }) else {
             return
         }

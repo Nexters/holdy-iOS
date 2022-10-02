@@ -39,6 +39,7 @@ final class RewardListViewController: UIViewController {
     private var contentViewController: RewardBottomViewController!
     
     private let disposeBag = DisposeBag()
+    let selectedIndexPath = PublishSubject<IndexPath>()
     
     private var coordinator: RewardCoordinator!
     private var viewModel: RewardViewModel!
@@ -115,7 +116,10 @@ final class RewardListViewController: UIViewController {
     }
     
     private func bind() {
-        let input = RewardViewModel.Input(viewDidLoad: rx.viewDidLoad)
+        let input = RewardViewModel.Input(
+            viewDidLoad: rx.viewDidLoad,
+            cellSelected: selectedIndexPath.asObservable()
+        )
         let output = viewModel.transform(input)
         
         closeButton.rx.tap
@@ -131,10 +135,19 @@ final class RewardListViewController: UIViewController {
                 viewController.configureBottomSheet(holdRewards: holds)
             })
             .disposed(by: disposeBag)
+        
+        output.selectedInfo
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, selectedInfo in
+                let detailViewModel = RewardDetailViewModel(selectedInfo: selectedInfo)
+                let detailViewController = RewardDetailViewController(viewModel: detailViewModel)
+                
+                viewController.present(detailViewController, animated: true)
+            })
     }
     
     private func configureBottomSheet(holdRewards: [UIImage?]) {
-        contentViewController = RewardBottomViewController(holdRewards: holdRewards)
+        contentViewController = RewardBottomViewController(holdRewards: holdRewards, parent: self)
         let layout = BottomSheetLayout()
         
         bottomSheetViewController.set(contentViewController: contentViewController)

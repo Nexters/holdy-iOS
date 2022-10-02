@@ -99,4 +99,16 @@ struct HoldyAPI {
         var url: URL? = URL(string: HoldyAPI.baseURL + "api/stamps")
         var method: HttpMethod = .get
     }
+    
+    struct RequestRewardDetail: Gettable {
+        let id: Int
+        
+        var url: URL?
+        var method: HttpMethod = .get
+        
+        init(id: Int) {
+            self.id = id
+            self.url = URL(string: HoldyAPI.baseURL + "api/stamps\(id)")
+        }
+    }
 }
