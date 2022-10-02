@@ -42,12 +42,15 @@ final class RewardBottomViewController: UIViewController {
     
     // MARK: - Properties
     private var holdRewards: [UIImage?]!
+    private var parentView: RewardListViewController!
     private let disposeBag = DisposeBag()
+    private let selectedIndexPath = PublishSubject<IndexPath>()
     
-    convenience init(holdRewards: [UIImage?]) {
+    convenience init(holdRewards: [UIImage?], parent: RewardListViewController!) {
         self.init(nibName: nil, bundle: nil)
         
         self.holdRewards = holdRewards
+        self.parentView = parent
     }
     
     // MARK: - Lifecycle Methods
@@ -137,6 +140,10 @@ extension RewardBottomViewController: UICollectionViewDataSource {
         cell.configureContent(image: cellImage)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        parentView.selectedIndexPath.onNext(indexPath)
     }
 }
 
