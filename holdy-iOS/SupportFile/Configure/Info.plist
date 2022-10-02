@@ -15,6 +15,7 @@
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>instagram-stories</string>
 		<string>kakaolink</string>
 		<string>kakaokompassauth</string>
 	</array>
