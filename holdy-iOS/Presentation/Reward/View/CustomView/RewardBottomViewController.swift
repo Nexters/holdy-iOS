@@ -164,7 +164,6 @@ extension RewardBottomViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAt section: Int
     ) -> UIEdgeInsets {
-        let totalWidth = collectionView.bounds.width
         let inset = (collectionView.bounds.width - 270) / 2
         
         if section % 2 == 0 {
