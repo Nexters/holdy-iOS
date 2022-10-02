@@ -58,6 +58,7 @@ final class GroupListViewController: UIViewController {
     // MARK: - Properties
     private var viewModel: GroupListViewModel!
     private var coordinator: HomeCoordinator!
+    private var isFirstLoad = true
     private let disposeBag = DisposeBag()
     
     convenience init(viewModel: GroupListViewModel, coordinator: HomeCoordinator) {
@@ -79,8 +80,13 @@ final class GroupListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        listCollectionview.reloadData()
+        
+        if !isFirstLoad {
+            listCollectionview.reloadData()
+            listCollectionview.scrollToItem(at: IndexPath(item: .zero, section: .zero), at: .top, animated: true)
+        }
+        
+        isFirstLoad = false
     }
     
     // MARK: - Methods
