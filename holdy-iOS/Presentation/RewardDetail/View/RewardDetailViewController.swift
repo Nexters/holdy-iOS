@@ -4,6 +4,7 @@
 
 import UIKit
 
+import RxSwift
 import SnapKit
 import Then
 
@@ -57,11 +58,14 @@ final class RewardDetailViewController: UIViewController {
     }
     
     private var viewModel: RewardDetailViewModel!
+    private let disposeBag = DisposeBag()
     
     convenience init(viewModel: RewardDetailViewModel) {
         self.init(nibName: nil, bundle: nil)
         
         self.viewModel = viewModel
+        
+        bind()
     }
     
     // MARK: - Lifecycle Methods
@@ -101,7 +105,6 @@ final class RewardDetailViewController: UIViewController {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(84)
             $0.centerX.equalToSuperview()
-//            $0.height.equalTo(100)
         }
         
         holdImageView.snp.makeConstraints {
@@ -126,5 +129,19 @@ final class RewardDetailViewController: UIViewController {
             $0.width.equalTo(335)
             $0.height.equalTo(50)
         }
+    }
+    
+    private func bind() {
+        let input = RewardDetailViewModel.Input(viewDidLoad: rx.viewDidLoad)
+        let output = viewModel.transform(input)
+        
+        output.info
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, info in
+                viewController.holdImageView.image = info.image
+                viewController.placeLabel.text = info.place
+                viewController.dateLabel.text = "\(info.date)"
+            })
+            .disposed(by: disposeBag)
     }
 }
