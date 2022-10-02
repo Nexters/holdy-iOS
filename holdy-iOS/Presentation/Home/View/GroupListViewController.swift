@@ -46,6 +46,7 @@ final class GroupListViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isUserInteractionEnabled = true
+        collectionView.backgroundColor = .white
         
         return collectionView
     }()
