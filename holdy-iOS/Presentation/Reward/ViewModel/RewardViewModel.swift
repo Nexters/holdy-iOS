@@ -10,13 +10,19 @@ import RxSwift
 final class RewardViewModel {
     struct Input {
         let viewDidLoad: Observable<Void>
+        let cellSelected: Observable<IndexPath>
     }
     
     struct Output {
         let holds: Observable<[UIImage?]>
+        let selectedInfo: Observable<SelectedInfo>
     }
     
+    typealias SelectedInfo = (id: Int, hold: UIImage?)
+    
     private var router = RewardRouter()
+    private var ids = [Int]()
+    private var rewards = [UIImage?]()
     private let holds = [
         UIImage(named: "hold_1"),
         UIImage(named: "hold_2"),
@@ -37,7 +43,8 @@ final class RewardViewModel {
     
     func transform(_ input: Input) -> Output {
         let holds = configureRewardHolds(with: input.viewDidLoad)
-        let ouput = Output(holds: holds)
+        let selectedInfo = configureSelectedIndex(with: input.cellSelected)
+        let ouput = Output(holds: holds, selectedInfo: selectedInfo)
         
         return ouput
     }
@@ -58,13 +65,35 @@ final class RewardViewModel {
                 let rewardCount = response.data.count
                 var rewards: [UIImage?] = []
                 
-                for count in 0..<rewardCount {
-                    let number = count % viewModel.holds.count
+                for reward in response.data {
+                    let rewardID = reward.id ?? 0
+                    let index = rewardID % viewModel.holds.count
                     
-                    rewards.append(viewModel.holds[number])
+                    viewModel.ids.append(rewardID)
+                    rewards.append(viewModel.holds[index])
                 }
+                viewModel.rewards = rewards
                 
                 return rewards
+            }
+    }
+    
+    private func configureSelectedIndex(
+        with inputObserver: Observable<IndexPath>
+    ) -> Observable<SelectedInfo> {
+        inputObserver
+            .withUnretained(self)
+            .filter { viewModel, indexPath in
+                let index = indexPath.section * 4 - indexPath.section / 2 + indexPath.item
+                
+                return viewModel.ids.count > index
+            }
+            .map { viewModel, indexPath in
+                let index = indexPath.section * 4 - indexPath.section / 2 + indexPath.item
+                let id = viewModel.ids[index]
+                let holdImage = viewModel.rewards[index]
+                
+                return (id: id, hold: holdImage)
             }
     }
 }
