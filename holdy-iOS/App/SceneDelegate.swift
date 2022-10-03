@@ -35,11 +35,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneWillResignActive(_ scene: UIScene) { }
 
-    func sceneWillEnterForeground(_ scene: UIScene) { }
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        NotificationCenter.default.post(name: NSNotification.Name("EnterForeground"), object: nil)
+    }
 
     func sceneDidEnterBackground(_ scene: UIScene) { }
     
     // MARK: - Kakao Link
+    // TODO: - 에러 메세지를 보여주는 로직 구현
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         if let url = URLContexts.first?.url {
             let query = url.query
