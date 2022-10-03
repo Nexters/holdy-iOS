@@ -85,7 +85,6 @@ final class GroupDetailViewController: UIViewController {
         super.viewDidLoad()
 
         render()
-        configureGuestPage()
     }
 
     private func render() {
@@ -174,7 +173,7 @@ final class GroupDetailViewController: UIViewController {
     }
     
     private func configureGuestPage() {
-        guard UserDefaultsManager.id == viewModel.hostID else {
+        guard UserDefaultsManager.id != viewModel.hostID else {
             return
         }
         
@@ -208,6 +207,8 @@ final class GroupDetailViewController: UIViewController {
                     place: groupInfo.place.address,
                     date: startDate
                 )
+                
+                self.configureGuestPage()
             })
             .disposed(by: disposeBag)
     }
