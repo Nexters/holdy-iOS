@@ -113,7 +113,6 @@ final class BottomSheetContentViewController: UIViewController {
         
         render()
         configureCollectionView()
-        configureGuestPage()
         bind()
     }
     
@@ -205,7 +204,7 @@ final class BottomSheetContentViewController: UIViewController {
     }
     
     private func configureGuestPage() {
-        guard UserDefaultsManager.id == viewModel.hostID else {
+        guard UserDefaultsManager.id != viewModel.hostID else {
             return
         }
         
@@ -249,13 +248,17 @@ final class BottomSheetContentViewController: UIViewController {
             .bind(to: participantsCollectionview.rx.items(
                 cellIdentifier: String(describing: ParticipantCell.self),
                 cellType: ParticipantCell.self
-            )) { _, item, cell in
+            )) { [weak self] _, item, cell in
+                guard let self = self else { return }
+                
                 cell.configureContent(
                     imageURL: item.profileImageUrl,
                     name: item.nickname,
                     group: item.group,
                     id: item.id
                 )
+                
+                self.configureGuestPage()
             }
             .disposed(by: disposeBag)
     }
