@@ -91,6 +91,11 @@ final class BottomSheetContentViewController: UIViewController {
     private var participantsInfo: Observable<[ParticipantsDescribing]>!
     private let disposeBag = DisposeBag()
     
+    // MARK: - 카카오 공유에 전달하기 위한 프로퍼티
+    private var sharePlace = ""
+    private var shareStartDate = ""
+    private var shareID = ""
+    
     // MARK: - Initializers
     convenience init(
         viewModel: GroupDetailViewModel,
@@ -257,11 +262,19 @@ final class BottomSheetContentViewController: UIViewController {
     
     private func configureInviteButton() {
         inviteButton.rx.tap
-            .subscribe(onNext: {
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
                 let templateID: Int64 = 81345
                  
                 if ShareApi.isKakaoTalkSharingAvailable() {
-                    ShareApi.shared.shareCustom(templateId: templateID) { shareResult, error in
+                    ShareApi.shared.shareCustom(
+                        templateId: templateID,
+                        templateArgs: [
+                            "title": viewController.sharePlace,
+                            "content": viewController.shareStartDate,
+                            "moim_id": viewController.shareID
+                        ]
+                    ) { shareResult, error in
                         if let error = error {
                             #if DEBUG
                             print(error)
@@ -285,6 +298,14 @@ final class BottomSheetContentViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+    }
+}
+
+extension BottomSheetContentViewController {
+    func configureShareTemplateArgs(id: String, place: String, date: String) {
+        self.shareID = id
+        self.sharePlace = place
+        self.shareStartDate = date
     }
 }
 
