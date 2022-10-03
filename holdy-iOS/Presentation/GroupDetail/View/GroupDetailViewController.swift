@@ -202,7 +202,12 @@ final class GroupDetailViewController: UIViewController {
                 let startDate = self.attributeStartDateLabel(groupInfo.startDate)
                 let endDate = self.attributeEndDateLabel(groupInfo.endDate)
                 self.dateLabel.text = "\(startDate) ~ \(endDate)"
-
+                
+                self.contentViewController.configureShareTemplateArgs(
+                    id: "\(self.viewModel.id)",
+                    place: groupInfo.place.address,
+                    date: startDate
+                )
             })
             .disposed(by: disposeBag)
     }
