@@ -95,6 +95,7 @@
 		DEB7D3FE28E96D4E00E0C47E /* RewardDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7D3FD28E96D4E00E0C47E /* RewardDetailRouter.swift */; };
 		DEB7D40028E9710200E0C47E /* RewardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7D3FF28E9710200E0C47E /* RewardDetailViewController.swift */; };
 		DEB7D40228E982EB00E0C47E /* RewardDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7D40128E982EB00E0C47E /* RewardDetailViewModel.swift */; };
+		DEB7D40528EAEBC000E0C47E /* InvitationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7D40428EAEBC000E0C47E /* InvitationRouter.swift */; };
 		DEB8CF8628D44A0E00F3C967 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB8CF8528D44A0E00F3C967 /* ReportViewModel.swift */; };
 		DEE002ED28C2401400D4896C /* KakaoSDKShare in Frameworks */ = {isa = PBXBuildFile; productRef = DEE002EC28C2401400D4896C /* KakaoSDKShare */; };
 		DEE002EF28C2401400D4896C /* KakaoSDKTemplate in Frameworks */ = {isa = PBXBuildFile; productRef = DEE002EE28C2401400D4896C /* KakaoSDKTemplate */; };
@@ -194,6 +195,7 @@
 		DEB7D3FD28E96D4E00E0C47E /* RewardDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailRouter.swift; sourceTree = "<group>"; };
 		DEB7D3FF28E9710200E0C47E /* RewardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailViewController.swift; sourceTree = "<group>"; };
 		DEB7D40128E982EB00E0C47E /* RewardDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailViewModel.swift; sourceTree = "<group>"; };
+		DEB7D40428EAEBC000E0C47E /* InvitationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationRouter.swift; sourceTree = "<group>"; };
 		DEB8CF8528D44A0E00F3C967 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -306,6 +308,7 @@
 		DE16E75F2895284200C75C23 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				DEB7D40328EAEBAE00E0C47E /* Router */,
 				DE16E74B2895271B00C75C23 /* AppDelegate.swift */,
 				DE16E74D2895271B00C75C23 /* SceneDelegate.swift */,
 			);
@@ -715,6 +718,14 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		DEB7D40328EAEBAE00E0C47E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				DEB7D40428EAEBC000E0C47E /* InvitationRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -911,6 +922,7 @@
 				DE2024FE28A8DD10004B4F59 /* NetworkConnectionManager.swift in Sources */,
 				DE15223728ADFEFE0048C07B /* GroupDetailViewModel.swift in Sources */,
 				DE16E7B0289556BE00C75C23 /* LoginRouter.swift in Sources */,
+				DEB7D40528EAEBC000E0C47E /* InvitationRouter.swift in Sources */,
 				DE16E7B4289558A000C75C23 /* HoldyAPI.swift in Sources */,
 				9B29173328A9450700CFFDEA /* GroupListViewController.swift in Sources */,
 				DE2024E028A2A7E9004B4F59 /* GeneratingGroupRouter.swift in Sources */,
