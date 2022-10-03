@@ -67,6 +67,21 @@ final class GroupListViewController: UIViewController {
         self.coordinator = coordinator
         
         bind()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(refresh),
+            name: NSNotification.Name("EnterForeground"),
+            object: nil
+        )
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: NSNotification.Name("EnterForeground"),
+            object: nil
+        )
     }
     
     // MARK: - Lifecycle Methods
@@ -84,6 +99,11 @@ final class GroupListViewController: UIViewController {
     }
     
     // MARK: - Methods
+    @objc
+    private func refresh() {
+        listCollectionview.reloadData()
+    }
+    
     private func configureCollectionView() {
         listCollectionview.register(cellClass: GroupListCell.self)
         listCollectionview.delegate = self
