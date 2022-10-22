@@ -99,6 +99,7 @@
 		DEB8CF8628D44A0E00F3C967 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB8CF8528D44A0E00F3C967 /* ReportViewModel.swift */; };
 		DEE002ED28C2401400D4896C /* KakaoSDKShare in Frameworks */ = {isa = PBXBuildFile; productRef = DEE002EC28C2401400D4896C /* KakaoSDKShare */; };
 		DEE002EF28C2401400D4896C /* KakaoSDKTemplate in Frameworks */ = {isa = PBXBuildFile; productRef = DEE002EE28C2401400D4896C /* KakaoSDKTemplate */; };
+		DEE7AF1E29042230007348FD /* ParticipantResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE7AF1D29042230007348FD /* ParticipantResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +198,7 @@
 		DEB7D40128E982EB00E0C47E /* RewardDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailViewModel.swift; sourceTree = "<group>"; };
 		DEB7D40428EAEBC000E0C47E /* InvitationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationRouter.swift; sourceTree = "<group>"; };
 		DEB8CF8528D44A0E00F3C967 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
+		DEE7AF1D29042230007348FD /* ParticipantResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -511,6 +513,7 @@
 				DE15223228ADD9780048C07B /* InvitationResponse.swift */,
 				DE1984B228D6C79B00B30590 /* ReportResponse.swift */,
 				DE55FD9D28E81DE700B72C2F /* RewardResponse.swift */,
+				DEE7AF1D29042230007348FD /* ParticipantResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -930,6 +933,7 @@
 				DEB7D3FE28E96D4E00E0C47E /* RewardDetailRouter.swift in Sources */,
 				DE55FD9828E8036800B72C2F /* RewardViewModel.swift in Sources */,
 				DE16E78C289551ED00C75C23 /* AppCoordinator.swift in Sources */,
+				DEE7AF1E29042230007348FD /* ParticipantResponse.swift in Sources */,
 				DE3A015228AFA8B00049CE42 /* ParticipantsDescribing.swift in Sources */,
 				DE2024E228A756E3004B4F59 /* GeneratingGroupResponse.swift in Sources */,
 				DE3A014B28AD2A780049CE42 /* GroupDetailRouter.swift in Sources */,

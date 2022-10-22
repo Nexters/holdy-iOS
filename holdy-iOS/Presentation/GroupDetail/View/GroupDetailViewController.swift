@@ -209,7 +209,10 @@ final class GroupDetailViewController: UIViewController {
 
     // MARK: - Binding Methods
     private func bind() {
-        let input = GroupDetailViewModel.Input(viewDidLoad: rx.viewDidLoad)
+        let input = GroupDetailViewModel.Input(
+            viewDidLoad: rx.viewDidLoad,
+            participantButtonDidTap: participantButton.rx.tap.asObservable()
+        )
         let output = viewModel.transform(input)
         
         configureCloseButton()
@@ -217,6 +220,7 @@ final class GroupDetailViewController: UIViewController {
         configureReportButton()
         configureContent(with: output.groupInfo)
         configureBottomSheet(participantsInfo: output.participantsInfo)
+        configureParticipantButtonAction(with: output.participantButtonResponse)
     }
 
     private func configureContent(with groupInfo: Driver<GroupInfo>) {
@@ -251,11 +255,15 @@ final class GroupDetailViewController: UIViewController {
                     if UIApplication.shared.canOpenURL(mapLink) {
                         UIApplication.shared.open(mapLink, options: [:], completionHandler: nil)
                     } else {
-                        let showAlert = UIAlertController(
+                        let alert = UIAlertController(
                             title: "안내",
                             message: "앱이 설치되어있지 않습니다.",
-                            preferredStyle: UIAlertController.Style.alert
+                            preferredStyle: .alert
                         )
+                        let okAction = UIAlertAction(title: "확인", style: .default)
+                        alert.addAction(okAction)
+                        
+                        viewController.present(alert, animated: true)
                     }
                 }
             })
@@ -308,6 +316,42 @@ final class GroupDetailViewController: UIViewController {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         guard let date: Date = formatter.date(from: text) else { return Date() }
         return date
+    }
+    
+    private func configureParticipantButtonAction(
+        with response: Observable<GroupDetailViewModel.Output.ParticipantResponse>
+    ) {
+        response
+            .withUnretained(self)
+            .subscribe { viewController, response in
+                guard let message = response.message else {
+                    if response.wantToAttend {
+                        viewController.participantButton.setTitle("갈게요", for: .normal)
+                        viewController.participantButton.setTitleColor(.white, for: .normal)
+                        viewController.participantButton.backgroundColor = .strongBlue
+                        viewController.participantButton.layer.borderWidth = 0
+                    } else {
+                        viewController.participantButton.backgroundColor = .white
+                        viewController.participantButton.setTitle("못가요", for: .normal)
+                        viewController.participantButton.setTitleColor(.gray6, for: .normal)
+                        viewController.participantButton.layer.borderWidth = 1
+                        viewController.participantButton.layer.borderColor = UIColor.gray3.cgColor
+                    }
+                    
+                    return
+                }
+                
+                let alert = UIAlertController(
+                    title: "에러",
+                    message: message,
+                    preferredStyle: .alert
+                )
+                let okAction = UIAlertAction(title: "확인", style: .default)
+                alert.addAction(okAction)
+                
+                viewController.present(alert, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
