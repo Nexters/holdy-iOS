@@ -57,6 +57,16 @@ final class GroupDetailViewController: UIViewController {
         $0.contentHorizontalAlignment = .leading
     }
     
+    private let participantButton = UIButton().then {
+        $0.setTitle("갈게요", for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.setTitleColor(.gray5, for: .highlighted)
+        $0.backgroundColor = .strongBlue
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+        $0.isHidden = true
+    }
+    
     private let bottomSheetViewController = FloatingPanelController()
     private var contentViewController: BottomSheetContentViewController!
 
@@ -87,11 +97,16 @@ final class GroupDetailViewController: UIViewController {
 
         render()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        addParticiapantButton() // Floating Panel 관련 view들이 모두 올라오고 추가해야 가장 상단에 위치함.
+    }
 
     private func render() {
         view.backgroundColor = .strongBlue
 
         view.adds([
+            bottomSheetViewController.view,
             closeButton,
             titleLabel,
             reportButton,
@@ -99,8 +114,7 @@ final class GroupDetailViewController: UIViewController {
             locationLabel,
             dateIcon,
             dateLabel,
-            openMapAppButton,
-            bottomSheetViewController.view
+            openMapAppButton
         ])
         
         bottomSheetViewController.view.snp.makeConstraints {
@@ -160,6 +174,17 @@ final class GroupDetailViewController: UIViewController {
         }
     }
     
+    private func addParticiapantButton() {
+        view.add(participantButton)
+        
+        participantButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(40)
+            $0.width.equalTo(335)
+            $0.height.equalTo(48)
+        }
+    }
+    
     private func configureBottomSheet(participantsInfo: Observable<[ParticipantsDescribing]>) {
         contentViewController = BottomSheetContentViewController(
             viewModel: viewModel,
@@ -179,6 +204,7 @@ final class GroupDetailViewController: UIViewController {
         }
         
         reportButton.isHidden = false
+        participantButton.isHidden = false
     }
 
     // MARK: - Binding Methods

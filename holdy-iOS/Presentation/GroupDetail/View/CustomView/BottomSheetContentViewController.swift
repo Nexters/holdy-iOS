@@ -76,16 +76,6 @@ final class BottomSheetContentViewController: UIViewController {
         return collectionView
     }()
     
-    private let participantButton = UIButton().then {
-        $0.setTitle("갈게요", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.setTitleColor(.red, for: .highlighted)
-        $0.backgroundColor = .strongBlue
-        $0.layer.cornerRadius = 8
-        $0.clipsToBounds = true
-        $0.isHidden = true
-    }
-    
     // MARK: - Properties
     private var viewModel: GroupDetailViewModel!
     private var participantsInfo: Observable<[ParticipantsDescribing]>!
@@ -125,8 +115,7 @@ final class BottomSheetContentViewController: UIViewController {
             titleLabel,
             participantsCollectionview,
             inviteButton,
-            inviteButtonExplanation,
-            participantButton
+            inviteButtonExplanation
         ])
         
         guestGuideContainer.adds([
@@ -177,13 +166,6 @@ final class BottomSheetContentViewController: UIViewController {
             $0.width.equalTo(173)
             $0.height.equalTo(27)
         }
-        
-        participantButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(40)
-            $0.width.equalTo(335)
-            $0.height.equalTo(48)
-        }
     }
     
     private func configureCollectionView() {
@@ -233,8 +215,6 @@ final class BottomSheetContentViewController: UIViewController {
         
         inviteButtonExplanation.isHidden = true
         inviteButton.isHidden = true
-        
-        participantButton.isHidden = false
     }
     
     // MARK: - Binding Methods
