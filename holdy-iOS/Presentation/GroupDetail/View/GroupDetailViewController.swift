@@ -63,6 +63,7 @@ final class GroupDetailViewController: UIViewController {
     // MARK: - Properties
     private var viewModel: GroupDetailViewModel!
     private var coordinator: GroupDetailCoordinator!
+    private var mapLink: String!
 
     private let disposeBag = DisposeBag()
 
@@ -186,6 +187,7 @@ final class GroupDetailViewController: UIViewController {
         let output = viewModel.transform(input)
         
         configureCloseButton()
+        configureOpenMapButton()
         configureReportButton()
         configureContent(with: output.groupInfo)
         configureBottomSheet(participantsInfo: output.participantsInfo)
@@ -208,7 +210,28 @@ final class GroupDetailViewController: UIViewController {
                     date: startDate
                 )
                 
+                self.mapLink = groupInfo.place.mapLink
+                
                 self.configureGuestPage()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureOpenMapButton() {
+        openMapAppButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { viewController, _ in
+                if let mapLink = URL(string: viewController.mapLink) {
+                    if UIApplication.shared.canOpenURL(mapLink) {
+                        UIApplication.shared.open(mapLink, options: [:], completionHandler: nil)
+                    } else {
+                        let showAlert = UIAlertController(
+                            title: "안내",
+                            message: "앱이 설치되어있지 않습니다.",
+                            preferredStyle: UIAlertController.Style.alert
+                        )
+                    }
+                }
             })
             .disposed(by: disposeBag)
     }
