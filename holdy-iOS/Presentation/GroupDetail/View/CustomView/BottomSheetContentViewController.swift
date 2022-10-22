@@ -248,14 +248,15 @@ final class BottomSheetContentViewController: UIViewController {
             .bind(to: participantsCollectionview.rx.items(
                 cellIdentifier: String(describing: ParticipantCell.self),
                 cellType: ParticipantCell.self
-            )) { [weak self] _, item, cell in
+            )) { [weak self] row, item, cell in
                 guard let self = self else { return }
                 
                 cell.configureContent(
                     imageURL: item.profileImageUrl,
                     name: item.nickname,
                     group: item.group,
-                    id: item.id
+                    id: item.id,
+                    row: row
                 )
                 
                 self.configureGuestPage()

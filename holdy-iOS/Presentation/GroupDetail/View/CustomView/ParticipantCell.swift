@@ -116,7 +116,7 @@ final class ParticipantCell: UICollectionViewCell {
         }
     }
     
-    func configureContent(imageURL: String, name: String, group: String, id: Int) {
+    func configureContent(imageURL: String, name: String, group: String, id: Int, row: Int) {
         guard
             let url = URL(string: imageURL),
             let data = try? Data(contentsOf: url),
@@ -135,6 +135,11 @@ final class ParticipantCell: UICollectionViewCell {
         } else {
             hostIcon.isHidden = true
             participantButton.isHidden = false
+        }
+        
+        if row == .zero {
+            hostIcon.isHidden = false
+            participantButton.isHidden = true
         }
     }
 }
