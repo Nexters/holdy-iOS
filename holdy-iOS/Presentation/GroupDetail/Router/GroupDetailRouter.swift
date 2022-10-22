@@ -82,7 +82,7 @@ struct GroupDetailRouter {
                 encoding: JSONEncoding.default,
                 headers: headers
             )
-            .validate(statusCode: 200..<300)
+            .validate(statusCode: 200..<500)
             .responseDecodable(of: T.self) { response in
                 switch response.result {
                 case .success(let data):

@@ -10,17 +10,22 @@ import RxSwift
 final class GroupDetailViewModel {
     struct Input {
         let viewDidLoad: Observable<Void>
+        let participantButtonDidTap: Observable<Void>
     }
 
     struct Output {
         let groupInfo: Driver<GroupInfo>
         let participantsInfo: Observable<[ParticipantsDescribing]>
+        let participantButtonResponse: Observable<ParticipantResponse>
+        
+        typealias ParticipantResponse = (message: String?, wantToAttend: Bool)
     }
 
     // MARK: - Properties
     private let router = GroupDetailRouter()
     private let participantsObservable = PublishSubject<[ParticipantsDescribing]>()
     private var participantsInfo: [ParticipantsDescribing] = []
+    private var wantToAttend = true
     private(set) var id: Int
     private(set) var hostID = 0
     private(set) var startDate = Date()
@@ -32,9 +37,11 @@ final class GroupDetailViewModel {
     func transform(_ input: Input) -> Output {
         let groupInfo = configureGroupInfo(with: input.viewDidLoad)
         let participantsInfo = participantsObservable.asObservable()
+        let participantButtonResponse = configureParticipateButtonAction(with: input.participantButtonDidTap)
         let output = Output(
             groupInfo: groupInfo,
-            participantsInfo: participantsInfo
+            participantsInfo: participantsInfo,
+            participantButtonResponse: participantButtonResponse
         )
 
         return output
@@ -87,5 +94,25 @@ final class GroupDetailViewModel {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         guard let date: Date = formatter.date(from: text) else { return Date() }
         return date
+    }
+    
+    private func configureParticipateButtonAction(
+        with inputObserver: Observable<Void>
+    ) -> Observable<Output.ParticipantResponse> {
+        inputObserver
+            .withUnretained(self)
+            .flatMap { viewModel, _ in
+                viewModel.router.requestAttendance(
+                    api: HoldyAPI.RequestAttendance(id: UserDefaultsManager.id),
+                    wantToAttend: viewModel.wantToAttend,
+                    decodingType: ParticipantResponse.self
+                )
+            }
+            .withUnretained(self)
+            .map { viewModel, response in
+                viewModel.wantToAttend.toggle()
+                
+                return (response.message, viewModel.wantToAttend)
+            }
     }
 }
