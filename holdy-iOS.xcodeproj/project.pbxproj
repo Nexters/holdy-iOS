@@ -100,6 +100,7 @@
 		DEE002ED28C2401400D4896C /* KakaoSDKShare in Frameworks */ = {isa = PBXBuildFile; productRef = DEE002EC28C2401400D4896C /* KakaoSDKShare */; };
 		DEE002EF28C2401400D4896C /* KakaoSDKTemplate in Frameworks */ = {isa = PBXBuildFile; productRef = DEE002EE28C2401400D4896C /* KakaoSDKTemplate */; };
 		DEE7AF1E29042230007348FD /* ParticipantResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE7AF1D29042230007348FD /* ParticipantResponse.swift */; };
+		DEE7AF202906D17D007348FD /* ParticipantCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE7AF1F2906D17D007348FD /* ParticipantCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,6 +200,7 @@
 		DEB7D40428EAEBC000E0C47E /* InvitationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationRouter.swift; sourceTree = "<group>"; };
 		DEB8CF8528D44A0E00F3C967 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		DEE7AF1D29042230007348FD /* ParticipantResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantResponse.swift; sourceTree = "<group>"; };
+		DEE7AF1F2906D17D007348FD /* ParticipantCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +271,7 @@
 			children = (
 				DE15223628ADFEFE0048C07B /* GroupDetailViewModel.swift */,
 				DEB8CF8528D44A0E00F3C967 /* ReportViewModel.swift */,
+				DEE7AF1F2906D17D007348FD /* ParticipantCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -887,6 +890,7 @@
 				DE86D4A328964541007BC448 /* URLRequest+.swift in Sources */,
 				DE16E76728954F5C00C75C23 /* CoordinatorDescribing.swift in Sources */,
 				DE16E77028954F7000C75C23 /* UIColor+.swift in Sources */,
+				DEE7AF202906D17D007348FD /* ParticipantCellViewModel.swift in Sources */,
 				DE2A980C28DFC09E00F7402F /* RewardCoordinator.swift in Sources */,
 				DE2024EA28A7AFD4004B4F59 /* OnboardingCoordinator.swift in Sources */,
 				DE20250028A8DDC9004B4F59 /* NetworkEssentialDescribing.swift in Sources */,

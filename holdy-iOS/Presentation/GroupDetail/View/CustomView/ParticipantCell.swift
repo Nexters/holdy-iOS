@@ -37,7 +37,7 @@ final class ParticipantCell: UICollectionViewCell {
     
     private let participantButton = UIButton().then {
         $0.setTitle("왔어요", for: .normal)
-        $0.setTitleColor(.gray6, for: .normal)
+        $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.font = .pretendard(family: .regular, size: 12)
         $0.backgroundColor = .strongBlue
         $0.layer.borderWidth = .zero
@@ -50,8 +50,7 @@ final class ParticipantCell: UICollectionViewCell {
     }
     
     private let disposeBag = DisposeBag()
-    private let router = GroupDetailRouter()
-    private var isAttended: Bool = true
+    private let viewModel = ParticipantCellViewModel()
     
     weak var delegate: ParticipantCellDelegate?
     
@@ -59,6 +58,7 @@ final class ParticipantCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        bind()
         render()
     }
     
@@ -127,34 +127,28 @@ final class ParticipantCell: UICollectionViewCell {
     }
     
     private func bind() {
-        participantButton.rx.tap
+        let input = ParticipantCellViewModel.Input(
+            participantButtonDidTap: participantButton.rx.tap.asObservable()
+        )
+        let output = viewModel.transform(input)
+        
+        output.response
             .withUnretained(self)
-            .subscribe(onNext: { cell, _ in
-                let response = cell.router.requestAttendanceCheck(
-                    api: HoldyAPI.RequestAttendanceCheck(
-                        groupID: GroupDetailViewModel.groupID,
-                        userID: UserDefaultsManager.id
-                    ),
-                    attend: cell.isAttended,
-                    decodingType: ParticipantResponse.self
-                )
+            .subscribe(onNext: { cell, response in
+                if response.message != nil {
+                    cell.delegate?.showErrorAlert(message: response.message)
+                }
                 
-                _ = response.map { response in
-                    if response.data == nil {
-                        cell.delegate?.showErrorAlert(message: response.message)
-                    }
-                    
-                    cell.isAttended.toggle()
-                    if cell.isAttended {
-                        cell.participantButton.setTitle("왔어요", for: .normal)
-                        cell.participantButton.backgroundColor = .strongBlue
-                        cell.participantButton.layer.borderWidth = .zero
-                    } else {
-                        cell.participantButton.setTitle("안왔어요", for: .normal)
-                        cell.participantButton.backgroundColor = .white
-                        cell.participantButton.layer.borderWidth = 1
-                        cell.participantButton.layer.borderColor = UIColor.gray3.cgColor
-                    }
+                if response.isAttended {
+                    cell.participantButton.setTitle("왔어요", for: .normal)
+                    cell.participantButton.backgroundColor = .strongBlue
+                    cell.participantButton.layer.borderWidth = .zero
+                } else {
+                    cell.participantButton.setTitle("안왔어요", for: .normal)
+                    cell.participantButton.setTitleColor(.gray6, for: .normal)
+                    cell.participantButton.backgroundColor = .white
+                    cell.participantButton.layer.borderWidth = 1
+                    cell.participantButton.layer.borderColor = UIColor.gray3.cgColor
                 }
             })
             .disposed(by: disposeBag)
@@ -175,10 +169,10 @@ final class ParticipantCell: UICollectionViewCell {
         
         if id == UserDefaultsManager.id {
             hostIcon.isHidden = false
-            participantButton.isHidden = true
+            participantButton.isHidden = false
         } else {
             hostIcon.isHidden = true
-            participantButton.isHidden = false
+            participantButton.isHidden = true
         }
         
         if row == .zero {
