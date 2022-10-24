@@ -186,7 +186,7 @@ final class BottomSheetContentViewController: UIViewController {
     }
     
     private func configureGuestPage() {
-        guard UserDefaultsManager.id != viewModel.hostID else {
+        guard UserDefaultsManager.id != GroupDetailViewModel.hostID else {
             return
         }
         
