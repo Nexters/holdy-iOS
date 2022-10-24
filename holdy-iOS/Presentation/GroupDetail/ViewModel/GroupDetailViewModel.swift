@@ -108,7 +108,7 @@ final class GroupDetailViewModel {
             .withUnretained(self)
             .flatMap { viewModel, _ in
                 viewModel.router.requestAttendance(
-                    api: HoldyAPI.RequestAttendance(id: UserDefaultsManager.id),
+                    api: HoldyAPI.RequestAttendance(id: Self.groupID),
                     wantToAttend: viewModel.wantToAttend,
                     decodingType: ParticipantResponse.self
                 )
