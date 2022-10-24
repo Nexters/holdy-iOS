@@ -22,6 +22,8 @@ final class GroupDetailViewModel {
     }
 
     // MARK: - Properties
+    static var groupID: Int = 0
+    
     private let router = GroupDetailRouter()
     private let participantsObservable = PublishSubject<[ParticipantsDescribing]>()
     private var participantsInfo: [ParticipantsDescribing] = []
@@ -58,22 +60,25 @@ final class GroupDetailViewModel {
 
                 return response
             }
-            .map {
-                self.hostID = $0.data.host.id
-                self.startDate = self.generateDate($0.data.startDate)
+            .withUnretained(self)
+            .map { viewModel, response in
+                Self.groupID = response.data.id
                 
-                self.participantsInfo.append($0.data.host)
-                for participantInfo in $0.data.participants {
-                    if participantInfo.id == $0.data.host.id {
+                viewModel.hostID = response.data.host.id
+                viewModel.startDate = viewModel.generateDate(response.data.startDate)
+                
+                viewModel.participantsInfo.append(response.data.host)
+                for participantInfo in response.data.participants {
+                    if participantInfo.id == response.data.host.id {
                         break
                     }
                     
-                    self.participantsInfo.append(participantInfo)
+                    viewModel.participantsInfo.append(participantInfo)
                 }
                 
-                self.participantsObservable.onNext(self.participantsInfo)
+                viewModel.participantsObservable.onNext(viewModel.participantsInfo)
                 
-                return $0.data
+                return response.data
             }
             .asDriver(onErrorJustReturn:
                         GroupInfo(
