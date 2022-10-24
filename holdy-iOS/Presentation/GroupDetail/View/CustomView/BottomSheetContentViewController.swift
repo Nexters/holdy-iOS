@@ -238,6 +238,7 @@ final class BottomSheetContentViewController: UIViewController {
                     id: item.id,
                     row: row
                 )
+                cell.delegate = self
                 
                 self.configureGuestPage()
             }
@@ -303,5 +304,19 @@ extension BottomSheetContentViewController: UICollectionViewDelegateFlowLayout {
             width: participantsCollectionview.frame.width,
             height: 72
         )
+    }
+}
+
+extension BottomSheetContentViewController: ParticipantCellDelegate {
+    func showErrorAlert(message: String?) {
+        let alert = UIAlertController(
+            title: "Error",
+            message: message,
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(okAction)
+
+        present(alert, animated: true)
     }
 }
