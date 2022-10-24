@@ -23,13 +23,13 @@ final class GroupDetailViewModel {
 
     // MARK: - Properties
     static var groupID: Int = 0
+    static var hostID: Int = 0
     
     private let router = GroupDetailRouter()
     private let participantsObservable = PublishSubject<[ParticipantsDescribing]>()
     private var participantsInfo: [ParticipantsDescribing] = []
     private var wantToAttend = true
     private(set) var id: Int
-    private(set) var hostID = 0
     private(set) var startDate = Date()
 
     init(id: Int) {
@@ -63,8 +63,8 @@ final class GroupDetailViewModel {
             .withUnretained(self)
             .map { viewModel, response in
                 Self.groupID = response.data.id
+                Self.hostID = response.data.host.id
                 
-                viewModel.hostID = response.data.host.id
                 viewModel.startDate = viewModel.generateDate(response.data.startDate)
                 
                 viewModel.participantsInfo.append(response.data.host)
