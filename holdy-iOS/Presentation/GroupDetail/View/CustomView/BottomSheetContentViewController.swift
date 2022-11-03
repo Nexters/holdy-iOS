@@ -233,12 +233,25 @@ final class BottomSheetContentViewController: UIViewController {
             )) { [weak self] row, item, cell in
                 guard let self = self else { return }
                 
+                guard let item = item as? UserInfo else {
+                    cell.configureContent(
+                        imageURL: item.profileImageUrl,
+                        name: item.nickname,
+                        group: item.group,
+                        id: item.id,
+                        row: row
+                    )
+                    
+                    return
+                }
+                
                 cell.configureContent(
                     imageURL: item.profileImageUrl,
                     name: item.nickname,
                     group: item.group,
                     id: item.id,
-                    row: row
+                    row: row,
+                    attended: item.attended
                 )
                 cell.delegate = self
                 
