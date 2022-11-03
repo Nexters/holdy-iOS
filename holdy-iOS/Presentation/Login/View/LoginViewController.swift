@@ -142,6 +142,10 @@ final class LoginViewController: UIViewController {
         let input = LoginViewModel.Input(
             inputText: textFieldText.asObservable(),
             loginButtonDidTap: loginButton.rx.tap.asObservable()
+                .withUnretained(self)
+                .map { viewController, _ in
+                    return viewController.codeTextField.text ?? ""
+                }
         )
         
         let output = viewModel.transform(input)

@@ -10,7 +10,7 @@ import RxSwift
 final class LoginViewModel {
     struct Input {
         let inputText: Observable<String>
-        let loginButtonDidTap: Observable<Void>
+        let loginButtonDidTap: Observable<String>
     }
     
     struct Output {
@@ -43,13 +43,13 @@ final class LoginViewModel {
             
     }
     
-    private func requestLogin(with input: Observable<Void>) -> Driver<LoginResponse> {
+    private func requestLogin(with input: Observable<String>) -> Driver<LoginResponse> {
         input
             .withUnretained(self)
-            .flatMap { (viewModel, _) in
+            .flatMap { (viewModel, input) in
                 viewModel.baseRouter.requestLogin(
                     api: HoldyAPI.RequestLogin(),
-                    authKey: viewModel.inputText,
+                    authKey: input,
                     decodingType: LoginResponse.self
                 )
             }

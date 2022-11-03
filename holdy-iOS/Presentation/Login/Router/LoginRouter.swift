@@ -39,6 +39,8 @@ struct LoginRouter {
                             let firstEqualIndex = session.firstIndex(of: "="),
                             let lastRangeIndex = response.response?.headers["Set-Cookie"]?.firstIndex(of: ";")
                         else {
+                            emitter(.success(data))
+                            
                             return
                         }
                         
