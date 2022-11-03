@@ -68,11 +68,7 @@ final class GroupDetailViewModel {
                 viewModel.startDate = viewModel.generateDate(response.data.startDate)
                 
                 viewModel.participantsInfo.append(response.data.host)
-                for participantInfo in response.data.participants {
-                    if participantInfo.id == response.data.host.id {
-                        break
-                    }
-                    
+                for participantInfo in response.data.participants where participantInfo.id != response.data.host.id {
                     viewModel.participantsInfo.append(participantInfo)
                 }
                 
