@@ -33,6 +33,8 @@ final class ParticipantCell: UICollectionViewCell {
     private let hostIcon = UIImageView().then {
         $0.image = UIImage(named: "icon_host_fill")
         $0.contentMode = .scaleAspectFit
+        
+        $0.isHidden = true
     }
     
     private let participantButton = UIButton().then {

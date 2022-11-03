@@ -10,6 +10,7 @@ import RxSwift
 final class GroupDetailViewModel {
     struct Input {
         let viewDidLoad: Observable<Void>
+        let needsChangeParticipantInfo: Observable<Void>
         let participantButtonDidTap: Observable<Void>
     }
 
@@ -74,6 +75,8 @@ final class GroupDetailViewModel {
                 
                 viewModel.participantsObservable.onNext(viewModel.participantsInfo)
                 
+                viewModel.wantToAttend = !response.data.loginUser.wantToAttend
+                
                 return response.data
             }
             .asDriver(onErrorJustReturn:
@@ -111,6 +114,28 @@ final class GroupDetailViewModel {
             }
             .withUnretained(self)
             .map { viewModel, response in
+                let participant: ParticipantsDescribing = UserInfo(
+                    id: UserDefaultsManager.id,
+                    nickname: UserDefaultsManager.nickname,
+                    group: UserDefaultsManager.group,
+                    attended: false,
+                    profileImageUrl: UserDefaultsManager.profileImageUrl
+                )
+                
+                if viewModel.wantToAttend {
+                    viewModel.participantsInfo.append(participant)
+                } else {
+                    guard
+                        let index = viewModel.participantsInfo.firstIndex(where: { $0.id == participant.id })
+                    else {
+                        return (response.message, viewModel.wantToAttend)
+                    }
+                    
+                    viewModel.participantsInfo.remove(at: index)
+                }
+                
+                viewModel.participantsObservable.onNext(viewModel.participantsInfo)
+                
                 viewModel.wantToAttend.toggle()
                 
                 return (response.message, viewModel.wantToAttend)

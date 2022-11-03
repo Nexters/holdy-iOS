@@ -74,7 +74,8 @@ final class GroupDetailViewController: UIViewController {
     private var viewModel: GroupDetailViewModel!
     private var coordinator: GroupDetailCoordinator!
     private var mapLink: String!
-
+    
+    private let needLoadGroupInfoObserver = PublishSubject<Void>()
     private let disposeBag = DisposeBag()
 
     // MARK: - Initializers
@@ -211,6 +212,7 @@ final class GroupDetailViewController: UIViewController {
     private func bind() {
         let input = GroupDetailViewModel.Input(
             viewDidLoad: rx.viewDidLoad,
+            needsChangeParticipantInfo: needLoadGroupInfoObserver.asObservable(),
             participantButtonDidTap: participantButton.rx.tap.asObservable()
         )
         let output = viewModel.transform(input)
@@ -241,6 +243,19 @@ final class GroupDetailViewController: UIViewController {
                 )
                 
                 self.mapLink = groupInfo.place.mapLink
+                
+                if groupInfo.loginUser.wantToAttend {
+                    self.participantButton.backgroundColor = .white
+                    self.participantButton.setTitle("못가요", for: .normal)
+                    self.participantButton.setTitleColor(.gray6, for: .normal)
+                    self.participantButton.layer.borderWidth = 1
+                    self.participantButton.layer.borderColor = UIColor.gray3.cgColor
+                } else {
+                    self.participantButton.setTitle("갈게요", for: .normal)
+                    self.participantButton.setTitleColor(.white, for: .normal)
+                    self.participantButton.backgroundColor = .strongBlue
+                    self.participantButton.layer.borderWidth = 0
+                }
                 
                 self.configureGuestPage()
             })
@@ -337,6 +352,8 @@ final class GroupDetailViewController: UIViewController {
                         viewController.participantButton.layer.borderWidth = 1
                         viewController.participantButton.layer.borderColor = UIColor.gray3.cgColor
                     }
+                    
+                    viewController.needLoadGroupInfoObserver.onNext(())
                     
                     return
                 }
