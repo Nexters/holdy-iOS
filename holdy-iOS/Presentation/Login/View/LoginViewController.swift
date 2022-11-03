@@ -152,6 +152,21 @@ final class LoginViewController: UIViewController {
         
         configureTextField(output: output.textFieldDidReturn)
         requestLogin(output: output.loginResponse)
+        configureNoCodeButtonAction()
+    }
+    
+    private func configureNoCodeButtonAction() {
+        noCodeButton.rx.tap
+            .subscribe(onNext: {
+                guard let requestCodeURL = URL(
+                    string: "https://docs.google.com/forms/d/e/1FAIpQLSfrpk-aAyrMnzb55jEnNWq_ZytGYkW-zTPeX3CS5cvyAC8cLA/viewform"
+                ) else {
+                    return
+                }
+                
+                UIApplication.shared.open(requestCodeURL, options: [:], completionHandler: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func configureTextField(output: Driver<Void>) {
