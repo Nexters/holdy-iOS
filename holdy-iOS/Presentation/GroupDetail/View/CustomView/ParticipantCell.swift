@@ -156,7 +156,14 @@ final class ParticipantCell: UICollectionViewCell {
             .disposed(by: disposeBag)
     }
     
-    func configureContent(imageURL: String, name: String, group: String, id: Int, row: Int) {
+    func configureContent(
+        imageURL: String,
+        name: String,
+        group: String,
+        id: Int,
+        row: Int,
+        attended: Bool = false
+    ) {
         guard
             let url = URL(string: imageURL),
             let data = try? Data(contentsOf: url),
@@ -170,14 +177,27 @@ final class ParticipantCell: UICollectionViewCell {
         groupLabel.text = group
         
         if id == UserDefaultsManager.id {
-            participantButton.isHidden = false
-        } else {
             participantButton.isHidden = true
+        } else {
+            participantButton.isHidden = false
         }
         
         if row == .zero {
             hostIcon.isHidden = false
             participantButton.isHidden = true
+        }
+        
+        if attended {
+            participantButton.setTitle("안왔어요", for: .normal)
+            participantButton.setTitleColor(.gray6, for: .normal)
+            participantButton.backgroundColor = .white
+            participantButton.layer.borderWidth = 1
+            participantButton.layer.borderColor = UIColor.gray3.cgColor
+
+        } else {
+            participantButton.setTitle("왔어요", for: .normal)
+            participantButton.backgroundColor = .strongBlue
+            participantButton.layer.borderWidth = .zero
         }
     }
     
