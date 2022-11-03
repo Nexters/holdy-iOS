@@ -185,7 +185,7 @@ final class BottomSheetContentViewController: UIViewController {
         )
     }
     
-    private func configureGuestPage() {
+    private func configureGuestPage(at cell: ParticipantCell) {
         guard UserDefaultsManager.id != GroupDetailViewModel.hostID else {
             return
         }
@@ -215,6 +215,8 @@ final class BottomSheetContentViewController: UIViewController {
         
         inviteButtonExplanation.isHidden = true
         inviteButton.isHidden = true
+        
+        cell.hideParticipantButton()
     }
     
     // MARK: - Binding Methods
@@ -240,7 +242,7 @@ final class BottomSheetContentViewController: UIViewController {
                 )
                 cell.delegate = self
                 
-                self.configureGuestPage()
+                self.configureGuestPage(at: cell)
             }
             .disposed(by: disposeBag)
     }

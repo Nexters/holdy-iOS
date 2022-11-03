@@ -168,10 +168,8 @@ final class ParticipantCell: UICollectionViewCell {
         groupLabel.text = group
         
         if id == UserDefaultsManager.id {
-            hostIcon.isHidden = false
             participantButton.isHidden = false
         } else {
-            hostIcon.isHidden = true
             participantButton.isHidden = true
         }
         
@@ -179,5 +177,9 @@ final class ParticipantCell: UICollectionViewCell {
             hostIcon.isHidden = false
             participantButton.isHidden = true
         }
+    }
+    
+    func hideParticipantButton() {
+        participantButton.isHidden = true
     }
 }
