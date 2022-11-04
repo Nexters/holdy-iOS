@@ -240,7 +240,7 @@ final class RewardDetailViewController: UIViewController {
                         
                         guard let imageData = renderImage.pngData() else { return }
                         
-                        let pasteboardItems : [String:Any] = [
+                        let pasteboardItems: [String: Any] = [
                            "com.instagram.sharedSticker.stickerImage": imageData
                         ]
                         

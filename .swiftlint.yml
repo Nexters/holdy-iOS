@@ -3,6 +3,7 @@ disabled_rules:
 - large_tuple
 - file_length
 - for_where
+- nesting
 
 # change_rules
 function_body_length: 65
