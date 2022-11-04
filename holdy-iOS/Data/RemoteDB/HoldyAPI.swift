@@ -11,7 +11,7 @@ struct HoldyAPI {
     #if DEBUG
     static let baseURL = "http://api-dev.semonemo.xyz/"
     #else
-    static let baseURL = "https://api.semonemo.xyz/"
+    static let baseURL = "http://api-dev.semonemo.xyz/"
     #endif
     
     struct RequestLogin: Postable {
