@@ -7,7 +7,7 @@ import RxSwift
 
 final class ParticipantCellViewModel {
     struct Input {
-        let participantButtonDidTap: Observable<Void>
+        let participantButtonDidTap: Observable<Int>
     }
     
     struct Output {
@@ -28,15 +28,15 @@ final class ParticipantCellViewModel {
     }
     
     private func configureParticipantButtonAction(
-        with inputObserver: Observable<Void>
+        with inputObserver: Observable<Int>
     ) -> Observable<Output.Response> {
         inputObserver
             .withUnretained(self)
-            .flatMap { viewModel, _ in
+            .flatMap { viewModel, userID in
                 viewModel.router.requestAttendanceCheck(
                     api: HoldyAPI.RequestAttendanceCheck(
                         groupID: GroupDetailViewModel.groupID,
-                        userID: UserDefaultsManager.id
+                        userID: userID
                     ),
                     attend: viewModel.isAttended,
                     decodingType: ParticipantResponse.self

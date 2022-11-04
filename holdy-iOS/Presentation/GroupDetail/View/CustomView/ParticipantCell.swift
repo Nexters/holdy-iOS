@@ -54,6 +54,8 @@ final class ParticipantCell: UICollectionViewCell {
     private let disposeBag = DisposeBag()
     private let viewModel = ParticipantCellViewModel()
     
+    private var userID: Int = .zero
+    
     weak var delegate: ParticipantCellDelegate?
     
     // MARK: - Initializers
@@ -131,6 +133,10 @@ final class ParticipantCell: UICollectionViewCell {
     private func bind() {
         let input = ParticipantCellViewModel.Input(
             participantButtonDidTap: participantButton.rx.tap.asObservable()
+                .withUnretained(self)
+                .map { cell, _ in
+                    return cell.userID
+                }
         )
         let output = viewModel.transform(input)
         
@@ -171,6 +177,8 @@ final class ParticipantCell: UICollectionViewCell {
         else {
             return
         }
+        
+        userID = id
         
         profileImageView.image = image
         nameLabel.text = name
