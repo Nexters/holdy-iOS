@@ -100,7 +100,15 @@ final class GroupListViewController: UIViewController {
         
         if !isFirstLoad {
             listCollectionview.reloadData()
-            listCollectionview.scrollToItem(at: IndexPath(item: .zero, section: .zero), at: .top, animated: true)
+            
+            guard listCollectionview.cellForItem(at: IndexPath(row: .zero, section: .zero)) != nil else {
+                return
+            }
+            
+            listCollectionview.scrollToItem(
+                at: IndexPath(item: .zero, section: .zero),
+                at: .top, animated: true
+            )
         }
         
         isFirstLoad = false
